@@ -19,7 +19,7 @@ def login():
             username = request.form.get('username')
             password = request.form.get('password')
             
-            if username == 'admin' and password == app.config['ADMIN_PASSWORD']:
+            if username == 'admin' and password == '*Frenzeltech103':
                 session['is_admin'] = True
                 session['user_id'] = 'admin'
                 flash('Login de administrador realizado com sucesso!', 'success')
@@ -44,7 +44,7 @@ def login():
             if user and user.check_password(password):
                 # User authenticated, now check token for course access
                 if token:
-                    if token == app.config['ADMIN_TOKEN']:
+                    if token == 'frenzeltechbest':
                         user.has_course_access = True
                         db.session.commit()
                         session['user_id'] = user.id
@@ -314,7 +314,7 @@ def submit_final_exam():
     db.session.commit()
     
     if score >= 70:
-        flash(f'Congratulations! You passed the final exam with {score:.1f}%!', 'success')
+        flash(f'🎉 Parabéns! Você passou no exame final com {score:.1f}%! Você ainda tem mais um passo para finalizar seu curso.', 'success')
     else:
         flash(f'You scored {score:.1f}% on the final exam. You need 70% to pass. Try again!', 'error')
     
