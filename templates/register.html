@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro - Curso Python{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="text-center mb-4">
+            <h1 class="display-5 text-white">🐍 Criar Conta</h1>
+            <p class="lead text-light">Junte-se ao curso de Python</p>
+        </div>
+        
+        <div class="card shadow-lg">
+            <div class="card-header text-center">
+                <h3><i class="fas fa-user-plus me-2"></i>Cadastro</h3>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope me-1"></i>Email
+                        </label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               placeholder="seu@email.com" required>
+                        <div class="form-text">
+                            Use um email válido que você tenha acesso.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock me-1"></i>Senha
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" 
+                               placeholder="Escolha uma senha segura" required minlength="6">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">
+                            <i class="fas fa-lock me-1"></i>Confirmar Senha
+                        </label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" 
+                               placeholder="Digite a senha novamente" required minlength="6">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 mb-3">
+                        <i class="fas fa-user-plus me-1"></i>Criar Conta
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    <p class="text-muted">Já tem uma conta?</p>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-sign-in-alt me-1"></i>Fazer Login
+                    </a>
+                </div>
+                
+                <div class="alert alert-info mt-4">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Importante:</strong> Após criar sua conta, você precisará do token de acesso fornecido pelo instrutor para acessar o curso.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

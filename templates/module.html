@@ -23,6 +23,30 @@
                 <h3><i class="fas fa-book-open me-2"></i>{{ module.title }}</h3>
             </div>
             <div class="card-body">
+                {% if video and video.video_url %}
+                <div class="mb-4">
+                    <h5><i class="fas fa-play-circle me-2"></i>Vídeo da Aula</h5>
+                    <div class="video-container">
+                        {% if 'youtube.com' in video.video_url or 'youtu.be' in video.video_url %}
+                            {% set video_id = video.video_url.split('v=')[1].split('&')[0] if 'v=' in video.video_url else video.video_url.split('/')[-1] %}
+                            <iframe src="https://www.youtube.com/embed/{{ video_id }}" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        {% else %}
+                            <video controls class="w-100">
+                                <source src="{{ video.video_url }}" type="video/mp4">
+                                Seu navegador não suporta o elemento de vídeo.
+                            </video>
+                        {% endif %}
+                    </div>
+                    {% if video.video_title %}
+                        <p class="text-muted mt-2">{{ video.video_title }}</p>
+                    {% endif %}
+                </div>
+                {% endif %}
+                
                 {{ module.content | safe }}
             </div>
         </div>
@@ -39,7 +63,8 @@
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ url_for('take_quiz', module_id=module_id) }}">
-                    {% for i, question in enumerate(module.quiz) %}
+                    {% for question in module.quiz %}
+                    {% set i = loop.index0 %}
                     <div class="quiz-question p-3 mb-4 rounded">
                         <h6>Question {{ i + 1 }}:</h6>
                         <p>{{ question.question }}</p>

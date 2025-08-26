@@ -36,7 +36,8 @@
                 </div>
                 
                 <form method="POST" action="{{ url_for('submit_final_exam') }}">
-                    {% for i, question in enumerate(exam.questions) %}
+                    {% for question in exam.questions %}
+                    {% set i = loop.index0 %}
                     <div class="quiz-question p-3 mb-4 rounded">
                         <h6>Question {{ i + 1 }} of {{ exam.questions|length }}:</h6>
                         <p>{{ question.question }}</p>

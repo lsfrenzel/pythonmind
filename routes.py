@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash, session, jsonify
 from app import app, db
-from models import User, ModuleProgress, QuizResult
+from models import User, ModuleProgress, QuizResult, ModuleVideo
 from quiz_data import MODULES, FINAL_EXAM
 from datetime import datetime
 import json
@@ -14,38 +14,90 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        token = request.form.get('token')
-        username = request.form.get('username')
-        password = request.form.get('password')
-        
-        # Admin login
+        # Check if it's admin login
         if request.form.get('login_type') == 'admin':
+            username = request.form.get('username')
+            password = request.form.get('password')
+            
             if username == 'admin' and password == app.config['ADMIN_PASSWORD']:
                 session['is_admin'] = True
                 session['user_id'] = 'admin'
-                flash('Admin login successful!', 'success')
+                flash('Login de administrador realizado com sucesso!', 'success')
                 return redirect(url_for('admin_dashboard'))
             else:
-                flash('Invalid admin credentials!', 'error')
+                flash('Credenciais de administrador inválidas!', 'error')
                 return render_template('login.html')
         
-        # Student login with token
-        elif token:
-            if token == app.config['ADMIN_TOKEN']:
-                # Create or get student user
-                user = User.query.filter_by(username=token).first()
-                if not user:
-                    user = User(username=token, email=f"{token}@student.com")
-                    db.session.add(user)
-                    db.session.commit()
-                
-                session['user_id'] = user.id
-                flash('Login successful!', 'success')
-                return redirect(url_for('dashboard'))
+        # Student login - first verify email/password, then token
+        else:
+            email = request.form.get('email')
+            password = request.form.get('password')
+            token = request.form.get('token')
+            
+            if not email or not password:
+                flash('Email e senha são obrigatórios!', 'error')
+                return render_template('login.html')
+            
+            # Check if user exists
+            user = User.query.filter_by(email=email).first()
+            
+            if user and user.check_password(password):
+                # User authenticated, now check token for course access
+                if token:
+                    if token == app.config['ADMIN_TOKEN']:
+                        user.has_course_access = True
+                        db.session.commit()
+                        session['user_id'] = user.id
+                        flash('Login realizado com sucesso! Acesso ao curso liberado.', 'success')
+                        return redirect(url_for('dashboard'))
+                    else:
+                        flash('Token de acesso inválido!', 'error')
+                        return render_template('login.html')
+                else:
+                    # User authenticated but no token provided
+                    if user.has_course_access:
+                        session['user_id'] = user.id
+                        flash('Login realizado com sucesso!', 'success')
+                        return redirect(url_for('dashboard'))
+                    else:
+                        flash('Você precisa inserir o token de acesso ao curso!', 'error')
+                        return render_template('login.html')
             else:
-                flash('Invalid token!', 'error')
+                flash('Email ou senha incorretos!', 'error')
     
     return render_template('login.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+        confirm_password = request.form.get('confirm_password')
+        
+        if not email or not password or not confirm_password:
+            flash('Todos os campos são obrigatórios!', 'error')
+            return render_template('register.html')
+        
+        if password != confirm_password:
+            flash('As senhas não coincidem!', 'error')
+            return render_template('register.html')
+        
+        # Check if user already exists
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash('Este email já está cadastrado!', 'error')
+            return render_template('register.html')
+        
+        # Create new user
+        user = User(email=email)
+        user.set_password(password)
+        db.session.add(user)
+        db.session.commit()
+        
+        flash('Cadastro realizado com sucesso! Agora faça o login.', 'success')
+        return redirect(url_for('login'))
+    
+    return render_template('register.html')
 
 @app.route('/logout')
 def logout():
@@ -59,7 +111,8 @@ def dashboard():
         return redirect(url_for('login'))
     
     user = User.query.get(session['user_id'])
-    if not user:
+    if not user or not user.has_course_access:
+        flash('Você precisa ter acesso ao curso para ver o dashboard!', 'error')
         return redirect(url_for('login'))
     
     # Get user progress
@@ -68,7 +121,7 @@ def dashboard():
     
     # Get module status
     modules_status = []
-    for i in range(1, 6):  # 5 modules
+    for i in range(1, 10):  # 9 modules
         module_progress = ModuleProgress.query.filter_by(
             user_id=user.id, module_id=i
         ).first()
@@ -80,6 +133,7 @@ def dashboard():
         status = {
             'id': i,
             'title': MODULES[i]['title'],
+            'description': MODULES[i]['description'],
             'completed': module_progress.completed if module_progress else False,
             'accessible': user.can_access_module(i),
             'score': quiz_result.score if quiz_result else None
@@ -105,16 +159,23 @@ def module_view(module_id):
         return redirect(url_for('login'))
     
     user = User.query.get(session['user_id'])
-    if not user or not user.can_access_module(module_id):
-        flash('You cannot access this module yet!', 'error')
+    if not user or not user.has_course_access or not user.can_access_module(module_id):
+        flash('Você não pode acessar este módulo ainda!', 'error')
         return redirect(url_for('dashboard'))
     
     if module_id not in MODULES:
-        flash('Module not found!', 'error')
+        flash('Módulo não encontrado!', 'error')
         return redirect(url_for('dashboard'))
     
     module = MODULES[module_id]
-    return render_template('module.html', module=module, module_id=module_id)
+    
+    # Get video for this module
+    module_video = ModuleVideo.query.filter_by(module_id=module_id).first()
+    
+    return render_template('module.html', 
+                         module=module, 
+                         module_id=module_id,
+                         video=module_video)
 
 @app.route('/quiz/<int:module_id>', methods=['POST'])
 def take_quiz(module_id):
@@ -181,9 +242,9 @@ def take_quiz(module_id):
         
         progress.completed = True
         progress.completed_at = datetime.utcnow()
-        flash(f'Congratulations! You passed with {score:.1f}%', 'success')
+        flash(f'Parabéns! Você passou com {score:.1f}%', 'success')
     else:
-        flash(f'You scored {score:.1f}%. You need 70% to advance. Try again!', 'error')
+        flash(f'Você obteve {score:.1f}%. Precisa de 70% para avançar. Tente novamente!', 'error')
     
     db.session.commit()
     
@@ -200,8 +261,8 @@ def final_exam():
         return redirect(url_for('login'))
     
     user = User.query.get(session['user_id'])
-    if not user or not user.can_take_final_exam():
-        flash('You must complete all modules before taking the final exam!', 'error')
+    if not user or not user.has_course_access or not user.can_take_final_exam():
+        flash('Você deve completar todos os módulos antes de fazer o exame final!', 'error')
         return redirect(url_for('dashboard'))
     
     return render_template('exam.html', exam=FINAL_EXAM)
@@ -311,3 +372,62 @@ def admin_dashboard():
     }
     
     return render_template('admin.html', students=student_data, stats=stats)
+
+@app.route('/admin/videos')
+def admin_videos():
+    if 'is_admin' not in session or not session['is_admin']:
+        flash('Admin access required!', 'error')
+        return redirect(url_for('login'))
+    
+    # Get all module videos
+    videos = ModuleVideo.query.all()
+    video_dict = {v.module_id: v for v in videos}
+    
+    # Create list with all modules and their video status
+    modules_with_videos = []
+    for i in range(1, 10):
+        module_info = {
+            'id': i,
+            'title': MODULES[i]['title'],
+            'video': video_dict.get(i),
+            'has_video': i in video_dict
+        }
+        modules_with_videos.append(module_info)
+    
+    return render_template('admin_videos.html', modules=modules_with_videos)
+
+@app.route('/admin/videos/<int:module_id>', methods=['POST'])
+def update_module_video(module_id):
+    if 'is_admin' not in session or not session['is_admin']:
+        flash('Admin access required!', 'error')
+        return redirect(url_for('login'))
+    
+    video_url = request.form.get('video_url', '').strip()
+    video_title = request.form.get('video_title', '').strip()
+    
+    if not video_url:
+        # Remove video if URL is empty
+        existing_video = ModuleVideo.query.filter_by(module_id=module_id).first()
+        if existing_video:
+            db.session.delete(existing_video)
+            db.session.commit()
+            flash(f'Vídeo removido do Módulo {module_id}!', 'success')
+    else:
+        # Add or update video
+        existing_video = ModuleVideo.query.filter_by(module_id=module_id).first()
+        if existing_video:
+            existing_video.video_url = video_url
+            existing_video.video_title = video_title
+            existing_video.updated_at = datetime.utcnow()
+        else:
+            new_video = ModuleVideo(
+                module_id=module_id,
+                video_url=video_url,
+                video_title=video_title
+            )
+            db.session.add(new_video)
+        
+        db.session.commit()
+        flash(f'Vídeo atualizado para o Módulo {module_id}!', 'success')
+    
+    return redirect(url_for('admin_videos'))

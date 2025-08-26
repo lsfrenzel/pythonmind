@@ -135,17 +135,31 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h5><i class="fas fa-cogs me-2"></i>Quick Actions</h5>
+                <h5><i class="fas fa-cogs me-2"></i>Ações Administrativas</h5>
             </div>
             <div class="card-body">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <a href="{{ url_for('admin_videos') }}" class="btn btn-primary w-100">
+                            <i class="fas fa-video me-2"></i>Gerenciar Vídeos dos Módulos
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-secondary w-100" disabled>
+                            <i class="fas fa-chart-bar me-2"></i>Relatórios Detalhados (Em breve)
+                        </button>
+                    </div>
+                </div>
+                
                 <div class="alert alert-info">
                     <i class="fas fa-info-circle me-2"></i>
-                    <strong>Admin Information:</strong>
+                    <strong>Informações do Sistema:</strong>
                     <ul class="mb-0 mt-2">
-                        <li>Student access token: <code>{{ config.ADMIN_TOKEN }}</code></li>
-                        <li>Students use this token to register and access the course</li>
-                        <li>Monitor student progress and quiz results from this dashboard</li>
-                        <li>Final exam results determine course completion</li>
+                        <li>Token de acesso do estudante: <code>{{ config.ADMIN_TOKEN }}</code></li>
+                        <li>Estudantes usam este token para registrar e acessar o curso</li>
+                        <li>Monitore o progresso dos estudantes e resultados dos quizzes neste painel</li>
+                        <li>Resultados do exame final determinam a conclusão do curso</li>
+                        <li>Total de 9 módulos de aprendizagem em Python</li>
                     </ul>
                 </div>
             </div>

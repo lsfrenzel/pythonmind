@@ -1,0 +1,127 @@
+🧱 Módulo 1 – Fundamentos da Programação em Python
+
+Base para quem está começando a programar, com foco em lógica e sintaxe.
+
+Instalação do Python e VSCode
+
+Variáveis, Tipos de Dados e Entrada/Saída
+
+Operadores Aritméticos, Relacionais e Lógicos
+
+Estruturas Condicionais: if, elif, else
+
+Laços de Repetição: while e for
+
+Listas e Tuplas
+
+Dicionários e Conjuntos
+
+Funções e Escopo
+
+Módulos e Pacotes
+
+Tratamento de Erros com Try/Except
+
+🧪 Módulo 2 – Algoritmos e Problemas Reais com Python
+
+Prática com desafios e pequenos projetos do mundo real.
+
+Automatizando Tarefas Simples com Python
+
+Calculadora com Interface de Linha de Comando
+
+Jogo da Adivinhação
+
+Gerador de Senhas Aleatórias
+
+Agenda de Contatos com Arquivos .txt
+
+Conversor de Moedas com API
+
+CRUD de Produtos em Lista
+
+Projeto: Sistema Bancário Simples
+
+🧮 Módulo 3 – Manipulação de Arquivos e Dados
+
+Leitura e Escrita de Arquivos .txt
+
+Leitura de Arquivos CSV
+
+Manipulação de JSON
+
+Introdução ao uso de bibliotecas externas
+
+Projeto: Analisador de Arquivo de Vendas
+
+🛢️ Módulo 4 – Bancos de Dados com SQLite e PostgreSQL
+
+Conceitos de Banco de Dados Relacional
+
+Usando SQLite com Python (sqlite3)
+
+Introdução ao PostgreSQL
+
+Conectando o Python ao PostgreSQL (psycopg2 ou SQLAlchemy)
+
+Projeto: CRUD com Banco de Dados
+
+🌐 Módulo 5 – Programação Web com Flask
+
+Introdução ao Flask e ao conceito de Web Server
+
+Rotas, Views e Templates HTML
+
+Formulários e Processamento de Dados
+
+Integração com Banco de Dados
+
+Projeto: Blog Pessoal com Flask
+
+🧩 Módulo 6 – APIs REST com Flask
+
+O que são APIs RESTful?
+
+Criando uma API com Flask
+
+Métodos HTTP: GET, POST, PUT, DELETE
+
+Retorno em JSON e Boas Práticas de API
+
+Projeto: API de Cadastro de Usuários
+
+🐍 Módulo 7 – Testes Automatizados e Boas Práticas
+
+Introdução a Testes com unittest
+
+Testes de Funções e Classes
+
+Testando APIs com pytest e requests
+
+Documentação de Código com docstrings
+
+Projeto: Testando API de Produtos
+
+☁️ Módulo 8 – Deploy de Aplicações Python
+
+Preparando o Projeto para Deploy
+
+Uso de Variáveis de Ambiente
+
+Deploy no Render
+
+Deploy com Railway ou PythonAnywhere
+
+Projeto: API Online com Base de Dados
+
+🎓 Módulo 9 – Projeto Final
+
+Proposta de Projeto Realista (ex: ERP simples, sistema de tarefas, API de filmes etc.)
+
+Planejamento e Wireframe
+
+Construção em Etapas
+
+Testes e Validação
+
+Deploy e Apresentação

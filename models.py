@@ -4,9 +4,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password_hash = db.Column(db.String(256))
+    password_hash = db.Column(db.String(256), nullable=False)
+    has_course_access = db.Column(db.Boolean, default=False)
     is_admin = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     
@@ -25,12 +25,12 @@ class User(db.Model):
         completed_modules = [p.module_id for p in self.progress if p.completed]
         if not completed_modules:
             return 1
-        return max(completed_modules) + 1 if max(completed_modules) < 5 else 5
+        return max(completed_modules) + 1 if max(completed_modules) < 9 else 9
     
     def get_progress_percentage(self):
         """Calculate overall progress percentage"""
         completed_modules = len([p for p in self.progress if p.completed])
-        return (completed_modules / 5) * 100  # 5 modules total
+        return (completed_modules / 9) * 100  # 9 modules total
     
     def can_access_module(self, module_id):
         """Check if user can access a specific module"""
@@ -48,10 +48,10 @@ class User(db.Model):
     def can_take_final_exam(self):
         """Check if user can take the final exam"""
         completed_modules = len([p for p in self.progress if p.completed])
-        return completed_modules >= 5
+        return completed_modules >= 9
     
     def __repr__(self):
-        return f'<User {self.username}>'
+        return f'<User {self.email}>'
 
 class ModuleProgress(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -75,3 +75,11 @@ class QuizResult(db.Model):
     
     def passed(self):
         return self.score >= 70.0
+
+class ModuleVideo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    module_id = db.Column(db.Integer, nullable=False, unique=True)
+    video_url = db.Column(db.String(500), nullable=False)
+    video_title = db.Column(db.String(200))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
