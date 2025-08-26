@@ -1,5 +1,5 @@
-# Dados dos módulos do sistema
-MODULES = {
+# Backup simples dos dados dos módulos
+MODULES_SIMPLE = {
     1: {
         'title': 'Fundamentos do Python',
         'description': 'Conceitos básicos da linguagem Python.',
@@ -78,7 +78,7 @@ MODULES = {
     }
 }
 
-FINAL_EXAM = {
+FINAL_EXAM_SIMPLE = {
     'title': 'Exame Final - Python Completo',
     'description': 'Teste seus conhecimentos em todos os módulos.',
     'questions': [
