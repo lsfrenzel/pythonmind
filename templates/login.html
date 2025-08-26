@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Login - LMS{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow">
+            <div class="card-header text-center">
+                <h3><i class="fas fa-sign-in-alt me-2"></i>Login</h3>
+            </div>
+            <div class="card-body">
+                <!-- Student Login -->
+                <form method="POST" class="mb-4">
+                    <div class="mb-3">
+                        <label for="token" class="form-label">
+                            <i class="fas fa-key me-1"></i>Student Access Token
+                        </label>
+                        <input type="text" class="form-control" id="token" name="token" 
+                               placeholder="Enter your access token" required>
+                        <div class="form-text">
+                            Contact your instructor for the access token.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-user-graduate me-1"></i>Login as Student
+                    </button>
+                </form>
+
+                <hr>
+
+                <!-- Admin Login -->
+                <form method="POST">
+                    <input type="hidden" name="login_type" value="admin">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            <i class="fas fa-user me-1"></i>Admin Username
+                        </label>
+                        <input type="text" class="form-control" id="username" name="username" 
+                               value="admin" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock me-1"></i>Admin Password
+                        </label>
+                        <input type="password" class="form-control" id="password" name="password" 
+                               placeholder="Enter admin password" required>
+                    </div>
+                    <button type="submit" class="btn btn-secondary w-100">
+                        <i class="fas fa-user-shield me-1"></i>Login as Admin
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Learning Management System{% endblock %}</title>
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .progress-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: conic-gradient(var(--bs-success) var(--progress, 0%), var(--bs-secondary) 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .progress-circle::before {
+            content: '';
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--bs-body-bg);
+            position: absolute;
+        }
+        .progress-text {
+            position: relative;
+            z-index: 1;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+        .module-card {
+            transition: transform 0.2s ease-in-out;
+        }
+        .module-card:hover {
+            transform: translateY(-2px);
+        }
+        .quiz-question {
+            background: var(--bs-dark);
+            border-left: 4px solid var(--bs-primary);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-graduation-cap me-2"></i>
+                LMS
+            </a>
+            
+            {% if session.user_id %}
+            <div class="navbar-nav ms-auto">
+                {% if session.is_admin %}
+                    <a class="nav-link" href="{{ url_for('admin_dashboard') }}">
+                        <i class="fas fa-tachometer-alt me-1"></i>Admin Dashboard
+                    </a>
+                {% else %}
+                    <a class="nav-link" href="{{ url_for('dashboard') }}">
+                        <i class="fas fa-home me-1"></i>Dashboard
+                    </a>
+                {% endif %}
+                <a class="nav-link" href="{{ url_for('logout') }}">
+                    <i class="fas fa-sign-out-alt me-1"></i>Logout
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main class="py-4">
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

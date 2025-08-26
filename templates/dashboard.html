@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Student Dashboard - LMS{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2><i class="fas fa-tachometer-alt me-2"></i>Student Dashboard</h2>
+            <div class="progress-circle" style="--progress: {{ progress }}%">
+                <div class="progress-text">{{ "%.0f"|format(progress) }}%</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-line me-2"></i>Overall Progress</h5>
+            </div>
+            <div class="card-body">
+                <div class="progress mb-2" style="height: 20px;">
+                    <div class="progress-bar bg-success" role="progressbar" 
+                         style="width: {{ progress }}%" 
+                         aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ "%.0f"|format(progress) }}%
+                    </div>
+                </div>
+                <small class="text-muted">Complete all modules to unlock the final exam</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h4><i class="fas fa-book me-2"></i>Learning Modules</h4>
+    </div>
+</div>
+
+<div class="row">
+    {% for module in modules %}
+    <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card module-card h-100 {% if not module.accessible %}opacity-50{% endif %}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">Module {{ module.id }}</h6>
+                {% if module.completed %}
+                    <span class="badge bg-success">
+                        <i class="fas fa-check me-1"></i>Completed
+                    </span>
+                {% elif module.accessible %}
+                    <span class="badge bg-primary">
+                        <i class="fas fa-play me-1"></i>Available
+                    </span>
+                {% else %}
+                    <span class="badge bg-secondary">
+                        <i class="fas fa-lock me-1"></i>Locked
+                    </span>
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <h6>{{ module.title }}</h6>
+                {% if module.score is not none %}
+                    <p class="text-muted mb-2">
+                        Last Score: 
+                        <span class="{% if module.score >= 70 %}text-success{% else %}text-danger{% endif %}">
+                            {{ "%.1f"|format(module.score) }}%
+                        </span>
+                    </p>
+                {% endif %}
+                {% if module.accessible %}
+                    <a href="{{ url_for('module_view', module_id=module.id) }}" 
+                       class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-arrow-right me-1"></i>
+                        {% if module.completed %}Review{% else %}Start{% endif %}
+                    </a>
+                {% else %}
+                    <button class="btn btn-outline-secondary btn-sm" disabled>
+                        <i class="fas fa-lock me-1"></i>Complete Previous Module
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Final Exam Section -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h5><i class="fas fa-trophy me-2"></i>Final Exam</h5>
+            </div>
+            <div class="card-body">
+                {% if final_exam_accessible %}
+                    {% if final_exam_result %}
+                        <p class="mb-2">
+                            Last Attempt: 
+                            <span class="{% if final_exam_result.passed() %}text-success{% else %}text-danger{% endif %}">
+                                {{ "%.1f"|format(final_exam_result.score) }}%
+                            </span>
+                            {% if final_exam_result.passed() %}
+                                <i class="fas fa-check-circle text-success ms-1"></i>
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                    <p class="text-muted">Test your knowledge across all modules. 70% required to pass.</p>
+                    <a href="{{ url_for('final_exam') }}" class="btn btn-warning">
+                        <i class="fas fa-graduation-cap me-1"></i>
+                        {% if final_exam_result %}Retake{% else %}Take{% endif %} Final Exam
+                    </a>
+                {% else %}
+                    <p class="text-muted">Complete all modules to unlock the final exam.</p>
+                    <button class="btn btn-outline-warning" disabled>
+                        <i class="fas fa-lock me-1"></i>Final Exam Locked
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

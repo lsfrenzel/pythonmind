@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard - LMS{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2><i class="fas fa-user-shield me-2"></i>Admin Dashboard</h2>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-primary">{{ stats.total_students }}</h3>
+                <p class="text-muted">Total Students</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-success">{{ "%.1f"|format(stats.completion_rate) }}%</h3>
+                <p class="text-muted">Module Completion Rate</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="text-warning">{{ "%.1f"|format(stats.final_exam_pass_rate) }}%</h3>
+                <p class="text-muted">Final Exam Pass Rate</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Students Table -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4><i class="fas fa-users me-2"></i>Student Progress</h4>
+            </div>
+            <div class="card-body">
+                {% if students %}
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Email</th>
+                                <th>Modules Completed</th>
+                                <th>Progress</th>
+                                <th>Avg Quiz Score</th>
+                                <th>Final Exam</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{ student.user.username }}</td>
+                                <td>{{ student.user.email }}</td>
+                                <td>{{ student.completed_modules }}/5</td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar" role="progressbar" 
+                                             style="width: {{ student.progress_percentage }}%">
+                                            {{ "%.0f"|format(student.progress_percentage) }}%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {% if student.avg_quiz_score > 0 %}
+                                        <span class="{% if student.avg_quiz_score >= 70 %}text-success{% else %}text-danger{% endif %}">
+                                            {{ "%.1f"|format(student.avg_quiz_score) }}%
+                                        </span>
+                                    {% else %}
+                                        <span class="text-muted">No attempts</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if student.final_exam_score is not none %}
+                                        <span class="{% if student.final_exam_passed %}text-success{% else %}text-danger{% endif %}">
+                                            {{ "%.1f"|format(student.final_exam_score) }}%
+                                            {% if student.final_exam_passed %}
+                                                <i class="fas fa-check-circle ms-1"></i>
+                                            {% endif %}
+                                        </span>
+                                    {% else %}
+                                        <span class="text-muted">Not taken</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if student.final_exam_passed %}
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-graduation-cap me-1"></i>Graduated
+                                        </span>
+                                    {% elif student.completed_modules >= 5 %}
+                                        <span class="badge bg-warning">
+                                            <i class="fas fa-clock me-1"></i>Exam Ready
+                                        </span>
+                                    {% elif student.completed_modules > 0 %}
+                                        <span class="badge bg-primary">
+                                            <i class="fas fa-play me-1"></i>In Progress
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">
+                                            <i class="fas fa-pause me-1"></i>Not Started
+                                        </span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <i class="fas fa-users text-muted" style="font-size: 3rem;"></i>
+                    <h5 class="text-muted mt-3">No students enrolled yet</h5>
+                    <p class="text-muted">Students will appear here once they log in with the access token.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-cogs me-2"></i>Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Admin Information:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>Student access token: <code>{{ config.ADMIN_TOKEN }}</code></li>
+                        <li>Students use this token to register and access the course</li>
+                        <li>Monitor student progress and quiz results from this dashboard</li>
+                        <li>Final exam results determine course completion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

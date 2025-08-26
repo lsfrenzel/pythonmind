@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}{{ module.title }} - LMS{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active">Module {{ module_id }}</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3><i class="fas fa-book-open me-2"></i>{{ module.title }}</h3>
+            </div>
+            <div class="card-body">
+                {{ module.content | safe }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quiz Section -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white">
+                <h4><i class="fas fa-question-circle me-2"></i>Module Quiz</h4>
+                <p class="mb-0">You need 70% to advance to the next module.</p>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('take_quiz', module_id=module_id) }}">
+                    {% for i, question in enumerate(module.quiz) %}
+                    <div class="quiz-question p-3 mb-4 rounded">
+                        <h6>Question {{ i + 1 }}:</h6>
+                        <p>{{ question.question }}</p>
+                        
+                        {% if question.type == 'multiple_choice' %}
+                            {% for option in question.options %}
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" 
+                                       name="question_{{ i }}" value="{{ option }}" 
+                                       id="q{{ i }}_{{ loop.index0 }}" required>
+                                <label class="form-check-label" for="q{{ i }}_{{ loop.index0 }}">
+                                    {{ option }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        {% elif question.type == 'open_answer' %}
+                            <textarea class="form-control" name="question_{{ i }}" 
+                                    rows="3" placeholder="Enter your answer here..." required></textarea>
+                            <small class="form-text text-muted">
+                                Provide a detailed answer. Keywords and key concepts will be evaluated.
+                            </small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-paper-plane me-2"></i>Submit Quiz
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-12 text-center">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left me-1"></i>Back to Dashboard
+        </a>
+    </div>
+</div>
+{% endblock %}
