@@ -510,27 +510,282 @@ conta1.extrato()</code></pre>
         'description': 'Trabalhando com diferentes formatos de arquivo e dados.',
         'video_url': '',
         'content': '''
-        <h3>🧮 Módulo 3 – Manipulação de Arquivos e Dados</h3>
-        <p><strong>Trabalhando com diferentes formatos de arquivo e dados.</strong></p>
+        <h3>📁 Módulo 3 – Manipulação de Arquivos e Dados</h3>
+        <p><strong>Trabalhando com diferentes formatos de arquivo e processamento de dados.</strong></p>
         
-        <h4>📁 Tipos de Arquivo:</h4>
-        <ul>
-            <li><strong>Arquivos .txt:</strong> Leitura e escrita básica</li>
-            <li><strong>Arquivos CSV:</strong> Dados tabulares e planilhas</li>
-            <li><strong>Arquivos JSON:</strong> Dados estruturados</li>
-            <li><strong>Bibliotecas Externas:</strong> Expandindo as capacidades</li>
-        </ul>
+        <h4>📄 1. Trabalhando com Arquivos de Texto</h4>
+        <p>Python oferece ferramentas poderosas para manipular arquivos:</p>
+        <pre><code># Lendo um arquivo
+with open('dados.txt', 'r', encoding='utf-8') as arquivo:
+    conteudo = arquivo.read()
+    print(conteudo)
+
+# Lendo linha por linha
+with open('dados.txt', 'r', encoding='utf-8') as arquivo:
+    for linha in arquivo:
+        print(linha.strip())  # remove quebras de linha
+
+# Escrevendo em um arquivo
+dados = ["Python é incrível", "Manipulação de arquivos", "Dados importantes"]
+with open('saida.txt', 'w', encoding='utf-8') as arquivo:
+    for linha in dados:
+        arquivo.write(linha + '\n')
+
+# Adicionando ao final do arquivo
+with open('log.txt', 'a', encoding='utf-8') as arquivo:
+    arquivo.write(f"Log de {datetime.now()}: Operação realizada\n")</code></pre>
         
-        <h4>🔧 Ferramentas e Bibliotecas:</h4>
-        <ul>
-            <li><code>open()</code> - Manipulação básica de arquivos</li>
-            <li><code>csv</code> - Módulo para arquivos CSV</li>
-            <li><code>json</code> - Trabalho com dados JSON</li>
-            <li><code>pandas</code> - Análise de dados (introdução)</li>
-        </ul>
+        <h4>📊 2. Trabalhando com Arquivos CSV</h4>
+        <p>CSV é um formato popular para dados tabulares:</p>
+        <pre><code>import csv
+from datetime import datetime
+
+# Lendo arquivo CSV
+print("📋 Dados de Vendas:")
+with open('vendas.csv', 'r', encoding='utf-8') as arquivo:
+    leitor = csv.DictReader(arquivo)
+    total_vendas = 0
+    
+    for linha in leitor:
+        produto = linha['produto']
+        quantidade = int(linha['quantidade'])
+        preco = float(linha['preco'])
+        total = quantidade * preco
+        total_vendas += total
         
-        <h4>🎯 Projeto Final:</h4>
-        <p><strong>Analisador de Arquivo de Vendas</strong> - Um sistema completo que lê dados de vendas de diferentes formatos e gera relatórios.</p>
+        print(f"{produto}: {quantidade} x R$ {preco:.2f} = R$ {total:.2f}")
+    
+    print(f"\n💰 Total de vendas: R$ {total_vendas:.2f}")
+
+# Criando arquivo CSV
+vendas_dados = [
+    {'produto': 'Notebook', 'quantidade': 2, 'preco': 2500.00},
+    {'produto': 'Mouse', 'quantidade': 10, 'preco': 50.00},
+    {'produto': 'Teclado', 'quantidade': 5, 'preco': 150.00}
+]
+
+with open('relatorio_vendas.csv', 'w', newline='', encoding='utf-8') as arquivo:
+    campos = ['produto', 'quantidade', 'preco', 'total']
+    escritor = csv.DictWriter(arquivo, fieldnames=campos)
+    
+    escritor.writeheader()
+    for venda in vendas_dados:
+        venda['total'] = venda['quantidade'] * venda['preco']
+        escritor.writerow(venda)</code></pre>
+        
+        <h4>🔄 3. Trabalhando com JSON</h4>
+        <p>JSON é ideal para dados estruturados e APIs:</p>
+        <pre><code>import json
+
+# Dados do usuário
+usuario = {
+    "nome": "Ana Silva",
+    "idade": 28,
+    "email": "ana@email.com",
+    "habilidades": ["Python", "JavaScript", "SQL"],
+    "ativo": True,
+    "projetos": {
+        "web": 3,
+        "mobile": 1,
+        "desktop": 2
+    }
+}
+
+# Salvando em JSON
+with open('usuario.json', 'w', encoding='utf-8') as arquivo:
+    json.dump(usuario, arquivo, ensure_ascii=False, indent=2)
+    print("✅ Dados salvos em JSON!")
+
+# Lendo arquivo JSON
+with open('usuario.json', 'r', encoding='utf-8') as arquivo:
+    dados = json.load(arquivo)
+    
+    print(f"👤 Nome: {dados['nome']}")
+    print(f"✉️ Email: {dados['email']}")
+    print(f"🛠️ Habilidades: {', '.join(dados['habilidades'])}")
+    
+    # Calculando total de projetos
+    total_projetos = sum(dados['projetos'].values())
+    print(f"📊 Total de projetos: {total_projetos}")
+
+# Trabalhando com APIs (simulação)
+import requests
+
+def consultar_cep(cep):
+    """Consulta CEP usando API pública"""
+    try:
+        url = f"https://viacep.com.br/ws/{cep}/json/"
+        response = requests.get(url)
+        
+        if response.status_code == 200:
+            dados = response.json()
+            
+            if 'erro' not in dados:
+                return {
+                    'cep': dados['cep'],
+                    'logradouro': dados['logradouro'],
+                    'bairro': dados['bairro'],
+                    'cidade': dados['localidade'],
+                    'uf': dados['uf']
+                }
+        
+        return None
+    except Exception as e:
+        print(f"Erro ao consultar CEP: {e}")
+        return None
+
+# Exemplo de uso
+endereco = consultar_cep("01310-100")
+if endereco:
+    print(f"📍 {endereco['logradouro']}, {endereco['bairro']}")
+    print(f"   {endereco['cidade']} - {endereco['uf']}")</code></pre>
+        
+        <h4>🗂️ 4. Organizador de Arquivos</h4>
+        <pre><code>import os
+import shutil
+from pathlib import Path
+
+def organizar_downloads():
+    """Organiza arquivos da pasta Downloads por extensão"""
+    
+    pasta_downloads = Path.home() / "Downloads"
+    
+    # Mapeamento de extensões para pastas
+    extensoes = {
+        'imagens': ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg'],
+        'documentos': ['.pdf', '.doc', '.docx', '.txt', '.rtf'],
+        'planilhas': ['.xls', '.xlsx', '.csv'],
+        'videos': ['.mp4', '.avi', '.mkv', '.mov', '.wmv'],
+        'audios': ['.mp3', '.wav', '.flac', '.aac'],
+        'comprimidos': ['.zip', '.rar', '.7z', '.tar', '.gz'],
+        'executaveis': ['.exe', '.msi', '.deb', '.rpm']
+    }
+    
+    print("🗂️ Organizando arquivos...")
+    
+    for arquivo in pasta_downloads.glob('*'):
+        if arquivo.is_file():
+            extensao = arquivo.suffix.lower()
+            
+            # Encontra a pasta correta
+            pasta_destino = None
+            for tipo, ext_list in extensoes.items():
+                if extensao in ext_list:
+                    pasta_destino = pasta_downloads / tipo
+                    break
+            
+            if not pasta_destino:
+                pasta_destino = pasta_downloads / "outros"
+            
+            # Cria a pasta se não existir
+            pasta_destino.mkdir(exist_ok=True)
+            
+            # Move o arquivo
+            try:
+                shutil.move(str(arquivo), str(pasta_destino / arquivo.name))
+                print(f"✅ {arquivo.name} → {pasta_destino.name}/")
+            except Exception as e:
+                print(f"❌ Erro ao mover {arquivo.name}: {e}")
+    
+    print("🎉 Organização concluída!")
+
+# Executar organizador
+organizar_downloads()</code></pre>
+        
+        <h4>📈 5. Analisador de Log de Sistema</h4>
+        <pre><code>import re
+from datetime import datetime
+from collections import Counter
+
+def analisar_log_apache(arquivo_log):
+    """Analisa logs do Apache e gera estatísticas"""
+    
+    padrao_log = re.compile(
+        r'(?P<ip>\S+) - - \[(?P<timestamp>[^\]]+)\] "(?P<method>\S+) (?P<url>\S+) (?P<protocol>\S+)" (?P<status>\d+) (?P<bytes>\S+)'
+    )
+    
+    ips = []
+    status_codes = []
+    urls = []
+    metodos = []
+    bytes_total = 0
+    
+    print("📊 Analisando log do servidor...")
+    
+    try:
+        with open(arquivo_log, 'r', encoding='utf-8') as arquivo:
+            for linha in arquivo:
+                match = padrao_log.match(linha.strip())
+                if match:
+                    dados = match.groupdict()
+                    
+                    ips.append(dados['ip'])
+                    status_codes.append(dados['status'])
+                    urls.append(dados['url'])
+                    metodos.append(dados['method'])
+                    
+                    # Soma bytes (se não for '-')
+                    if dados['bytes'] != '-':
+                        bytes_total += int(dados['bytes'])
+        
+        # Gerar estatísticas
+        print(f"\n📈 Estatísticas do Log:")
+        print(f"Total de requisições: {len(ips)}")
+        print(f"Bytes transferidos: {bytes_total:,} bytes ({bytes_total/1024/1024:.2f} MB)")
+        
+        print(f"\n🔝 Top 5 IPs:")
+        for ip, count in Counter(ips).most_common(5):
+            print(f"   {ip}: {count} requisições")
+        
+        print(f"\n📄 Top 5 URLs mais acessadas:")
+        for url, count in Counter(urls).most_common(5):
+            print(f"   {url}: {count} acessos")
+        
+        print(f"\n🚨 Status codes:")
+        for status, count in Counter(status_codes).most_common():
+            emoji = "✅" if status.startswith('2') else "⚠️" if status.startswith('4') else "🚨"
+            print(f"   {emoji} {status}: {count}")
+            
+    except FileNotFoundError:
+        print(f"❌ Arquivo {arquivo_log} não encontrado")
+    except Exception as e:
+        print(f"❌ Erro ao processar log: {e}")
+
+# Criar um log de exemplo
+log_exemplo = '''127.0.0.1 - - [25/Dec/2023:10:00:00 +0000] "GET /index.html HTTP/1.1" 200 1234
+192.168.1.100 - - [25/Dec/2023:10:00:15 +0000] "GET /about.html HTTP/1.1" 200 2345
+10.0.0.50 - - [25/Dec/2023:10:00:25 +0000] "POST /contact HTTP/1.1" 404 567
+127.0.0.1 - - [25/Dec/2023:10:00:35 +0000] "GET /products.html HTTP/1.1" 200 3456'''
+
+with open('access.log', 'w') as f:
+    f.write(log_exemplo)
+
+analisar_log_apache('access.log')</code></pre>
+        
+        <h4>🎯 Objetivos de Aprendizagem</h4>
+        <div class="objectives-section">
+            <p>Ao final deste módulo, você será capaz de:</p>
+            <ul>
+                <li>Manipular diferentes tipos de arquivos (texto, CSV, JSON)</li>
+                <li>Processar grandes volumes de dados eficientemente</li>
+                <li>Criar sistemas de backup e organização automática</li>
+                <li>Integrar com APIs externas para obter dados</li>
+                <li>Analisar logs e gerar relatórios úteis</li>
+                <li>Aplicar boas práticas de tratamento de erros</li>
+            </ul>
+        </div>
+        
+        <div class="project-section">
+            <h4>💼 Projeto Prático: Sistema de Relatórios</h4>
+            <p>Desenvolva um sistema completo que:</p>
+            <ul>
+                <li>Leia dados de vendas de múltiplas fontes (CSV, JSON, API)</li>
+                <li>Processe e valide os dados</li>
+                <li>Gere relatórios em diferentes formatos</li>
+                <li>Crie backups automáticos dos dados</li>
+                <li>Envie notificações por email com os resultados</li>
+            </ul>
+        </div>
         ''',
         'quiz': [
             {
@@ -585,23 +840,350 @@ conta1.extrato()</code></pre>
         <h3>🛢️ Módulo 4 – Bancos de Dados com SQLite e PostgreSQL</h3>
         <p><strong>Conceitos de banco de dados relacionais e integração com Python.</strong></p>
         
-        <h4>🗄️ Conceitos Fundamentais:</h4>
-        <ul>
-            <li><strong>Banco de Dados Relacional:</strong> Tabelas, relacionamentos, chaves</li>
-            <li><strong>SQL Básico:</strong> SELECT, INSERT, UPDATE, DELETE</li>
-            <li><strong>Normalização:</strong> Organizando dados eficientemente</li>
-        </ul>
+        <h4>📊 1. Introdução aos Bancos de Dados</h4>
+        <p>Bancos de dados são fundamentais para aplicações modernas. Vamos entender os conceitos:</p>
+        <pre><code># Conceitos fundamentais:
+# - Tabela: estrutura que armazena dados
+# - Linha (registro): uma entrada de dados
+# - Coluna (campo): tipo específico de informação
+# - Chave primária: identifica unicamente cada linha
+# - Chave estrangeira: relaciona tabelas entre si
+
+# Exemplo de estrutura de tabelas:
+usuarios = {
+    'id': 'PRIMARY KEY',
+    'nome': 'TEXT NOT NULL',
+    'email': 'TEXT UNIQUE',
+    'idade': 'INTEGER',
+    'criado_em': 'TIMESTAMP DEFAULT CURRENT_TIMESTAMP'
+}
+
+produtos = {
+    'id': 'PRIMARY KEY',
+    'nome': 'TEXT NOT NULL',
+    'preco': 'DECIMAL(10,2)',
+    'categoria_id': 'INTEGER REFERENCES categorias(id)'
+}</code></pre>
         
-        <h4>🐍 Python e Bancos:</h4>
-        <ul>
-            <li><strong>SQLite:</strong> Banco leve para desenvolvimento (sqlite3)</li>
-            <li><strong>PostgreSQL:</strong> Banco robusto para produção</li>
-            <li><strong>psycopg2:</strong> Conexão direta com PostgreSQL</li>
-            <li><strong>SQLAlchemy:</strong> ORM para facilitar o desenvolvimento</li>
-        </ul>
+        <h4>🗃️ 2. SQLite - Banco de Dados Leve</h4>
+        <p>SQLite é perfeito para desenvolvimento e aplicações menores:</p>
+        <pre><code>import sqlite3
+from datetime import datetime
+
+# Conectar ao banco (cria se não existir)
+conn = sqlite3.connect('loja.db')
+cursor = conn.cursor()
+
+# Criar tabelas
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS usuarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        email TEXT UNIQUE NOT NULL,
+        idade INTEGER,
+        criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+''')
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS produtos (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        preco REAL NOT NULL,
+        categoria TEXT,
+        estoque INTEGER DEFAULT 0
+    )
+''')
+
+# Inserir dados
+usuarios_dados = [
+    ('João Silva', 'joao@email.com', 30),
+    ('Maria Santos', 'maria@email.com', 25),
+    ('Pedro Costa', 'pedro@email.com', 35)
+]
+
+cursor.executemany(
+    'INSERT INTO usuarios (nome, email, idade) VALUES (?, ?, ?)',
+    usuarios_dados
+)
+
+produtos_dados = [
+    ('Notebook Dell', 2500.00, 'Eletrônicos', 10),
+    ('Mouse Logitech', 80.00, 'Periféricos', 50),
+    ('Teclado Mecânico', 350.00, 'Periféricos', 25)
+]
+
+cursor.executemany(
+    'INSERT INTO produtos (nome, preco, categoria, estoque) VALUES (?, ?, ?, ?)',
+    produtos_dados
+)
+
+# Confirmar alterações
+conn.commit()
+print("✅ Dados inseridos com sucesso!")</code></pre>
         
-        <h4>🎯 Projeto Final:</h4>
-        <p><strong>Sistema CRUD Completo</strong> - Aplicação que gerencia dados com operações completas de banco de dados.</p>
+        <h4>🔍 3. Consultas SQL Essenciais</h4>
+        <pre><code># SELECT básico
+cursor.execute('SELECT * FROM usuarios')
+usuarios = cursor.fetchall()
+print("👥 Todos os usuários:")
+for usuario in usuarios:
+    print(f"  {usuario[1]} - {usuario[2]}")
+
+# SELECT com WHERE
+cursor.execute('SELECT nome, preco FROM produtos WHERE preco > ?', (100,))
+produtos_caros = cursor.fetchall()
+print(f"\n💰 Produtos acima de R$ 100:")
+for produto in produtos_caros:
+    print(f"  {produto[0]}: R$ {produto[1]:.2f}")
+
+# COUNT e GROUP BY
+cursor.execute('''
+    SELECT categoria, COUNT(*) as quantidade, AVG(preco) as preco_medio
+    FROM produtos 
+    GROUP BY categoria
+''')
+estatisticas = cursor.fetchall()
+print(f"\n📊 Estatísticas por categoria:")
+for stat in estatisticas:
+    print(f"  {stat[0]}: {stat[1]} produtos, preço médio R$ {stat[2]:.2f}")
+
+# JOIN (simulação com dados relacionados)
+cursor.execute('''
+    SELECT u.nome, COUNT(*) as total_compras
+    FROM usuarios u
+    LEFT JOIN (
+        SELECT 1 as usuario_id UNION
+        SELECT 2 as usuario_id UNION
+        SELECT 1 as usuario_id
+    ) compras ON u.id = compras.usuario_id
+    GROUP BY u.id, u.nome
+''')
+compras_por_usuario = cursor.fetchall()
+print(f"\n🛒 Compras por usuário:")
+for compra in compras_por_usuario:
+    print(f"  {compra[0]}: {compra[1] or 0} compras")</code></pre>
+        
+        <h4>🔧 4. Função CRUD Completa</h4>
+        <pre><code>class GerenciadorProdutos:
+    def __init__(self, db_path='loja.db'):
+        self.db_path = db_path
+        self.init_db()
+    
+    def get_connection(self):
+        """Criar conexão com tratamento de erro"""
+        try:
+            conn = sqlite3.connect(self.db_path)
+            conn.row_factory = sqlite3.Row  # Permite acesso por nome das colunas
+            return conn
+        except Exception as e:
+            print(f"❌ Erro ao conectar: {e}")
+            return None
+    
+    def init_db(self):
+        """Inicializar banco de dados"""
+        conn = self.get_connection()
+        if conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS produtos (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    nome TEXT NOT NULL,
+                    preco REAL NOT NULL,
+                    categoria TEXT,
+                    estoque INTEGER DEFAULT 0,
+                    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            ''')
+            conn.commit()
+            conn.close()
+    
+    def criar_produto(self, nome, preco, categoria, estoque=0):
+        """CREATE - Adicionar novo produto"""
+        conn = self.get_connection()
+        if conn:
+            try:
+                cursor = conn.cursor()
+                cursor.execute(
+                    'INSERT INTO produtos (nome, preco, categoria, estoque) VALUES (?, ?, ?, ?)',
+                    (nome, preco, categoria, estoque)
+                )
+                produto_id = cursor.lastrowid
+                conn.commit()
+                print(f"✅ Produto '{nome}' criado com ID {produto_id}")
+                return produto_id
+            except Exception as e:
+                print(f"❌ Erro ao criar produto: {e}")
+                return None
+            finally:
+                conn.close()
+    
+    def listar_produtos(self, categoria=None):
+        """READ - Listar produtos"""
+        conn = self.get_connection()
+        if conn:
+            try:
+                cursor = conn.cursor()
+                if categoria:
+                    cursor.execute('SELECT * FROM produtos WHERE categoria = ? ORDER BY nome', (categoria,))
+                else:
+                    cursor.execute('SELECT * FROM produtos ORDER BY nome')
+                
+                produtos = cursor.fetchall()
+                
+                print(f"📦 Produtos{' da categoria ' + categoria if categoria else ''}:")
+                for produto in produtos:
+                    print(f"  [{produto['id']}] {produto['nome']}")
+                    print(f"      Preço: R$ {produto['preco']:.2f}")
+                    print(f"      Categoria: {produto['categoria']}")
+                    print(f"      Estoque: {produto['estoque']} unidades")
+                    print()
+                
+                return produtos
+            except Exception as e:
+                print(f"❌ Erro ao listar produtos: {e}")
+                return []
+            finally:
+                conn.close()
+    
+    def atualizar_produto(self, produto_id, **kwargs):
+        """UPDATE - Atualizar produto"""
+        conn = self.get_connection()
+        if conn:
+            try:
+                cursor = conn.cursor()
+                
+                # Construir query dinamicamente
+                campos = []
+                valores = []
+                for campo, valor in kwargs.items():
+                    if campo in ['nome', 'preco', 'categoria', 'estoque']:
+                        campos.append(f"{campo} = ?")
+                        valores.append(valor)
+                
+                if campos:
+                    valores.append(produto_id)
+                    query = f"UPDATE produtos SET {', '.join(campos)} WHERE id = ?"
+                    
+                    cursor.execute(query, valores)
+                    if cursor.rowcount > 0:
+                        print(f"✅ Produto ID {produto_id} atualizado")
+                        conn.commit()
+                        return True
+                    else:
+                        print(f"❌ Produto ID {produto_id} não encontrado")
+                        return False
+            except Exception as e:
+                print(f"❌ Erro ao atualizar produto: {e}")
+                return False
+            finally:
+                conn.close()
+    
+    def excluir_produto(self, produto_id):
+        """DELETE - Excluir produto"""
+        conn = self.get_connection()
+        if conn:
+            try:
+                cursor = conn.cursor()
+                cursor.execute('DELETE FROM produtos WHERE id = ?', (produto_id,))
+                
+                if cursor.rowcount > 0:
+                    print(f"✅ Produto ID {produto_id} excluído")
+                    conn.commit()
+                    return True
+                else:
+                    print(f"❌ Produto ID {produto_id} não encontrado")
+                    return False
+            except Exception as e:
+                print(f"❌ Erro ao excluir produto: {e}")
+                return False
+            finally:
+                conn.close()
+    
+    def relatorio_estoque(self):
+        """Gerar relatório de estoque"""
+        conn = self.get_connection()
+        if conn:
+            try:
+                cursor = conn.cursor()
+                
+                # Produtos em falta
+                cursor.execute('SELECT nome, estoque FROM produtos WHERE estoque <= 5 ORDER BY estoque')
+                produtos_baixo_estoque = cursor.fetchall()
+                
+                # Estatísticas gerais
+                cursor.execute('''
+                    SELECT 
+                        categoria,
+                        COUNT(*) as total_produtos,
+                        SUM(estoque) as total_estoque,
+                        AVG(preco) as preco_medio
+                    FROM produtos 
+                    GROUP BY categoria
+                ''')
+                estatisticas = cursor.fetchall()
+                
+                print("📊 Relatório de Estoque")
+                print("=" * 50)
+                
+                if produtos_baixo_estoque:
+                    print("⚠️ Produtos com estoque baixo (≤5):")
+                    for produto in produtos_baixo_estoque:
+                        print(f"  • {produto['nome']}: {produto['estoque']} unidades")
+                    print()
+                
+                print("📈 Estatísticas por categoria:")
+                for stat in estatisticas:
+                    print(f"  📂 {stat['categoria']}:")
+                    print(f"     Produtos: {stat['total_produtos']}")
+                    print(f"     Estoque total: {stat['total_estoque']} unidades")
+                    print(f"     Preço médio: R$ {stat['preco_medio']:.2f}")
+                    print()
+                
+            except Exception as e:
+                print(f"❌ Erro ao gerar relatório: {e}")
+            finally:
+                conn.close()
+
+# Exemplo de uso
+gerenciador = GerenciadorProdutos()
+
+# Criar produtos
+gerenciador.criar_produto("Smartphone Samsung", 1200.00, "Eletrônicos", 15)
+gerenciador.criar_produto("Cabo USB-C", 25.00, "Acessórios", 100)
+gerenciador.criar_produto("Fone Bluetooth", 150.00, "Acessórios", 3)
+
+# Listar e gerar relatório
+gerenciador.listar_produtos("Eletrônicos")
+gerenciador.relatorio_estoque()
+
+# Atualizar estoque
+gerenciador.atualizar_produto(3, estoque=20, preco=140.00)</code></pre>
+        
+        <h4>🎯 Objetivos de Aprendizagem</h4>
+        <div class="objectives-section">
+            <p>Ao final deste módulo, você será capaz de:</p>
+            <ul>
+                <li>Manipular diferentes tipos de arquivos (texto, CSV, JSON)</li>
+                <li>Processar grandes volumes de dados eficientemente</li>
+                <li>Criar sistemas de backup e organização automática</li>
+                <li>Integrar com APIs externas para obter dados</li>
+                <li>Analisar logs e gerar relatórios úteis</li>
+                <li>Aplicar boas práticas de tratamento de erros</li>
+            </ul>
+        </div>
+        
+        <div class="project-section">
+            <h4>💼 Projeto Prático: Sistema de Relatórios</h4>
+            <p>Desenvolva um sistema completo que:</p>
+            <ul>
+                <li>Leia dados de vendas de múltiplas fontes (CSV, JSON, API)</li>
+                <li>Processe e valide os dados</li>
+                <li>Gere relatórios em diferentes formatos</li>
+                <li>Crie backups automáticos dos dados</li>
+                <li>Envie notificações por email com os resultados</li>
+            </ul>
+        </div>
         ''',
         'quiz': [
             {

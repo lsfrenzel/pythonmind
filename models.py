@@ -22,14 +22,14 @@ class User(db.Model):
     
     def get_current_module(self):
         """Get the current module the user should work on"""
-        completed_modules = [p.module_id for p in self.progress if p.completed]
+        completed_modules = [p.module_id for p in list(self.progress) if p.completed]
         if not completed_modules:
             return 1
         return max(completed_modules) + 1 if max(completed_modules) < 9 else 9
     
     def get_progress_percentage(self):
         """Calculate overall progress percentage"""
-        completed_modules = len([p for p in self.progress if p.completed])
+        completed_modules = len([p for p in list(self.progress) if p.completed])
         return (completed_modules / 9) * 100  # 9 modules total
     
     def can_access_module(self, module_id):
@@ -47,7 +47,7 @@ class User(db.Model):
     
     def can_take_final_exam(self):
         """Check if user can take the final exam"""
-        completed_modules = len([p for p in self.progress if p.completed])
+        completed_modules = len([p for p in list(self.progress) if p.completed])
         return completed_modules >= 9
     
     def __repr__(self):
