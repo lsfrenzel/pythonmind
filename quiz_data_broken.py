@@ -6,6 +6,54 @@ MODULES = {
         'content': '''<div class="module-header">
             <h3>🚀 Módulo 1 - Introdução ao Python</h3>
             <p class="module-intro"><strong>Bem-vindo ao mundo Python!</strong> Uma linguagem poderosa, elegante e versátil que conquista desenvolvedores ao redor do mundo. Prepare-se para uma jornada incrível!</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>⭐ 1. Por que Python?</h4>
+            <p>Python é mais que uma linguagem de programação - é uma filosofia de desenvolvimento que prioriza <strong>simplicidade</strong> e <strong>legibilidade</strong>.</p>
+            
+            <div class="code-example">
+                <h5>🎯 Características Principais:</h5>
+                <ul class="features-list">
+                    <li><strong>💡 Sintaxe Clara:</strong> Código que parece pseudocódigo - fácil de ler e escrever</li>
+                    <li><strong>🌍 Multiplataforma:</strong> Funciona em Windows, Mac, Linux e muito mais</li>
+                    <li><strong>📚 Rico Ecossistema:</strong> Milhares de bibliotecas para qualquer necessidade</li>
+                    <li><strong>🏢 Usado por Gigantes:</strong> Google, Netflix, Instagram, Spotify, NASA</li>
+                    <li><strong>🎓 Beginner-Friendly:</strong> Perfeito para iniciantes, poderoso para experts</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h4>⚡ 2. Primeiro Código Python</h4>
+            
+            <div class="code-example">
+                <h5>🎉 Hello, World! - Seu Primeiro Programa:</h5>
+                <pre><code># Este é seu primeiro programa Python!
+print("🌟 Olá, mundo!")
+print("Bem-vindo ao Python! 🐍")
+
+# Variáveis são simples e poderosas
+nome = "João"
+idade = 25
+altura = 1.75
+programador = True
+
+print(f"👋 Olá, {nome}!")
+print(f"📊 Você tem {idade} anos e {altura}m de altura")
+print(f"💻 É programador? {programador}")
+
+# Operações matemáticas intuitivas
+a = 10
+b = 3
+
+print(f"➕ {a} + {b} = {a + b}")
+print(f"➖ {a} - {b} = {a - b}")
+print(f"✖️ {a} * {b} = {a * b}")
+print(f"➗ {a} / {b} = {a / b:.2f}")
+print(f"🔢 {a} % {b} = {a % b}")  # Resto da divisão
+print(f"⭐ {a} ** {b} = {a ** b}")  # Potenciação</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -44,7 +92,57 @@ MODULES = {
         'title': 'Estruturas Condicionais e Loops',
         'content': '''<div class="module-header">
             <h3>🎯 Módulo 2 - Estruturas Condicionais e Loops</h3>
-            <p class="module-intro"><strong>Dê inteligência aos seus programas!</strong> Aprenda a tomar decisões e repetir ações de forma eficiente.</p>
+            <p class="module-intro"><strong>Dê inteligência aos seus programas!</strong> Aprenda a tomar decisões e repetir ações de forma eficiente. O poder real da programação começa aqui!</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>🤔 1. Tomando Decisões com If/Else</h4>
+            <p>Estruturas condicionais permitem que seu programa tome decisões baseadas em diferentes situações, tornando-o inteligente e interativo.</p>
+            
+            <div class="code-example">
+                <h5>🎮 Sistema de Decisões Inteligente:</h5>
+                <pre><code># Sistema de classificação de idade
+idade = int(input("🎂 Digite sua idade: "))
+
+if idade < 0:
+    print("⚠️ Idade inválida!")
+elif idade < 13:
+    print("👶 Você é uma criança!")
+    atividades = ["🎨 Desenhar", "🧩 Quebra-cabeças", "📚 Ler histórias"]
+elif idade < 18:
+    print("🧒 Você é um adolescente!")
+    atividades = ["⚽ Esportes", "🎮 Jogos", "📱 Redes sociais", "📖 Estudar"]
+elif idade < 65:
+    print("👨‍💼 Você é um adulto!")
+    atividades = ["💼 Trabalhar", "🏠 Cuidar da família", "🎯 Hobbies", "💡 Aprender"]
+else:
+    print("👴 Você é um idoso experiente!")
+    atividades = ["🎣 Pescar", "📰 Ler jornal", "👨‍👩‍👧‍👦 Família", "🌳 Jardinagem"]
+
+print(f"🎯 Atividades recomendadas: {', '.join(atividades)}")</code></pre>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h4>🔄 2. Loops - Repetindo Ações</h4>
+            
+            <div class="code-example">
+                <h5>🔁 Loop FOR - Contando e Iterando:</h5>
+                <pre><code># Contagem regressiva emocionante
+print("🚀 Contagem regressiva para lançamento:")
+for i in range(10, 0, -1):
+    print(f"⏱️ {i}...")
+print("🎆 LANÇAMENTO! 🚀")
+
+# Tabuada interativa
+numero = int(input("\\n🔢 Digite um número para ver a tabuada: "))
+print(f"\\n📊 Tabuada do {numero}:")
+print("=" * 30)
+
+for i in range(1, 11):
+    resultado = numero * i
+    print(f"📐 {numero} × {i:2d} = {resultado:3d}")</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -83,7 +181,36 @@ MODULES = {
         'title': 'Manipulação de Arquivos',
         'content': '''<div class="module-header">
             <h3>📁 Módulo 3 - Manipulação de Arquivos</h3>
-            <p class="module-intro"><strong>Domine o mundo dos dados!</strong> Aprenda a ler, escrever e processar diferentes tipos de arquivos.</p>
+            <p class="module-intro"><strong>Domine o mundo dos dados!</strong> Aprenda a ler, escrever e processar diferentes tipos de arquivos. Transforme seu programa em um poderoso manipulador de dados.</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>📂 1. Fundamentos de Arquivos</h4>
+            <p>Python oferece ferramentas poderosas para trabalhar com arquivos. O gerenciamento adequado de arquivos é essencial para criar aplicações robustas.</p>
+            
+            <div class="code-example">
+                <h5>🔓 Abrindo e Fechando Arquivos:</h5>
+                <pre><code># Método recomendado - with statement
+with open('exemplo.txt', 'r', encoding='utf-8') as arquivo:
+    conteudo = arquivo.read()
+    # Arquivo é fechado automaticamente
+
+# Modos de abertura
+# 'r' - leitura (padrão)
+# 'w' - escrita (sobrescreve o arquivo)
+# 'a' - anexar (adiciona ao final)
+# 'x' - criação exclusiva (falha se arquivo existir)
+# 'r+' - leitura e escrita
+# 'b' - modo binário (ex: 'rb', 'wb')
+
+# Exemplo de escrita de arquivo
+with open('dados.txt', 'w', encoding='utf-8') as arquivo:
+    arquivo.write("🚀 Sistema iniciado\\n")
+    arquivo.write("✅ Configurações carregadas\\n")
+    arquivo.write("🔄 Processamento em andamento\\n")
+
+print("✅ Arquivo criado com sucesso!")</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -94,7 +221,7 @@ MODULES = {
             },
             {
                 'type': 'multiple_choice',
-                'question': 'Qual é a vantagem de usar "with open()"?',
+                'question': 'Qual é a vantagem de usar "with open()" ao trabalhar com arquivos?',
                 'options': ['É mais rápido', 'Fecha o arquivo automaticamente', 'Usa menos memória', 'É obrigatório'],
                 'correct_answer': 'Fecha o arquivo automaticamente'
             },
@@ -122,7 +249,44 @@ MODULES = {
         'title': 'Funções e Módulos',
         'content': '''<div class="module-header">
             <h3>⚡ Módulo 4 - Funções e Módulos</h3>
-            <p class="module-intro"><strong>Organize e reutilize seu código!</strong> Aprenda a criar funções poderosas e modular seu código.</p>
+            <p class="module-intro"><strong>Organize e reutilize seu código!</strong> Aprenda a criar funções poderosas e modular seu código para máxima eficiência e manutenibilidade.</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>🔧 1. Criando Funções</h4>
+            <p>Funções são blocos de código reutilizáveis que executam tarefas específicas, tornando seu programa mais organizado e eficiente.</p>
+            
+            <div class="code-example">
+                <h5>🏗️ Definindo Funções:</h5>
+                <pre><code># Função simples
+def saudar():
+    print("👋 Olá! Bem-vindo ao Python!")
+
+# Chamando a função
+saudar()
+
+# Função com parâmetros
+def saudar_pessoa(nome, sobrenome=""):
+    if sobrenome:
+        print(f"👋 Olá, {nome} {sobrenome}!")
+    else:
+        print(f"👋 Olá, {nome}!")
+
+# Usando a função
+saudar_pessoa("Maria")
+saudar_pessoa("João", "Silva")
+
+# Função com retorno
+def calcular_idade(ano_nascimento):
+    from datetime import datetime
+    ano_atual = datetime.now().year
+    idade = ano_atual - ano_nascimento
+    return idade
+
+# Usando o retorno
+idade = calcular_idade(1995)
+print(f"🎂 Você tem {idade} anos")</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -161,7 +325,48 @@ MODULES = {
         'title': 'Programação Orientada a Objetos',
         'content': '''<div class="module-header">
             <h3>🏢 Módulo 5 - Programação Orientada a Objetos</h3>
-            <p class="module-intro"><strong>Construa código mais inteligente!</strong> Descubra o poder das classes e objetos.</p>
+            <p class="module-intro"><strong>Construa código mais inteligente!</strong> Descubra o poder das classes e objetos para criar aplicações mais organizadas e escaláveis.</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>💫 1. Classes e Objetos</h4>
+            <p>A Programação Orientada a Objetos (POO) organiza o código em classes que representam objetos do mundo real.</p>
+            
+            <div class="code-example">
+                <h5>🚗 Criando uma Classe:</h5>
+                <pre><code>class Carro:
+    """Classe que representa um carro"""
+    
+    def __init__(self, marca, modelo, ano, cor):
+        """Construtor da classe"""
+        self.marca = marca
+        self.modelo = modelo
+        self.ano = ano
+        self.cor = cor
+        self.ligado = False
+        self.velocidade = 0
+    
+    def ligar(self):
+        """Liga o carro"""
+        if not self.ligado:
+            self.ligado = True
+            print(f"🔋 {self.modelo} ligado!")
+        else:
+            print(f"⚠️ {self.modelo} já está ligado!")
+    
+    def acelerar(self, incremento):
+        """Acelera o carro"""
+        if self.ligado:
+            self.velocidade += incremento
+            print(f"🏁 {self.modelo} acelerando: {self.velocidade} km/h")
+        else:
+            print("❌ Primeiro ligue o carro!")
+
+# Criando objetos (instâncias)
+meu_carro = Carro("Toyota", "Corolla", 2022, "Prata")
+meu_carro.ligar()
+meu_carro.acelerar(60)</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -200,7 +405,44 @@ MODULES = {
         'title': 'Tratamento de Exceções',
         'content': '''<div class="module-header">
             <h3>⚠️ Módulo 6 - Tratamento de Exceções</h3>
-            <p class="module-intro"><strong>Torne seus programas à prova de erros!</strong> Aprenda a antecipar e tratar erros.</p>
+            <p class="module-intro"><strong>Torne seus programas à prova de erros!</strong> Aprenda a antecipar, capturar e tratar erros de forma elegante e profissional.</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>🛡️ 1. Fundamentos de Try/Except</h4>
+            <p>O tratamento de exceções permite que seu programa continue funcionando mesmo quando encontra situações inesperadas.</p>
+            
+            <div class="code-example">
+                <h5>🎯 Try/Except Básico:</h5>
+                <pre><code># Exemplo COM tratamento
+try:
+    numero = int(input("Digite um número: "))
+    resultado = 10 / numero
+    print(f"✅ Resultado: {resultado}")
+except ValueError:
+    print("❌ Erro: Você deve digitar um número válido!")
+except ZeroDivisionError:
+    print("❌ Erro: Não é possível dividir por zero!")
+
+# Tratando múltiplas exceções
+try:
+    lista = [1, 2, 3]
+    indice = int(input("Digite um índice (0-2): "))
+    valor = lista[indice]
+    print(f"🎯 Valor encontrado: {valor}")
+except (ValueError, IndexError) as erro:
+    print(f"❌ Erro capturado: {type(erro).__name__}")
+    print(f"📝 Detalhes: {erro}")
+
+# Finally - sempre executa
+try:
+    arquivo = open('teste.txt', 'r')
+    conteudo = arquivo.read()
+except FileNotFoundError:
+    print("❌ Arquivo não encontrado!")
+finally:
+    print("🔄 Limpeza concluída!")</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -239,7 +481,57 @@ MODULES = {
         'title': 'Bibliotecas e APIs',
         'content': '''<div class="module-header">
             <h3>📚 Módulo 7 - Bibliotecas e APIs</h3>
-            <p class="module-intro"><strong>Expanda o poder do Python!</strong> Descubra como usar bibliotecas externas e APIs.</p>
+            <p class="module-intro"><strong>Expanda o poder do Python!</strong> Descubra como usar bibliotecas externas e APIs para criar aplicações incríveis e conectadas.</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>📦 1. Instalando e Usando Bibliotecas</h4>
+            <p>Python possui um ecossistema rico de bibliotecas que facilitam o desenvolvimento de projetos complexos.</p>
+            
+            <div class="code-example">
+                <h5>🔧 Gerenciando Bibliotecas com pip:</h5>
+                <pre><code># Comandos do terminal
+# pip install requests        # Instala uma biblioteca
+# pip install requests==2.25.1  # Instala versão específica
+# pip list                   # Lista bibliotecas instaladas
+# pip show requests          # Mostra detalhes da biblioteca
+# pip uninstall requests     # Remove biblioteca
+
+# Exemplo de uso da biblioteca requests
+import requests
+
+def consultar_cep(cep):
+    """Consulta informações de um CEP"""
+    try:
+        url = f"https://viacep.com.br/ws/{cep}/json/"
+        response = requests.get(url, timeout=5)
+        
+        if response.status_code == 200:
+            dados = response.json()
+            if 'erro' not in dados:
+                return dados
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro na requisição: {e}")
+        return None
+
+# Testando a função
+resultado = consultar_cep("01310-100")
+if resultado:
+    print(f"🏠 Endereço encontrado: {resultado['logradouro']}")
+else:
+    print("❌ CEP não encontrado!")
+
+# Usando números aleatórios
+import random
+
+numero_sorteado = random.randint(1, 100)
+print(f"🎲 Número sorteado: {numero_sorteado}")
+
+frutas = ['🍎', '🍌', '🍊', '🍇', '🥝']
+fruta_escolhida = random.choice(frutas)
+print(f"🍓 Fruta escolhida: {fruta_escolhida}")</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -278,7 +570,59 @@ MODULES = {
         'title': 'Banco de Dados',
         'content': '''<div class="module-header">
             <h3>🗄️ Módulo 8 - Banco de Dados</h3>
-            <p class="module-intro"><strong>Persista seus dados!</strong> Aprenda a armazenar e gerenciar dados usando bancos de dados.</p>
+            <p class="module-intro"><strong>Persista seus dados!</strong> Aprenda a armazenar, consultar e gerenciar dados usando bancos de dados relacionais com Python.</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>📦 1. SQLite - Banco Local</h4>
+            <p>SQLite é um banco de dados leve e embutido, perfeito para desenvolvimento e aplicações pequenas e médias.</p>
+            
+            <div class="code-example">
+                <h5>🔗 Conectando ao SQLite:</h5>
+                <pre><code>import sqlite3
+from datetime import datetime
+
+# Conectando ao banco (cria se não existir)
+conexao = sqlite3.connect('empresa.db')
+cursor = conexao.cursor()
+
+# Criando tabela de funcionários
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS funcionarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome TEXT NOT NULL,
+        cargo TEXT NOT NULL,
+        salario REAL NOT NULL,
+        data_admissao DATE,
+        ativo BOOLEAN DEFAULT 1
+    )
+''')
+
+conexao.commit()  # Salva as mudanças
+print("🏢 Tabelas criadas com sucesso!")
+
+# Inserindo dados
+cursor.execute('''
+    INSERT INTO funcionarios (nome, cargo, salario, data_admissao)
+    VALUES (?, ?, ?, ?)
+''', ("Ana Silva", "Desenvolvedora", 8500, datetime.now().date()))
+
+conexao.commit()
+print("✅ Funcionário adicionado!")
+
+# Consultando dados
+cursor.execute('SELECT * FROM funcionarios WHERE ativo = 1')
+funcionarios = cursor.fetchall()
+
+print("\\n👥 FUNCIONÁRIOS:")
+for func in funcionarios:
+    id_func, nome, cargo, salario, data_admissao, ativo = func
+    print(f"👤 {nome} - {cargo} - R$ {salario:.2f}")
+
+# Fechando conexão
+conexao.close()
+print("🔒 Conexão fechada.")</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
@@ -317,7 +661,99 @@ MODULES = {
         'title': 'Projeto Final',
         'content': '''<div class="module-header">
             <h3>🎆 Módulo 9 - Projeto Final</h3>
-            <p class="module-intro"><strong>Integre todos os conceitos!</strong> Crie um projeto completo que demonstra domínio em Python.</p>
+            <p class="module-intro"><strong>Integre todos os conceitos!</strong> Crie um projeto completo que demonstra domínio em Python, desde fundamentos até conceitos avançados.</p>
+        </div>
+        
+        <div class="content-section">
+            <h4>🎯 1. Planejamento do Projeto</h4>
+            <p>Um projeto bem-sucedido começa com planejamento adequado. Vamos criar um sistema de gestão de biblioteca que integra todos os conceitos aprendidos.</p>
+            
+            <div class="code-example">
+                <h5>📋 Estrutura do Projeto:</h5>
+                <pre><code># biblioteca_sistema/
+# │
+# ├── main.py              # Arquivo principal
+# ├── models.py            # Classes e modelos
+# ├── database.py          # Gerenciamento do banco
+# ├── utils.py             # Funções utilitárias
+# ├── config.py            # Configurações
+# └── dados/
+#     └── biblioteca.db     # Banco de dados
+
+# Requisitos do sistema:
+# 1. Cadastro de livros e usuários
+# 2. Sistema de empréstimos
+# 3. Relatórios e consultas
+# 4. Interface de menu
+# 5. Persistência de dados
+# 6. Tratamento de erros
+# 7. Documentação
+
+class Config:
+    """Configurações do sistema"""
+    
+    DATABASE_NAME = 'dados/biblioteca.db'
+    MAX_EMPRESTIMOS_POR_USUARIO = 3
+    DIAS_EMPRESTIMO = 14
+    MULTA_POR_DIA_ATRASO = 2.00
+
+class Livro:
+    """Classe para representar um livro"""
+    
+    def __init__(self, id, titulo, autor, isbn, categoria):
+        self.id = id
+        self.titulo = titulo
+        self.autor = autor
+        self.isbn = isbn
+        self.categoria = categoria
+        self.disponivel = True
+    
+    def __str__(self):
+        status = "✅ Disponível" if self.disponivel else "❌ Emprestado"
+        return f"📚 {self.titulo} - {self.autor} ({status})"
+
+class SistemaBiblioteca:
+    """Sistema completo de gestão de biblioteca"""
+    
+    def __init__(self):
+        self.livros = {}
+        self.usuarios = {}
+        self.emprestimos = {}
+        self.proximo_id_livro = 1
+    
+    def adicionar_livro(self, titulo, autor, isbn, categoria):
+        """Adiciona um novo livro"""
+        try:
+            livro = Livro(
+                id=self.proximo_id_livro,
+                titulo=titulo,
+                autor=autor,
+                isbn=isbn,
+                categoria=categoria
+            )
+            
+            self.livros[livro.id] = livro
+            self.proximo_id_livro += 1
+            
+            print(f"✅ Livro '{titulo}' adicionado com sucesso!")
+            return livro.id
+            
+        except Exception as e:
+            print(f"❌ Erro ao adicionar livro: {e}")
+            return None
+
+# Exemplo de uso
+sistema = SistemaBiblioteca()
+sistema.adicionar_livro(
+    "Python para Iniciantes", 
+    "João Silva", 
+    "978-1234567890", 
+    "Programação"
+)
+
+print("✅ Sistema de biblioteca implementado!")
+print("🎆 Projeto final concluído!")</code></pre>
+            </div>
         </div>''',
         'quiz': [
             {
