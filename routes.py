@@ -4,6 +4,8 @@ from models import User, ModuleProgress, QuizResult, ModuleVideo
 from quiz_data import MODULES, FINAL_EXAM
 from datetime import datetime
 import json
+import secrets
+import string
 
 @app.route('/')
 def index():
@@ -44,7 +46,7 @@ def login():
             if user and user.check_password(password):
                 # User authenticated, now check token for course access
                 if token:
-                    if token == 'frenzeltechbest':
+                    if token == CURRENT_STUDENT_TOKEN:
                         user.has_course_access = True
                         db.session.commit()
                         session['user_id'] = user.id
@@ -371,7 +373,7 @@ def admin_dashboard():
         'final_exam_pass_rate': (students_passed_final / total_students * 100) if total_students > 0 else 0
     }
     
-    return render_template('admin.html', students=student_data, stats=stats)
+    return render_template('admin.html', students=student_data, stats=stats, current_token=CURRENT_STUDENT_TOKEN)
 
 @app.route('/admin/videos')
 def admin_videos():
@@ -431,3 +433,34 @@ def update_module_video(module_id):
         flash(f'Vídeo atualizado para o Módulo {module_id}!', 'success')
     
     return redirect(url_for('admin_videos'))
+
+# Global variable to store the current student access token
+CURRENT_STUDENT_TOKEN = 'frenzeltechbest'
+
+@app.route('/admin/generate-token', methods=['POST'])
+def generate_new_token():
+    if 'is_admin' not in session or not session['is_admin']:
+        return jsonify({'success': False, 'error': 'Admin access required'}), 403
+    
+    global CURRENT_STUDENT_TOKEN
+    
+    try:
+        # Generate a new random token
+        # Use a combination of letters and numbers for easy sharing
+        alphabet = string.ascii_lowercase + string.digits
+        new_token = ''.join(secrets.choice(alphabet) for _ in range(12))
+        
+        # Update the global token
+        CURRENT_STUDENT_TOKEN = new_token
+        
+        return jsonify({
+            'success': True, 
+            'new_token': new_token,
+            'message': f'Novo token gerado: {new_token}'
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'success': False, 
+            'error': str(e)
+        }), 500

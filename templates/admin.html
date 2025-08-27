@@ -151,12 +151,42 @@
                     </div>
                 </div>
                 
+                <!-- Token Management Section -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="card border-warning">
+                            <div class="card-header bg-warning text-dark">
+                                <h6 class="mb-0"><i class="fas fa-key me-2"></i>Gerenciamento de Token de Acesso</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-6">
+                                        <p class="mb-1"><strong>Token atual:</strong></p>
+                                        <code id="current-token" class="fs-5">{{ current_token }}</code>
+                                        <button class="btn btn-sm btn-outline-secondary ms-2" onclick="copyToken()">
+                                            <i class="fas fa-copy"></i> Copiar
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6 text-md-end">
+                                        <button class="btn btn-success" onclick="generateNewToken()">
+                                            <i class="fas fa-sync-alt me-2"></i>Gerar Novo Token
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="alert alert-warning mt-3 mb-0">
+                                    <i class="fas fa-exclamation-triangle me-2"></i>
+                                    <small>Ao gerar um novo token, o token anterior será invalidado. Todos os estudantes precisarão usar o novo token para acessar o curso.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="alert alert-info">
                     <i class="fas fa-info-circle me-2"></i>
                     <strong>Informações do Sistema:</strong>
                     <ul class="mb-0 mt-2">
-                        <li>Token de acesso do estudante: <code>{{ config.ADMIN_TOKEN }}</code></li>
-                        <li>Estudantes usam este token para registrar e acessar o curso</li>
+                        <li>Estudantes usam o token de acesso para registrar e acessar o curso</li>
                         <li>Monitore o progresso dos estudantes e resultados dos quizzes neste painel</li>
                         <li>Resultados do exame final determinam a conclusão do curso</li>
                         <li>Total de 9 módulos de aprendizagem em Python</li>
@@ -166,4 +196,48 @@
         </div>
     </div>
 </div>
+
+<script>
+function copyToken() {
+    const token = document.getElementById('current-token').textContent;
+    navigator.clipboard.writeText(token).then(function() {
+        // Show success feedback
+        const btn = event.target.closest('button');
+        const originalContent = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+        btn.classList.remove('btn-outline-secondary');
+        btn.classList.add('btn-success');
+        
+        setTimeout(function() {
+            btn.innerHTML = originalContent;
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-outline-secondary');
+        }, 2000);
+    });
+}
+
+function generateNewToken() {
+    if (confirm('Tem certeza de que deseja gerar um novo token? O token atual será invalidado e todos os estudantes precisarão usar o novo token.')) {
+        fetch('/admin/generate-token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('current-token').textContent = data.new_token;
+                alert('Novo token gerado com sucesso: ' + data.new_token);
+            } else {
+                alert('Erro ao gerar novo token: ' + data.error);
+            }
+        })
+        .catch(error => {
+            alert('Erro ao gerar novo token');
+            console.error('Error:', error);
+        });
+    }
+}
+</script>
 {% endblock %}

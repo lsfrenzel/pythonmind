@@ -3,6 +3,7 @@
 MODULES = {
     1: {
         'title': 'Introdução ao Python',
+        'description': 'Fundamentos da linguagem Python, variáveis, tipos de dados e funções básicas',
         'content': '''<div class="module-header">
             <h3>🚀 Módulo 1 - Introdução ao Python</h3>
             <p class="module-intro"><strong>Bem-vindo ao mundo Python!</strong> Uma linguagem poderosa, elegante e versátil que conquista desenvolvedores ao redor do mundo. Prepare-se para uma jornada incrível!</p>
@@ -42,6 +43,7 @@ MODULES = {
     },
     2: {
         'title': 'Estruturas Condicionais e Loops',
+        'description': 'Aprenda a usar if, elif, else, for e while para controlar o fluxo do programa',
         'content': '''<div class="module-header">
             <h3>🎯 Módulo 2 - Estruturas Condicionais e Loops</h3>
             <p class="module-intro"><strong>Dê inteligência aos seus programas!</strong> Aprenda a tomar decisões e repetir ações de forma eficiente.</p>
@@ -81,6 +83,7 @@ MODULES = {
     },
     3: {
         'title': 'Manipulação de Arquivos',
+        'description': 'Domine leitura, escrita e processamento de arquivos e formatos como CSV e JSON',
         'content': '''<div class="module-header">
             <h3>📁 Módulo 3 - Manipulação de Arquivos</h3>
             <p class="module-intro"><strong>Domine o mundo dos dados!</strong> Aprenda a ler, escrever e processar diferentes tipos de arquivos.</p>
@@ -120,6 +123,7 @@ MODULES = {
     },
     4: {
         'title': 'Funções e Módulos',
+        'description': 'Organize seu código com funções reutilizáveis e modularização',
         'content': '''<div class="module-header">
             <h3>⚡ Módulo 4 - Funções e Módulos</h3>
             <p class="module-intro"><strong>Organize e reutilize seu código!</strong> Aprenda a criar funções poderosas e modular seu código.</p>
@@ -159,6 +163,7 @@ MODULES = {
     },
     5: {
         'title': 'Programação Orientada a Objetos',
+        'description': 'Domine classes, objetos, herança e encapsulamento em Python',
         'content': '''<div class="module-header">
             <h3>🏢 Módulo 5 - Programação Orientada a Objetos</h3>
             <p class="module-intro"><strong>Construa código mais inteligente!</strong> Descubra o poder das classes e objetos.</p>
@@ -198,6 +203,7 @@ MODULES = {
     },
     6: {
         'title': 'Tratamento de Exceções',
+        'description': 'Aprenda a lidar com erros usando try, except, finally e raise',
         'content': '''<div class="module-header">
             <h3>⚠️ Módulo 6 - Tratamento de Exceções</h3>
             <p class="module-intro"><strong>Torne seus programas à prova de erros!</strong> Aprenda a antecipar e tratar erros.</p>
@@ -237,6 +243,7 @@ MODULES = {
     },
     7: {
         'title': 'Bibliotecas e APIs',
+        'description': 'Use bibliotecas externas e integre com APIs para expandir funcionalidades',
         'content': '''<div class="module-header">
             <h3>📚 Módulo 7 - Bibliotecas e APIs</h3>
             <p class="module-intro"><strong>Expanda o poder do Python!</strong> Descubra como usar bibliotecas externas e APIs.</p>
@@ -276,6 +283,7 @@ MODULES = {
     },
     8: {
         'title': 'Banco de Dados',
+        'description': 'Conecte e manipule bancos de dados usando SQLite e operações CRUD',
         'content': '''<div class="module-header">
             <h3>🗄️ Módulo 8 - Banco de Dados</h3>
             <p class="module-intro"><strong>Persista seus dados!</strong> Aprenda a armazenar e gerenciar dados usando bancos de dados.</p>
@@ -315,6 +323,7 @@ MODULES = {
     },
     9: {
         'title': 'Projeto Final',
+        'description': 'Integre todos os conceitos aprendidos em um projeto Python completo',
         'content': '''<div class="module-header">
             <h3>🎆 Módulo 9 - Projeto Final</h3>
             <p class="module-intro"><strong>Integre todos os conceitos!</strong> Crie um projeto completo que demonstra domínio em Python.</p>
