@@ -4338,85 +4338,1205 @@ def exemplo_web_scraping():
         ]
     },
     9: {
-        'title': 'Projeto Final',
-        'description': 'Integre todos os conceitos aprendidos em um projeto Python completo',
+        'title': 'Projeto Final - Desenvolvimento Profissional',
+        'description': 'Integre todos os conceitos em um projeto completo seguindo as melhores práticas da indústria',
         'content': '''<div class="module-header">
-            <h3>🎆 Módulo 9 - Projeto Final</h3>
-            <p class="module-intro"><strong>Integre todos os conceitos!</strong> Crie um projeto completo que demonstra domínio em Python.</p>
+            <h3>🎆 Módulo 9 - Projeto Final - Desenvolvimento Profissional</h3>
+            <p class="module-intro"><strong>Seja um desenvolvedor Python completo!</strong> Integre todos os conhecimentos adquiridos criando um projeto real, seguindo padrões da indústria e boas práticas profissionais. Do planejamento ao deploy!</p>
         </div>
         
         <div class="module-content">
-            <h4>🎯 O que você vai aplicar:</h4>
+            <h4>🎯 O que você vai dominar:</h4>
             <ul class="learning-objectives">
-                <li>Planejamento e arquitetura de projeto</li>
-                <li>Integração de todos os conceitos aprendidos</li>
-                <li>Boas práticas de programação</li>
-                <li>Documentação e testes</li>
-                <li>Versionamento com Git</li>
+                <li>Arquitetura e design de software profissional</li>
+                <li>Planejamento e metodologias de desenvolvimento</li>
+                <li>Padrões de projeto (Design Patterns)</li>
+                <li>Testes automatizados e TDD</li>
+                <li>Documentação técnica completa</li>
+                <li>Versionamento avançado com Git</li>
+                <li>Estrutura de projetos Python profissionais</li>
+                <li>Deploy e distribuição de aplicações</li>
             </ul>
             
-            <h4>📚 Conteúdo Teórico:</h4>
+            <h4>📚 Conteúdo Teórico Completo:</h4>
             
-            <h5>1. Planejamento do Projeto</h5>
-            <p>Antes de começar a programar, é essencial planejar bem o projeto.</p>
+            <h5>1. Planejamento e Arquitetura de Software</h5>
+            <p>Um projeto bem-sucedido começa com planejamento sólido. Vamos aprender como os profissionais estruturam e organizam grandes projetos Python.</p>
             
             <div class="alert alert-info">
-                <strong>Etapas do planejamento:</strong>
+                <h6>🗂️ Fases do Desenvolvimento:</h6>
                 <ol class="mb-0">
-                    <li>Definir o problema a ser resolvido</li>
-                    <li>Listar funcionalidades principais</li>
-                    <li>Escolher tecnologias e bibliotecas</li>
-                    <li>Criar estrutura de pastas</li>
-                    <li>Definir fluxo de dados</li>
+                    <li><strong>Análise:</strong> Entender o problema e requisitos</li>
+                    <li><strong>Design:</strong> Projetar a solução e arquitetura</li>
+                    <li><strong>Implementação:</strong> Codificar seguindo padrões</li>
+                    <li><strong>Testes:</strong> Validar funcionalidades e qualidade</li>
+                    <li><strong>Deploy:</strong> Colocar em produção</li>
+                    <li><strong>Manutenção:</strong> Melhorias e correções</li>
                 </ol>
             </div>
             
+            <div class="code-example">
+                <h6>🔸 Estrutura de Projeto Python Profissional:</h6>
+                <pre><code># Estrutura recomendada para projetos Python
+meu_projeto/
+├── README.md                    # Documentação principal
+├── requirements.txt             # Dependências de produção
+├── requirements-dev.txt         # Dependências de desenvolvimento
+├── setup.py                     # Configuração do pacote
+├── .gitignore                   # Arquivos a ignorar no Git
+├── .env.example                 # Exemplo de variáveis de ambiente
+├── Dockerfile                   # Container Docker (opcional)
+├── pyproject.toml              # Configuração moderna do projeto
+├── LICENSE                      # Licença do software
+├── CHANGELOG.md                 # Histórico de mudanças
+├── CONTRIBUTING.md              # Guia para contribuidores
+│
+├── src/                         # Código fonte
+│   └── meu_projeto/
+│       ├── __init__.py
+│       ├── main.py              # Ponto de entrada
+│       ├── config.py            # Configurações
+│       ├── models/              # Modelos de dados
+│       │   ├── __init__.py
+│       │   ├── user.py
+│       │   └── database.py
+│       ├── services/            # Lógica de negócio
+│       │   ├── __init__.py
+│       │   ├── user_service.py
+│       │   └── api_service.py
+│       ├── utils/               # Utilitários
+│       │   ├── __init__.py
+│       │   ├── helpers.py
+│       │   └── validators.py
+│       └── cli/                 # Interface de linha de comando
+│           ├── __init__.py
+│           └── commands.py
+│
+├── tests/                       # Testes automatizados
+│   ├── __init__.py
+│   ├── conftest.py              # Configuração dos testes
+│   ├── unit/                    # Testes unitários
+│   │   ├── test_models.py
+│   │   └── test_services.py
+│   ├── integration/             # Testes de integração
+│   │   └── test_api.py
+│   └── fixtures/                # Dados de teste
+│       └── sample_data.json
+│
+├── docs/                        # Documentação detalhada
+│   ├── api.md
+│   ├── installation.md
+│   └── usage.md
+│
+├── scripts/                     # Scripts de automação
+│   ├── setup.sh                 # Configuração inicial
+│   ├── run_tests.sh             # Executar testes
+│   └── deploy.sh                # Deploy automatizado
+│
+└── data/                        # Dados do projeto
+    ├── raw/                     # Dados brutos
+    ├── processed/               # Dados processados
+    └── database/                # Arquivos de banco
+        └── schema.sql</code></pre>
+                
+                <h6>🔸 Exemplo de Arquivo setup.py:</h6>
+                <pre><code>from setuptools import setup, find_packages
+
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
+with open("requirements.txt", "r", encoding="utf-8") as fh:
+    requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+
+setup(
+    name="meu-projeto-python",
+    version="1.0.0",
+    author="Seu Nome",
+    author_email="seu.email@example.com",
+    description="Descrição concisa do projeto",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/seu-usuario/meu-projeto",
+    project_urls={
+        "Bug Tracker": "https://github.com/seu-usuario/meu-projeto/issues",
+        "Documentation": "https://seu-projeto.readthedocs.io/",
+    },
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+    ],
+    package_dir={"": "src"},
+    packages=find_packages(where="src"),
+    python_requires=">=3.8",
+    install_requires=requirements,
+    extras_require={
+        "dev": ["pytest>=6.0", "black", "flake8", "mypy"],
+        "docs": ["sphinx", "sphinx-rtd-theme"],
+    },
+    entry_points={
+        "console_scripts": [
+            "meu-projeto=meu_projeto.main:main",
+        ],
+    },
+)</code></pre>
+            </div>
+            
+            <h5>2. Padrões de Projeto (Design Patterns)</h5>
+            <p>Design Patterns são soluções reutilizáveis para problemas comuns em desenvolvimento. Vamos implementar os principais padrões em Python.</p>
+            
+            <div class="code-example">
+                <pre><code># SINGLETON - Garantir apenas uma instância
+class Database:
+    """Padrão Singleton para conexão com banco"""
+    
+    _instance = None
+    _connection = None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+    
+    def connect(self, database_url):
+        if self._connection is None:
+            print(f"🔌 Conectando ao banco: {database_url}")
+            self._connection = f"connection_to_{database_url}"
+        return self._connection
+    
+    def get_connection(self):
+        return self._connection
+
+# FACTORY - Criação de objetos baseada em parâmetros
+class DataProcessorFactory:
+    """Factory para diferentes tipos de processadores"""
+    
+    @staticmethod
+    def create_processor(data_type):
+        processors = {
+            'json': JSONProcessor,
+            'csv': CSVProcessor,
+            'xml': XMLProcessor
+        }
+        
+        processor_class = processors.get(data_type.lower())
+        if not processor_class:
+            raise ValueError(f"Processador não encontrado para: {data_type}")
+        
+        return processor_class()
+
+class DataProcessor:
+    """Classe base para processadores"""
+    def process(self, data):
+        raise NotImplementedError
+
+class JSONProcessor(DataProcessor):
+    def process(self, data):
+        print("📄 Processando dados JSON...")
+        return {"processed": "json_data"}
+
+class CSVProcessor(DataProcessor):
+    def process(self, data):
+        print("📊 Processando dados CSV...")
+        return {"processed": "csv_data"}
+
+class XMLProcessor(DataProcessor):
+    def process(self, data):
+        print("🔖 Processando dados XML...")
+        return {"processed": "xml_data"}
+
+# OBSERVER - Notificação de mudanças
+class Observable:
+    """Classe observável que notifica mudanças"""
+    
+    def __init__(self):
+        self._observers = []
+    
+    def add_observer(self, observer):
+        self._observers.append(observer)
+    
+    def remove_observer(self, observer):
+        self._observers.remove(observer)
+    
+    def notify_observers(self, *args, **kwargs):
+        for observer in self._observers:
+            observer.update(self, *args, **kwargs)
+
+class UserManager(Observable):
+    """Gerenciador de usuários que notifica mudanças"""
+    
+    def __init__(self):
+        super().__init__()
+        self.users = []
+    
+    def add_user(self, user):
+        self.users.append(user)
+        self.notify_observers('user_added', user)
+    
+    def remove_user(self, user):
+        self.users.remove(user)
+        self.notify_observers('user_removed', user)
+
+class EmailNotifier:
+    """Observer que envia emails"""
+    def update(self, observable, event_type, user):
+        if event_type == 'user_added':
+            print(f"📧 Email: Bem-vindo {user}!")
+        elif event_type == 'user_removed':
+            print(f"📧 Email: Até logo {user}!")
+
+class LogNotifier:
+    """Observer que registra logs"""
+    def update(self, observable, event_type, user):
+        print(f"📝 Log: {event_type} - {user}")
+
+# STRATEGY - Diferentes algoritmos para a mesma tarefa
+class PaymentStrategy:
+    """Interface para estratégias de pagamento"""
+    def pay(self, amount):
+        raise NotImplementedError
+
+class CreditCardPayment(PaymentStrategy):
+    def __init__(self, card_number):
+        self.card_number = card_number[-4:]  # Últimos 4 dígitos
+    
+    def pay(self, amount):
+        return f"💳 Pagamento de R$ {amount:.2f} no cartão ****{self.card_number}"
+
+class PIXPayment(PaymentStrategy):
+    def __init__(self, pix_key):
+        self.pix_key = pix_key
+    
+    def pay(self, amount):
+        return f"📱 PIX de R$ {amount:.2f} para {self.pix_key}"
+
+class PayPalPayment(PaymentStrategy):
+    def __init__(self, email):
+        self.email = email
+    
+    def pay(self, amount):
+        return f"🌐 PayPal de R$ {amount:.2f} para {self.email}"
+
+class PaymentProcessor:
+    """Processador que usa diferentes estratégias"""
+    
+    def __init__(self, strategy: PaymentStrategy):
+        self.strategy = strategy
+    
+    def set_strategy(self, strategy: PaymentStrategy):
+        self.strategy = strategy
+    
+    def process_payment(self, amount):
+        return self.strategy.pay(amount)
+
+# Exemplo de uso dos padrões
+def demonstrar_padroes():
+    """Demonstra uso dos design patterns"""
+    
+    print("=== SINGLETON ===")
+    db1 = Database()
+    db2 = Database()
+    print(f"Mesma instância? {db1 is db2}")  # True
+    
+    print("\n=== FACTORY ===")
+    processor = DataProcessorFactory.create_processor('json')
+    result = processor.process({"test": "data"})
+    print(f"Resultado: {result}")
+    
+    print("\n=== OBSERVER ===")
+    user_manager = UserManager()
+    email_notifier = EmailNotifier()
+    log_notifier = LogNotifier()
+    
+    user_manager.add_observer(email_notifier)
+    user_manager.add_observer(log_notifier)
+    
+    user_manager.add_user("João Silva")
+    user_manager.remove_user("João Silva")
+    
+    print("\n=== STRATEGY ===")
+    # Diferentes formas de pagamento
+    processor = PaymentProcessor(CreditCardPayment("1234567890123456"))
+    print(processor.process_payment(100.50))
+    
+    processor.set_strategy(PIXPayment("joao@email.com"))
+    print(processor.process_payment(100.50))
+    
+    processor.set_strategy(PayPalPayment("joao@paypal.com"))
+    print(processor.process_payment(100.50))
+
+demonstrar_padroes()</code></pre>
+            </div>
+            
+            <h5>3. Testes Automatizados e TDD</h5>
+            <p>Testes são fundamentais para garantir qualidade e confiabilidade. Vamos implementar uma suíte completa de testes.</p>
+            
+            <div class="code-example">
+                <pre><code># tests/conftest.py - Configuração dos testes
+import pytest
+import tempfile
+import os
+from datetime import datetime
+
+@pytest.fixture
+def temp_database():
+    """Cria um banco de dados temporário para testes"""
+    with tempfile.NamedTemporaryFile(suffix=".db", delete=False) as tmp:
+        yield tmp.name
+    os.unlink(tmp.name)
+
+@pytest.fixture
+def sample_user_data():
+    """Dados de exemplo para testes"""
+    return {
+        "name": "João Teste",
+        "email": "joao@teste.com",
+        "age": 30,
+        "created_at": datetime.now()
+    }
+
+# tests/unit/test_user_model.py - Testes unitários
+import pytest
+from src.meu_projeto.models.user import User, UserValidator
+
+class TestUser:
+    """Testes para o modelo User"""
+    
+    def test_user_creation(self, sample_user_data):
+        """Testa criação de usuário válido"""
+        user = User(**sample_user_data)
+        
+        assert user.name == sample_user_data["name"]
+        assert user.email == sample_user_data["email"]
+        assert user.age == sample_user_data["age"]
+        assert user.is_adult() == True
+    
+    def test_user_validation_invalid_email(self):
+        """Testa validação de email inválido"""
+        with pytest.raises(ValueError, match="Email inválido"):
+            User(name="João", email="email_invalido", age=25)
+    
+    def test_user_validation_negative_age(self):
+        """Testa validação de idade negativa"""
+        with pytest.raises(ValueError, match="Idade deve ser positiva"):
+            User(name="João", email="joao@test.com", age=-5)
+    
+    def test_user_str_representation(self, sample_user_data):
+        """Testa representação string do usuário"""
+        user = User(**sample_user_data)
+        expected = f"User(name='{user.name}', email='{user.email}')"
+        assert str(user) == expected
+
+class TestUserValidator:
+    """Testes para o validador de usuários"""
+    
+    def test_valid_email(self):
+        """Testa validação de email válido"""
+        assert UserValidator.validate_email("test@example.com") == True
+    
+    def test_invalid_email_no_at(self):
+        """Testa email sem @"""
+        assert UserValidator.validate_email("invalid-email") == False
+    
+    def test_invalid_email_no_domain(self):
+        """Testa email sem domínio"""
+        assert UserValidator.validate_email("test@") == False
+    
+    @pytest.mark.parametrize("age,expected", [
+        (0, True),      # Bebê
+        (17, False),    # Menor de idade
+        (18, True),     # Adulto
+        (65, True),     # Idoso
+        (150, True),    # Limite superior
+    ])
+    def test_age_validation(self, age, expected):
+        """Testa validação de idade com múltiplos valores"""
+        assert UserValidator.is_adult(age) == expected
+
+# tests/unit/test_services.py - Testes de serviços
+import pytest
+from unittest.mock import Mock, patch
+from src.meu_projeto.services.user_service import UserService
+from src.meu_projeto.services.api_service import APIService
+
+class TestUserService:
+    """Testes para o serviço de usuários"""
+    
+    def test_create_user_success(self, sample_user_data):
+        """Testa criação bem-sucedida de usuário"""
+        # Arrange
+        mock_db = Mock()
+        service = UserService(database=mock_db)
+        
+        # Act
+        result = service.create_user(sample_user_data)
+        
+        # Assert
+        assert result is not None
+        mock_db.save.assert_called_once()
+    
+    def test_create_user_duplicate_email(self, sample_user_data):
+        """Testa criação de usuário com email duplicado"""
+        mock_db = Mock()
+        mock_db.find_by_email.return_value = Mock()  # Simula usuário existente
+        
+        service = UserService(database=mock_db)
+        
+        with pytest.raises(ValueError, match="Email já existe"):
+            service.create_user(sample_user_data)
+    
+    def test_get_user_by_id_found(self):
+        """Testa busca de usuário existente"""
+        mock_db = Mock()
+        expected_user = Mock()
+        mock_db.find_by_id.return_value = expected_user
+        
+        service = UserService(database=mock_db)
+        result = service.get_user_by_id(123)
+        
+        assert result == expected_user
+        mock_db.find_by_id.assert_called_once_with(123)
+    
+    def test_get_user_by_id_not_found(self):
+        """Testa busca de usuário inexistente"""
+        mock_db = Mock()
+        mock_db.find_by_id.return_value = None
+        
+        service = UserService(database=mock_db)
+        
+        with pytest.raises(ValueError, match="Usuário não encontrado"):
+            service.get_user_by_id(999)
+
+class TestAPIService:
+    """Testes para serviços de API"""
+    
+    @patch('requests.get')
+    def test_fetch_data_success(self, mock_get):
+        """Testa requisição API bem-sucedida"""
+        # Configurar mock
+        mock_response = Mock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {"data": "test"}
+        mock_get.return_value = mock_response
+        
+        service = APIService()
+        result = service.fetch_data("https://api.test.com/data")
+        
+        assert result == {"data": "test"}
+        mock_get.assert_called_once_with("https://api.test.com/data", timeout=10)
+    
+    @patch('requests.get')
+    def test_fetch_data_timeout(self, mock_get):
+        """Testa timeout na requisição"""
+        mock_get.side_effect = requests.exceptions.Timeout()
+        
+        service = APIService()
+        
+        with pytest.raises(Exception, match="Timeout na requisição"):
+            service.fetch_data("https://api.slow.com/data")
+
+# tests/integration/test_integration.py - Testes de integração
+import pytest
+import json
+from src.meu_projeto.main import create_app
+
+class TestIntegration:
+    """Testes de integração completos"""
+    
+    @pytest.fixture
+    def app(self, temp_database):
+        """Cria aplicação para testes"""
+        app = create_app({
+            'TESTING': True,
+            'DATABASE_URL': f'sqlite:///{temp_database}'
+        })
+        return app
+    
+    @pytest.fixture
+    def client(self, app):
+        """Cliente de teste"""
+        return app.test_client()
+    
+    def test_create_user_endpoint(self, client, sample_user_data):
+        """Testa endpoint de criação de usuário"""
+        response = client.post('/api/users', 
+                             data=json.dumps(sample_user_data),
+                             content_type='application/json')
+        
+        assert response.status_code == 201
+        data = json.loads(response.data)
+        assert data['name'] == sample_user_data['name']
+        assert 'id' in data
+    
+    def test_get_user_endpoint(self, client, sample_user_data):
+        """Testa endpoint de busca de usuário"""
+        # Criar usuário primeiro
+        create_response = client.post('/api/users',
+                                    data=json.dumps(sample_user_data),
+                                    content_type='application/json')
+        user_id = json.loads(create_response.data)['id']
+        
+        # Buscar usuário
+        response = client.get(f'/api/users/{user_id}')
+        
+        assert response.status_code == 200
+        data = json.loads(response.data)
+        assert data['name'] == sample_user_data['name']
+    
+    def test_user_workflow_complete(self, client, sample_user_data):
+        """Testa fluxo completo de usuário"""
+        # 1. Criar usuário
+        create_response = client.post('/api/users',
+                                    data=json.dumps(sample_user_data),
+                                    content_type='application/json')
+        assert create_response.status_code == 201
+        user_id = json.loads(create_response.data)['id']
+        
+        # 2. Buscar usuário
+        get_response = client.get(f'/api/users/{user_id}')
+        assert get_response.status_code == 200
+        
+        # 3. Atualizar usuário
+        updated_data = sample_user_data.copy()
+        updated_data['name'] = 'João Atualizado'
+        update_response = client.put(f'/api/users/{user_id}',
+                                   data=json.dumps(updated_data),
+                                   content_type='application/json')
+        assert update_response.status_code == 200
+        
+        # 4. Verificar atualização
+        verify_response = client.get(f'/api/users/{user_id}')
+        verify_data = json.loads(verify_response.data)
+        assert verify_data['name'] == 'João Atualizado'
+        
+        # 5. Deletar usuário
+        delete_response = client.delete(f'/api/users/{user_id}')
+        assert delete_response.status_code == 204
+        
+        # 6. Verificar deleção
+        final_response = client.get(f'/api/users/{user_id}')
+        assert final_response.status_code == 404
+
+# Comando para executar testes
+# pytest tests/ -v --cov=src --cov-report=html</code></pre>
+            </div>
+            
+            <h5>4. Documentação Profissional</h5>
+            <p>Documentação clara é essencial para projetos profissionais. Vamos criar documentação completa e útil.</p>
+            
+            <div class="code-example">
+                <pre><code># README.md completo e profissional
+"""
+# 🐍 Meu Projeto Python Profissional
+
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://python.org)
+[![Tests](https://github.com/usuario/projeto/workflows/tests/badge.svg)](https://github.com/usuario/projeto/actions)
+[![Coverage](https://codecov.io/gh/usuario/projeto/branch/main/graph/badge.svg)](https://codecov.io/gh/usuario/projeto)
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+## 📋 Descrição
+
+Este projeto demonstra a implementação completa de uma aplicação Python seguindo as melhores práticas da indústria, incluindo arquitetura limpa, testes automatizados, documentação completa e pipeline de CI/CD.
+
+## ✨ Funcionalidades
+
+- 🔐 Sistema de autenticação e autorização
+- 👥 Gerenciamento completo de usuários
+- 📊 Dashboard com métricas e relatórios
+- 🌐 API RESTful com documentação OpenAPI
+- 📧 Sistema de notificações por email
+- 🗄️ Integração com banco de dados
+- 🔍 Sistema de busca avançada
+- 📱 Interface responsiva
+
+## 🚀 Início Rápido
+
+### Pré-requisitos
+
+- Python 3.8 ou superior
+- pip (gerenciador de pacotes Python)
+- Git
+
+### Instalação
+
+1. **Clone o repositório**
+   ```bash
+   git clone https://github.com/usuario/meu-projeto.git
+   cd meu-projeto
+   ```
+
+2. **Crie um ambiente virtual**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # No Windows: venv\Scripts\activate
+   ```
+
+3. **Instale as dependências**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configure variáveis de ambiente**
+   ```bash
+   cp .env.example .env
+   # Edite o arquivo .env com suas configurações
+   ```
+
+5. **Execute as migrações do banco de dados**
+   ```bash
+   python src/meu_projeto/cli/commands.py migrate
+   ```
+
+6. **Inicie a aplicação**
+   ```bash
+   python src/meu_projeto/main.py
+   ```
+
+## 📚 Documentação
+
+### Estrutura do Projeto
+
+```
+meu_projeto/
+├── src/meu_projeto/     # Código fonte principal
+├── tests/               # Testes automatizados
+├── docs/               # Documentação detalhada
+├── scripts/            # Scripts de automação
+└── data/              # Dados e esquemas
+```
+
+### API Endpoints
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| GET | `/api/users` | Lista todos os usuários |
+| POST | `/api/users` | Cria novo usuário |
+| GET | `/api/users/{id}` | Busca usuário por ID |
+| PUT | `/api/users/{id}` | Atualiza usuário |
+| DELETE | `/api/users/{id}` | Remove usuário |
+
+### Configuração
+
+A aplicação usa variáveis de ambiente para configuração:
+
+```env
+# .env
+DATABASE_URL=sqlite:///data/app.db
+SECRET_KEY=sua-chave-secreta-aqui
+API_KEY=sua-api-key
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=seu-email@gmail.com
+EMAIL_PASS=sua-senha-app
+```
+
+## 🧪 Testes
+
+Execute os testes com:
+
+```bash
+# Todos os testes
+pytest
+
+# Com cobertura
+pytest --cov=src --cov-report=html
+
+# Apenas testes unitários
+pytest tests/unit/
+
+# Apenas testes de integração
+pytest tests/integration/
+
+# Testes específicos
+pytest tests/unit/test_user_model.py::TestUser::test_user_creation
+```
+
+## 🔧 Desenvolvimento
+
+### Setup do Ambiente de Desenvolvimento
+
+```bash
+# Instalar dependências de desenvolvimento
+pip install -r requirements-dev.txt
+
+# Instalar hooks do pre-commit
+pre-commit install
+
+# Executar formatação do código
+black src/ tests/
+
+# Executar linting
+flake8 src/ tests/
+
+# Executar verificação de tipos
+mypy src/
+```
+
+### Executando em Modo de Desenvolvimento
+
+```bash
+export FLASK_ENV=development
+export FLASK_DEBUG=1
+python src/meu_projeto/main.py
+```
+
+## 📦 Deploy
+
+### Docker
+
+```bash
+# Construir imagem
+docker build -t meu-projeto .
+
+# Executar container
+docker run -p 5000:5000 --env-file .env meu-projeto
+```
+
+### Heroku
+
+```bash
+# Login no Heroku
+heroku login
+
+# Criar aplicação
+heroku create meu-projeto-python
+
+# Configurar variáveis de ambiente
+heroku config:set DATABASE_URL=postgresql://...
+heroku config:set SECRET_KEY=...
+
+# Deploy
+git push heroku main
+```
+
+## 🤝 Contribuindo
+
+1. Fork o projeto
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
+
+Veja [CONTRIBUTING.md](CONTRIBUTING.md) para detalhes.
+
+## 📄 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## ⭐ Agradecimentos
+
+- Python Software Foundation
+- Comunidade Open Source
+- Contribuidores do projeto
+
+## 📞 Contato
+
+Seu Nome - [@seu_twitter](https://twitter.com/seu_twitter) - seu.email@exemplo.com
+
+Link do Projeto: [https://github.com/usuario/meu-projeto](https://github.com/usuario/meu-projeto)
+"""</code></pre>
+            </div>
+            
+            <h5>5. Projeto Completo: Sistema de Gerenciamento</h5>
+            <p>Vamos criar um exemplo prático que integra todos os conceitos aprendidos no curso.</p>
+            
+            <div class="code-example">
+                <pre><code># src/meu_projeto/main.py - Aplicação principal
+"""
+Sistema de Gerenciamento de Tarefas
+Integra todos os conceitos do curso de Python
+"""
+
+import os
+import logging
+from datetime import datetime
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.exceptions import NotFound, BadRequest
+
+# Configuração de logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+# Configuração da aplicação
+def create_app(config=None):
+    """Factory function para criar a aplicação Flask"""
+    app = Flask(__name__)
+    
+    # Configurações padrão
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+        'DATABASE_URL', 
+        'sqlite:///data/tasks.db'
+    )
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key')
+    
+    # Aplicar configurações personalizadas
+    if config:
+        app.config.update(config)
+    
+    # Inicializar extensões
+    db.init_app(app)
+    
+    # Registrar rotas
+    register_routes(app)
+    
+    # Configurar tratamento de erros
+    register_error_handlers(app)
+    
+    return app
+
+# Modelos de dados
+db = SQLAlchemy()
+
+class Task(db.Model):
+    """Modelo para tarefas"""
+    
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text)
+    completed = db.Column(db.Boolean, default=False)
+    priority = db.Column(db.String(20), default='medium')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    
+    def to_dict(self):
+        """Converte para dicionário"""
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'completed': self.completed,
+            'priority': self.priority,
+            'created_at': self.created_at.isoformat(),
+            'updated_at': self.updated_at.isoformat(),
+            'user_id': self.user_id
+        }
+
+class User(db.Model):
+    """Modelo para usuários"""
+    
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    tasks = db.relationship('Task', backref='user', lazy=True, cascade='all, delete-orphan')
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'created_at': self.created_at.isoformat(),
+            'task_count': len(self.tasks)
+        }
+
+# Serviços de negócio
+class TaskService:
+    """Serviço para gerenciar tarefas"""
+    
+    @staticmethod
+    def create_task(data):
+        """Cria nova tarefa"""
+        try:
+            # Validar dados obrigatórios
+            if not data.get('title'):
+                raise ValueError("Título é obrigatório")
+            
+            if not data.get('user_id'):
+                raise ValueError("ID do usuário é obrigatório")
+            
+            # Verificar se usuário existe
+            user = User.query.get(data['user_id'])
+            if not user:
+                raise ValueError("Usuário não encontrado")
+            
+            # Criar tarefa
+            task = Task(
+                title=data['title'],
+                description=data.get('description', ''),
+                priority=data.get('priority', 'medium'),
+                user_id=data['user_id']
+            )
+            
+            db.session.add(task)
+            db.session.commit()
+            
+            logger.info(f"Tarefa criada: {task.id} - {task.title}")
+            return task
+            
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f"Erro ao criar tarefa: {e}")
+            raise
+    
+    @staticmethod
+    def get_tasks(user_id=None, completed=None):
+        """Lista tarefas com filtros opcionais"""
+        query = Task.query
+        
+        if user_id:
+            query = query.filter_by(user_id=user_id)
+        
+        if completed is not None:
+            query = query.filter_by(completed=completed)
+        
+        return query.order_by(Task.created_at.desc()).all()
+    
+    @staticmethod
+    def update_task(task_id, data):
+        """Atualiza tarefa existente"""
+        try:
+            task = Task.query.get(task_id)
+            if not task:
+                raise ValueError("Tarefa não encontrada")
+            
+            # Atualizar campos permitidos
+            for field in ['title', 'description', 'completed', 'priority']:
+                if field in data:
+                    setattr(task, field, data[field])
+            
+            task.updated_at = datetime.utcnow()
+            db.session.commit()
+            
+            logger.info(f"Tarefa atualizada: {task.id}")
+            return task
+            
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f"Erro ao atualizar tarefa: {e}")
+            raise
+    
+    @staticmethod
+    def delete_task(task_id):
+        """Remove tarefa"""
+        try:
+            task = Task.query.get(task_id)
+            if not task:
+                raise ValueError("Tarefa não encontrada")
+            
+            db.session.delete(task)
+            db.session.commit()
+            
+            logger.info(f"Tarefa removida: {task_id}")
+            return True
+            
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f"Erro ao remover tarefa: {e}")
+            raise
+
+# Rotas da API
+def register_routes(app):
+    """Registra todas as rotas da aplicação"""
+    
+    @app.route('/api/health', methods=['GET'])
+    def health_check():
+        """Endpoint de saúde da aplicação"""
+        return jsonify({
+            'status': 'healthy',
+            'timestamp': datetime.utcnow().isoformat(),
+            'version': '1.0.0'
+        })
+    
+    @app.route('/api/users', methods=['POST'])
+    def create_user():
+        """Cria novo usuário"""
+        try:
+            data = request.get_json()
+            
+            if not data.get('name') or not data.get('email'):
+                raise BadRequest("Nome e email são obrigatórios")
+            
+            # Verificar email único
+            existing_user = User.query.filter_by(email=data['email']).first()
+            if existing_user:
+                raise BadRequest("Email já está em uso")
+            
+            user = User(name=data['name'], email=data['email'])
+            db.session.add(user)
+            db.session.commit()
+            
+            return jsonify(user.to_dict()), 201
+            
+        except BadRequest:
+            raise
+        except Exception as e:
+            logger.error(f"Erro ao criar usuário: {e}")
+            return jsonify({'error': 'Erro interno do servidor'}), 500
+    
+    @app.route('/api/users/<int:user_id>/tasks', methods=['GET'])
+    def get_user_tasks(user_id):
+        """Lista tarefas de um usuário"""
+        completed = request.args.get('completed')
+        if completed is not None:
+            completed = completed.lower() == 'true'
+        
+        tasks = TaskService.get_tasks(user_id=user_id, completed=completed)
+        return jsonify([task.to_dict() for task in tasks])
+    
+    @app.route('/api/tasks', methods=['POST'])
+    def create_task():
+        """Cria nova tarefa"""
+        try:
+            data = request.get_json()
+            task = TaskService.create_task(data)
+            return jsonify(task.to_dict()), 201
+            
+        except ValueError as e:
+            return jsonify({'error': str(e)}), 400
+        except Exception as e:
+            logger.error(f"Erro ao criar tarefa: {e}")
+            return jsonify({'error': 'Erro interno do servidor'}), 500
+    
+    @app.route('/api/tasks/<int:task_id>', methods=['PUT'])
+    def update_task(task_id):
+        """Atualiza tarefa"""
+        try:
+            data = request.get_json()
+            task = TaskService.update_task(task_id, data)
+            return jsonify(task.to_dict())
+            
+        except ValueError as e:
+            return jsonify({'error': str(e)}), 404
+        except Exception as e:
+            logger.error(f"Erro ao atualizar tarefa: {e}")
+            return jsonify({'error': 'Erro interno do servidor'}), 500
+    
+    @app.route('/api/tasks/<int:task_id>', methods=['DELETE'])
+    def delete_task(task_id):
+        """Remove tarefa"""
+        try:
+            TaskService.delete_task(task_id)
+            return '', 204
+            
+        except ValueError as e:
+            return jsonify({'error': str(e)}), 404
+        except Exception as e:
+            logger.error(f"Erro ao remover tarefa: {e}")
+            return jsonify({'error': 'Erro interno do servidor'}), 500
+
+def register_error_handlers(app):
+    """Registra manipuladores de erro"""
+    
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({'error': 'Endpoint não encontrado'}), 404
+    
+    @app.errorhandler(400)
+    def bad_request(error):
+        return jsonify({'error': 'Requisição inválida'}), 400
+    
+    @app.errorhandler(500)
+    def internal_error(error):
+        logger.error(f"Erro interno: {error}")
+        return jsonify({'error': 'Erro interno do servidor'}), 500
+
+def main():
+    """Função principal da aplicação"""
+    app = create_app()
+    
+    # Criar tabelas se não existirem
+    with app.app_context():
+        db.create_all()
+        logger.info("Banco de dados inicializado")
+    
+    # Executar aplicação
+    port = int(os.getenv('PORT', 5000))
+    debug = os.getenv('FLASK_DEBUG', 'False').lower() == 'true'
+    
+    logger.info(f"Iniciando aplicação na porta {port}")
+    app.run(host='0.0.0.0', port=port, debug=debug)
+
+if __name__ == '__main__':
+    main()</code></pre>
+            </div>
+            
             <div class="alert alert-success">
-                <strong>Princípios importantes:</strong>
+                <h6>🎯 Princípios SOLID Aplicados:</h6>
                 <ul class="mb-0">
-                    <li><strong>DRY:</strong> Don't Repeat Yourself</li>
-                    <li><strong>KISS:</strong> Keep It Simple, Stupid</li>
-                    <li><strong>SRP:</strong> Single Responsibility Principle</li>
-                    <li><strong>Comentários:</strong> Explique o "porquê", não o "o quê"</li>
-                    <li><strong>Nomes:</strong> Use nomes descritivos</li>
+                    <li><strong>S - Single Responsibility:</strong> Cada classe tem uma responsabilidade única</li>
+                    <li><strong>O - Open/Closed:</strong> Aberto para extensão, fechado para modificação</li>
+                    <li><strong>L - Liskov Substitution:</strong> Subclasses podem substituir classes base</li>
+                    <li><strong>I - Interface Segregation:</strong> Interfaces específicas são melhores</li>
+                    <li><strong>D - Dependency Inversion:</strong> Dependa de abstrações, não implementações</li>
+                </ul>
+            </div>
+            
+            <div class="alert alert-info">
+                <h6>🚀 Próximos Passos - Torne-se um Especialista:</h6>
+                <ul class="mb-0">
+                    <li><strong>Frameworks Avançados:</strong> Django, FastAPI, Tornado</li>
+                    <li><strong>Ciência de Dados:</strong> Pandas, NumPy, Scikit-learn</li>
+                    <li><strong>DevOps:</strong> Docker, Kubernetes, CI/CD</li>
+                    <li><strong>Cloud:</strong> AWS, Google Cloud, Azure</li>
+                    <li><strong>Microserviços:</strong> Arquitetura distribuída</li>
                 </ul>
             </div>
             
             <div class="alert alert-warning">
-                <h6><i class="fas fa-trophy"></i> Desafio Final:</h6>
-                <p class="mb-0">Crie um projeto que use pelo menos: classes, arquivos, banco de dados, tratamento de exceções e uma API externa. Mostre sua evolução!</p>
+                <h6>🏆 Desafio Final Completo:</h6>
+                <p class="mb-0">Crie um projeto que integre: <strong>Classes OOP</strong>, <strong>Tratamento de Exceções</strong>, <strong>APIs externas</strong>, <strong>Banco de dados</strong>, <strong>Testes automatizados</strong>, <strong>Documentação completa</strong> e <strong>Deploy em produção</strong>. Mostre que você domina Python profissionalmente!</p>
             </div>
         </div>''',
         'quiz': [
             {
                 'type': 'multiple_choice',
-                'question': 'O que é mais importante em um projeto Python?',
-                'options': ['Código limpo e organizado', 'Usar muitas bibliotecas', 'Ter muitas linhas', 'Ser complexo'],
-                'correct_answer': 'Código limpo e organizado'
+                'question': 'Qual é a estrutura de diretórios recomendada para um projeto Python profissional?',
+                'options': ['Tudo na raiz do projeto', 'src/ para código, tests/ para testes', 'Apenas arquivos .py', 'Uma pasta por função'],
+                'correct_answer': 'src/ para código, tests/ para testes'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'Qual é a melhor prática para organizar um projeto Python?',
-                'options': ['Tudo em um arquivo', 'Separar em módulos temáticos', 'Usar apenas funções', 'Evitar comentarios'],
-                'correct_answer': 'Separar em módulos temáticos'
+                'question': 'O que é o padrão Singleton?',
+                'options': ['Uma única função', 'Garantir apenas uma instância de uma classe', 'Um tipo de variável', 'Um framework'],
+                'correct_answer': 'Garantir apenas uma instância de uma classe'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'O que significa SOLID em programação?',
-                'options': ['Um tipo de banco de dados', 'Princípios de design de software', 'Uma biblioteca Python', 'Um framework web'],
-                'correct_answer': 'Princípios de design de software'
+                'question': 'Qual princípio SOLID diz que uma classe deve ter apenas uma responsabilidade?',
+                'options': ['Open/Closed', 'Single Responsibility', 'Liskov Substitution', 'Dependency Inversion'],
+                'correct_answer': 'Single Responsibility'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'Por que é importante tratar exceções em um projeto?',
-                'options': ['Para o programa rodar mais rápido', 'Para evitar que o programa pare inesperadamente', 'Para usar menos memória', 'Não é importante'],
-                'correct_answer': 'Para evitar que o programa pare inesperadamente'
+                'question': 'O que é TDD (Test-Driven Development)?',
+                'options': ['Testar depois de codificar', 'Escrever testes antes do código', 'Não fazer testes', 'Testar apenas no final'],
+                'correct_answer': 'Escrever testes antes do código'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'O que é refatoração de código?',
-                'options': ['Deletar o código', 'Melhorar a estrutura sem mudar a funcionalidade', 'Adicionar novos recursos', 'Corrigir bugs'],
-                'correct_answer': 'Melhorar a estrutura sem mudar a funcionalidade'
+                'question': 'Qual arquivo define as dependências de um projeto Python?',
+                'options': ['setup.py', 'requirements.txt', 'dependencies.txt', 'packages.txt'],
+                'correct_answer': 'requirements.txt'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'O que é o padrão Factory?',
+                'options': ['Uma fábrica real', 'Criar objetos baseado em parâmetros', 'Um tipo de classe', 'Um banco de dados'],
+                'correct_answer': 'Criar objetos baseado em parâmetros'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual a principal vantagem dos testes automatizados?',
+                'options': ['Reduzir tamanho do código', 'Garantir qualidade e detectar regressões', 'Acelerar desenvolvimento', 'Usar menos memória'],
+                'correct_answer': 'Garantir qualidade e detectar regressões'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'O que significa DRY em programação?',
+                'options': ['Dry Run Yield', "Don't Repeat Yourself", 'Data Repository Yield', 'Debug Ready Yield'],
+                'correct_answer': "Don't Repeat Yourself"
             }
         ]
     }
