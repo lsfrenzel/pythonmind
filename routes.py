@@ -48,19 +48,23 @@ def login():
                 if token:
                     if token == CURRENT_STUDENT_TOKEN:
                         user.has_course_access = True
-                        db.session.commit()
+                        user.update_login_time()  # Atualiza login e estende acesso por 3 meses
                         session['user_id'] = user.id
-                        flash('Login realizado com sucesso! Acesso ao curso liberado.', 'success')
+                        flash(f'Login realizado com sucesso! Acesso liberado por {user.days_until_expiry()} dias.', 'success')
                         return redirect(url_for('dashboard'))
                     else:
                         flash('Token de acesso inválido!', 'error')
                         return render_template('login.html')
                 else:
                     # User authenticated but no token provided
-                    if user.has_course_access:
+                    if user.has_course_access and user.has_valid_access():
+                        user.update_login_time()  # Atualiza login e estende acesso
                         session['user_id'] = user.id
-                        flash('Login realizado com sucesso!', 'success')
+                        flash(f'Login realizado com sucesso! Acesso válido por {user.days_until_expiry()} dias.', 'success')
                         return redirect(url_for('dashboard'))
+                    elif user.has_course_access and not user.has_valid_access():
+                        flash('Seu acesso ao curso expirou! Entre em contato para renovar.', 'warning')
+                        return render_template('login.html')
                     else:
                         flash('Você precisa inserir o token de acesso ao curso!', 'error')
                         return render_template('login.html')
@@ -117,6 +121,12 @@ def dashboard():
         flash('Você precisa ter acesso ao curso para ver o dashboard!', 'error')
         return redirect(url_for('login'))
     
+    # Verificar se o acesso ainda é válido
+    if not user.has_valid_access():
+        flash('Seu acesso ao curso expirou! Entre em contato para renovar.', 'warning')
+        session.clear()
+        return redirect(url_for('login'))
+    
     # Get user progress
     progress = user.get_progress_percentage()
     current_module = user.get_current_module()
@@ -153,7 +163,9 @@ def dashboard():
                          progress=progress,
                          modules=modules_status,
                          final_exam_accessible=final_exam_accessible,
-                         final_exam_result=final_exam_result)
+                         final_exam_result=final_exam_result,
+                         days_until_expiry=user.days_until_expiry(),
+                         access_expires_at=user.access_expires_at)
 
 @app.route('/module/<int:module_id>')
 def module_view(module_id):
@@ -161,7 +173,17 @@ def module_view(module_id):
         return redirect(url_for('login'))
     
     user = User.query.get(session['user_id'])
-    if not user or not user.has_course_access or not user.can_access_module(module_id):
+    if not user or not user.has_course_access:
+        flash('Você não tem acesso ao curso!', 'error')
+        return redirect(url_for('login'))
+    
+    # Verificar se o acesso ainda é válido
+    if not user.has_valid_access():
+        flash('Seu acesso ao curso expirou! Entre em contato para renovar.', 'warning')
+        session.clear()
+        return redirect(url_for('login'))
+    
+    if not user.can_access_module(module_id):
         flash('Você não pode acessar este módulo ainda!', 'error')
         return redirect(url_for('dashboard'))
     
@@ -185,8 +207,18 @@ def take_quiz(module_id):
         return redirect(url_for('login'))
     
     user = User.query.get(session['user_id'])
-    if not user or not user.can_access_module(module_id):
-        flash('You cannot access this module yet!', 'error')
+    if not user or not user.has_course_access:
+        flash('Você não tem acesso ao curso!', 'error')
+        return redirect(url_for('login'))
+    
+    # Verificar se o acesso ainda é válido
+    if not user.has_valid_access():
+        flash('Seu acesso ao curso expirou! Entre em contato para renovar.', 'warning')
+        session.clear()
+        return redirect(url_for('login'))
+    
+    if not user.can_access_module(module_id):
+        flash('Você não pode acessar este módulo ainda!', 'error')
         return redirect(url_for('dashboard'))
     
     if module_id not in MODULES:
@@ -263,7 +295,17 @@ def final_exam():
         return redirect(url_for('login'))
     
     user = User.query.get(session['user_id'])
-    if not user or not user.has_course_access or not user.can_take_final_exam():
+    if not user or not user.has_course_access:
+        flash('Você não tem acesso ao curso!', 'error')
+        return redirect(url_for('login'))
+    
+    # Verificar se o acesso ainda é válido
+    if not user.has_valid_access():
+        flash('Seu acesso ao curso expirou! Entre em contato para renovar.', 'warning')
+        session.clear()
+        return redirect(url_for('login'))
+    
+    if not user.can_take_final_exam():
         flash('Você deve completar todos os módulos antes de fazer o exame final!', 'error')
         return redirect(url_for('dashboard'))
     
@@ -275,8 +317,18 @@ def submit_final_exam():
         return redirect(url_for('login'))
     
     user = User.query.get(session['user_id'])
-    if not user or not user.can_take_final_exam():
-        flash('You must complete all modules before taking the final exam!', 'error')
+    if not user or not user.has_course_access:
+        flash('Você não tem acesso ao curso!', 'error')
+        return redirect(url_for('login'))
+    
+    # Verificar se o acesso ainda é válido
+    if not user.has_valid_access():
+        flash('Seu acesso ao curso expirou! Entre em contato para renovar.', 'warning')
+        session.clear()
+        return redirect(url_for('login'))
+    
+    if not user.can_take_final_exam():
+        flash('Você deve completar todos os módulos antes de fazer o exame final!', 'error')
         return redirect(url_for('dashboard'))
     
     # Process final exam answers

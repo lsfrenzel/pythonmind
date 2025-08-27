@@ -1,6 +1,7 @@
 from app import db
-from datetime import datetime
+from datetime import datetime, timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -9,6 +10,8 @@ class User(db.Model):
     has_course_access = db.Column(db.Boolean, default=False)
     is_admin = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    last_login = db.Column(db.DateTime, default=datetime.utcnow)
+    access_expires_at = db.Column(db.DateTime)  # Quando o acesso expira (3 meses após último login)
     
     # Relationships
     progress = db.relationship('ModuleProgress', backref='user', lazy=True, cascade='all, delete-orphan')
@@ -19,6 +22,30 @@ class User(db.Model):
         
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def update_login_time(self):
+        """Atualiza último login e estende acesso por mais 3 meses"""
+        self.last_login = datetime.utcnow()
+        self.access_expires_at = datetime.utcnow() + timedelta(days=90)  # 3 meses
+        db.session.commit()
+    
+    def has_valid_access(self):
+        """Verifica se o usuário ainda tem acesso válido (não expirou)"""
+        if not self.access_expires_at:
+            return False
+        return datetime.utcnow() < self.access_expires_at
+    
+    def extend_access(self):
+        """Estende o acesso por mais 3 meses a partir de agora"""
+        self.access_expires_at = datetime.utcnow() + timedelta(days=90)
+        db.session.commit()
+    
+    def days_until_expiry(self):
+        """Retorna quantos dias restam até a expiração do acesso"""
+        if not self.access_expires_at:
+            return 0
+        delta = self.access_expires_at - datetime.utcnow()
+        return max(0, delta.days)
     
     def get_current_module(self):
         """Get the current module the user should work on"""
@@ -52,6 +79,27 @@ class User(db.Model):
     
     def __repr__(self):
         return f'<User {self.email}>'
+    
+    @staticmethod
+    def cleanup_expired_users():
+        """Remove dados de usuários com acesso expirado há mais de 30 dias"""
+        from datetime import datetime, timedelta
+        
+        # Data limite: usuários que expiraram há mais de 30 dias
+        cleanup_date = datetime.utcnow() - timedelta(days=30)
+        
+        # Encontrar usuários expirados há mais de 30 dias
+        expired_users = User.query.filter(
+            User.access_expires_at.isnot(None),
+            User.access_expires_at < cleanup_date
+        ).all()
+        
+        for user in expired_users:
+            # Deletar progresso e resultados (cascade delete)
+            db.session.delete(user)
+        
+        db.session.commit()
+        return len(expired_users)
 
 class ModuleProgress(db.Model):
     id = db.Column(db.Integer, primary_key=True)

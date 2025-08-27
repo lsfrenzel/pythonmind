@@ -33,10 +33,13 @@ Preferred communication style: Simple, everyday language.
 - **Final Exam**: Comprehensive exam unlocked after completing all modules
 
 ### Authentication & Authorization
-- **Student Access**: Token-based authentication system
+- **Student Access**: Persistent authentication with 3-month access duration
 - **Admin Access**: Username/password authentication with elevated privileges
 - **Role-Based Features**: Different interfaces and capabilities for students vs admins
 - **Session Security**: Configurable session secrets and proxy fix middleware
+- **Progress Persistence**: Student progress automatically saved and maintained for 3+ months
+- **Access Management**: Automatic expiration tracking and renewal on login
+- **Data Cleanup**: Automatic removal of expired user data after 30 days of expiration
 
 ## External Dependencies
 
