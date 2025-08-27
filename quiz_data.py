@@ -2041,56 +2041,944 @@ print(f"Soma: {soma}, Média: {media}, Max: {max_val}, Min: {min_val}")</code></
         ]
     },
     5: {
-        'title': 'Programação Orientada a Objetos',
-        'description': 'Domine classes, objetos, herança e encapsulamento em Python',
+        'title': 'Estruturas de Dados',
+        'description': 'Domine listas, tuplas, dicionários e conjuntos para organizar dados de forma eficiente',
         'content': '''<div class="module-header">
-            <h3>🏢 Módulo 5 - Programação Orientada a Objetos</h3>
-            <p class="module-intro"><strong>Construa código mais inteligente!</strong> Descubra o poder das classes e objetos.</p>
+            <h3>📊 Módulo 5 - Estruturas de Dados</h3>
+            <p class="module-intro"><strong>Organize dados como um profissional!</strong> Descubra as estruturas fundamentais do Python: listas, tuplas, dicionários e conjuntos. Aprenda a escolher a estrutura ideal para cada situação!</p>
         </div>
         
         <div class="module-content">
-            <h4>🎯 O que você vai aprender:</h4>
+            <h4>🎯 O que você vai dominar:</h4>
             <ul class="learning-objectives">
-                <li>Conceitos de classes e objetos</li>
-                <li>Métodos e atributos</li>
-                <li>Construtor __init__</li>
-                <li>Herança e polimorfismo</li>
-                <li>Encapsulamento</li>
+                <li>Listas avançadas: criação, manipulação e métodos especiais</li>
+                <li>Tuplas e imutabilidade: quando e como usar</li>
+                <li>Dicionários: chaves, valores e aplicações práticas</li>
+                <li>Conjuntos (sets): operações matemáticas e unicidade</li>
+                <li>List comprehensions e geração dinâmica</li>
+                <li>Aninhamento e estruturas complexas</li>
+                <li>Performance e escolha da estrutura ideal</li>
+                <li>Iteração avançada e enumerate/zip</li>
             </ul>
             
-            <h4>📚 Conteúdo Teórico:</h4>
+            <h4>📚 Conteúdo Teórico Completo:</h4>
             
-            <h5>1. Classes e Objetos</h5>
-            <p>Uma classe é um modelo para criar objetos. Um objeto é uma instância de uma classe.</p>
+            <h5>1. Listas - A Estrutura Mais Versátil</h5>
+            <p>Listas são coleções ordenadas e mutáveis que podem armazenar qualquer tipo de dado. São a estrutura mais usada em Python!</p>
             
             <div class="code-example">
-                <h6>Criando uma classe:</h6>
-                <pre><code>class Pessoa:
-    def __init__(self, nome, idade):
-        self.nome = nome
-        self.idade = idade
-    
-    def apresentar(self):
-        return f"Olá, eu sou {self.nome} e tenho {self.idade} anos"
-    
-    def fazer_aniversario(self):
-        self.idade += 1
-        print(f"{self.nome} fez aniversário! Agora tem {self.idade} anos")
+                <h6>🔸 Criação e Manipulação Básica:</h6>
+                <pre><code># Diferentes formas de criar listas
+numeros = [1, 2, 3, 4, 5]
+frutas = ["maçã", "banana", "laranja"]
+mista = [1, "texto", 3.14, True, [1, 2, 3]]  # Lista com tipos diferentes
+vazia = []  # Lista vazia
+gerada = list(range(1, 11))  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-# Criando objetos
-pessoa1 = Pessoa("João", 25)
-pessoa2 = Pessoa("Maria", 30)
+print(f"Números: {numeros}")
+print(f"Primeira fruta: {frutas[0]}")
+print(f"Última fruta: {frutas[-1]}")
+print(f"Tamanho da lista: {len(frutas)}")
 
-print(pessoa1.apresentar())
-pessoa1.fazer_aniversario()</code></pre>
+# Modificando elementos
+frutas[1] = "uva"  # Substituir banana por uva
+print(f"Lista modificada: {frutas}")
+
+# Fatiamento (slicing) avançado
+print(f"Primeiros 3 números: {numeros[:3]}")
+print(f"Últimos 2 números: {numeros[-2:]}")
+print(f"Números pares (passo 2): {numeros[::2]}")
+print(f"Lista invertida: {numeros[::-1]}")</code></pre>
+                
+                <h6>🔸 Métodos Essenciais de Listas:</h6>
+                <pre><code># Adicionando elementos
+compras = ["leite", "pão"]
+compras.append("ovos")  # Adiciona no final
+compras.insert(1, "manteiga")  # Adiciona na posição 1
+compras.extend(["café", "açúcar"])  # Adiciona múltiplos elementos
+print(f"Lista de compras: {compras}")
+
+# Removendo elementos
+compras.remove("pão")  # Remove a primeira ocorrência
+ultimo_item = compras.pop()  # Remove e retorna o último
+segundo_item = compras.pop(1)  # Remove e retorna da posição 1
+print(f"Removido: {ultimo_item}, {segundo_item}")
+
+# Encontrando elementos
+if "leite" in compras:
+    posicao = compras.index("leite")
+    print(f"Leite está na posição: {posicao}")
+
+# Contando e organizando
+numeros_repetidos = [1, 2, 2, 3, 2, 4, 2]
+print(f"O número 2 aparece {numeros_repetidos.count(2)} vezes")
+
+numeros_repetidos.sort()  # Ordena a lista original
+print(f"Ordenada: {numeros_repetidos}")
+
+numeros_ordenados = sorted(numeros, reverse=True)  # Cria nova lista ordenada
+print(f"Decrescente: {numeros_ordenados}")</code></pre>
+            </div>
+            
+            <h5>2. Tuplas - Dados Imutáveis e Seguros</h5>
+            <p>Tuplas são coleções ordenadas e <strong>imutáveis</strong>. Ideais para dados que não devem mudar, como coordenadas, configurações ou retorno de múltiplos valores de funções.</p>
+            
+            <div class="code-example">
+                <pre><code># Criando tuplas
+coordenadas = (10, 20)  # Ponto no plano cartesiano
+dados_pessoa = ("João", 25, "Engenheiro", True)  # Nome, idade, profissão, ativo
+cores_rgb = (255, 128, 0)  # Cor laranja em RGB
+tupla_unitaria = ("único",)  # Note a vírgula obrigatória!
+
+# Acessando elementos (igual às listas)
+nome = dados_pessoa[0]
+profissao = dados_pessoa[2]
+print(f"{nome} trabalha como {profissao}")
+
+# Desempacotamento (unpacking) - muito útil!
+x, y = coordenadas  # x=10, y=20
+nome, idade, prof, status = dados_pessoa
+r, g, b = cores_rgb
+print(f"Coordenadas: x={x}, y={y}")
+print(f"Cor RGB: R={r}, G={g}, B={b}")
+
+# Tuplas como chaves de dicionários (listas não podem!)
+pontos_mapa = {
+    (0, 0): "origem",
+    (10, 20): "ponto A", 
+    (30, 40): "ponto B"
+}
+print(f"No ponto (10, 20) temos: {pontos_mapa[(10, 20)]}")
+
+# Função retornando múltiplos valores
+def calcular_circulo(raio):
+    import math
+    area = math.pi * raio ** 2
+    perimetro = 2 * math.pi * raio
+    return area, perimetro  # Retorna uma tupla!
+
+area_resultado, perimetro_resultado = calcular_circulo(5)
+print(f"Círculo raio 5: Área={area_resultado:.2f}, Perímetro={perimetro_resultado:.2f}")</code></pre>
+            </div>
+            
+            <h5>3. Dicionários - Mapeamento Chave-Valor</h5>
+            <p>Dicionários são coleções que armazenam pares chave-valor. Extremamente eficientes para busca e fundamentais em programação moderna!</p>
+            
+            <div class="code-example">
+                <pre><code># Criando dicionários
+pessoa = {
+    "nome": "Ana Silva",
+    "idade": 28,
+    "profissao": "Desenvolvedora",
+    "salario": 8500.00,
+    "ativo": True
+}
+
+# Diferentes formas de criar
+vazio = {}
+usando_dict = dict(a=1, b=2, c=3)
+de_listas = dict([("x", 10), ("y", 20)])
+
+print(f"Pessoa: {pessoa['nome']}, {pessoa['idade']} anos")
+
+# Acessando com segurança
+salario = pessoa.get("salario", 0)  # Retorna 0 se não existir
+bonus = pessoa.get("bonus", "Não definido")
+print(f"Salário: R$ {salario}, Bônus: {bonus}")
+
+# Modificando e adicionando
+pessoa["idade"] = 29  # Modificar existente
+pessoa["cidade"] = "São Paulo"  # Adicionar novo
+pessoa.update({"telefone": "11999999999", "email": "ana@email.com"})
+
+# Removendo elementos
+departamento = pessoa.pop("departamento", "TI")  # Remove e retorna, ou valor padrão
+print(f"Departamento: {departamento}")
+
+# Iterando sobre dicionários
+print("\n=== Dados da Pessoa ===")
+for chave, valor in pessoa.items():
+    print(f"{chave.capitalize()}: {valor}")
+
+print(f"\nChaves disponíveis: {list(pessoa.keys())}")
+print(f"Valores: {list(pessoa.values())}")
+
+# Dicionário aninhado - estruturas complexas
+empresa = {
+    "nome": "TechCorp",
+    "funcionarios": {
+        "001": {"nome": "João", "cargo": "Dev", "salario": 7000},
+        "002": {"nome": "Maria", "cargo": "Designer", "salario": 6500},
+        "003": {"nome": "Pedro", "cargo": "Manager", "salario": 12000}
+    },
+    "departamentos": ["TI", "RH", "Vendas"]
+}
+
+# Acessando dados aninhados
+funcionario_001 = empresa["funcionarios"]["001"]
+print(f"\nFuncionário 001: {funcionario_001['nome']} - {funcionario_001['cargo']}")
+
+# Calculando estatísticas
+salarios = [func["salario"] for func in empresa["funcionarios"].values()]
+salario_medio = sum(salarios) / len(salarios)
+print(f"Salário médio da empresa: R$ {salario_medio:.2f}")</code></pre>
+            </div>
+            
+            <h5>4. Conjuntos (Sets) - Valores Únicos</h5>
+            <p>Sets são coleções de elementos únicos, ideais para eliminar duplicatas e realizar operações matemáticas como união, interseção e diferença.</p>
+            
+            <div class="code-example">
+                <pre><code># Criando conjuntos
+numeros_unicos = {1, 2, 3, 4, 5}
+frutas_set = {"maçã", "banana", "laranja"}
+de_lista = set([1, 2, 2, 3, 3, 4])  # Remove duplicatas automaticamente!
+print(f"De lista com duplicatas: {de_lista}")  # {1, 2, 3, 4}
+
+# Adicionando e removendo
+frutas_set.add("uva")
+frutas_set.discard("banana")  # Remove se existir
+# frutas_set.remove("banana")  # Erro se não existir
+print(f"Frutas: {frutas_set}")
+
+# Operações de conjuntos - muito poderosas!
+funcionarios_ti = {"Ana", "Bruno", "Carlos", "Diana"}
+funcionarios_vendas = {"Bruno", "Elena", "Fabio", "Ana"}
+
+# União - todos os funcionários
+todos = funcionarios_ti | funcionarios_vendas
+# ou: todos = funcionarios_ti.union(funcionarios_vendas)
+print(f"Todos os funcionários: {todos}")
+
+# Interseção - funcionários que trabalham nos dois departamentos
+ambos_depto = funcionarios_ti & funcionarios_vendas
+print(f"Trabalham em ambos: {ambos_depto}")
+
+# Diferença - só em TI
+so_ti = funcionarios_ti - funcionarios_vendas
+print(f"Apenas em TI: {so_ti}")
+
+# Diferença simétrica - em um ou outro, mas não ambos
+xor_depto = funcionarios_ti ^ funcionarios_vendas
+print(f"Apenas em um departamento: {xor_depto}")
+
+# Verificações úteis
+print(f"Ana trabalha em TI? {'Ana' in funcionarios_ti}")
+print(f"TI é subconjunto de todos? {funcionarios_ti.issubset(todos)}")
+
+# Removendo duplicatas de listas grandes
+lista_com_duplicatas = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5]
+lista_unica = list(set(lista_com_duplicatas))
+print(f"Lista sem duplicatas: {lista_unica}")</code></pre>
+            </div>
+            
+            <h5>5. List Comprehensions - Geração Elegante</h5>
+            <p>List comprehensions permitem criar listas de forma concisa e pythônica, combinando criação e filtros em uma linha!</p>
+            
+            <div class="code-example">
+                <pre><code># Forma tradicional vs List Comprehension
+# Tradicional
+quadrados_tradicional = []
+for x in range(10):
+    quadrados_tradicional.append(x ** 2)
+
+# List Comprehension - muito mais elegante!
+quadrados = [x ** 2 for x in range(10)]
+print(f"Quadrados: {quadrados}")
+
+# Com condições (filtros)
+pares = [x for x in range(20) if x % 2 == 0]
+numeros_grandes = [x for x in range(100) if x > 50 and x % 3 == 0]
+print(f"Pares: {pares}")
+print(f"Grandes múltiplos de 3: {numeros_grandes}")
+
+# Transformações de strings
+nomes = ["joão", "maria", "pedro", "ana"]
+nomes_formatados = [nome.title() for nome in nomes]
+iniciais = [nome[0].upper() for nome in nomes]
+print(f"Nomes formatados: {nomes_formatados}")
+print(f"Iniciais: {iniciais}")
+
+# List comprehensions aninhadas
+matriz = [[i + j for j in range(3)] for i in range(3)]
+print(f"Matriz 3x3: {matriz}")
+
+# Achatando listas aninhadas
+listas_aninhadas = [[1, 2], [3, 4], [5, 6]]
+achatada = [item for sublista in listas_aninhadas for item in sublista]
+print(f"Lista achatada: {achatada}")
+
+# Dict e Set comprehensions também existem!
+quadrados_dict = {x: x**2 for x in range(5)}
+print(f"Dicionário de quadrados: {quadrados_dict}")
+
+letras_unicas = {letra for palavra in ["python", "programacao"] for letra in palavra}
+print(f"Letras únicas: {letras_unicas}")</code></pre>
+            </div>
+            
+            <h5>6. Técnicas Avançadas de Iteração</h5>
+            <div class="code-example">
+                <pre><code># Enumerate - índice + valor
+frutas = ["maçã", "banana", "laranja"]
+for indice, fruta in enumerate(frutas):
+    print(f"{indice}: {fruta}")
+
+# Enumerate com início personalizado
+for indice, fruta in enumerate(frutas, start=1):
+    print(f"Fruta #{indice}: {fruta}")
+
+# Zip - combinando listas
+nomes = ["Ana", "Bruno", "Carlos"]
+idades = [25, 30, 35]
+cidades = ["SP", "RJ", "BH"]
+
+for nome, idade, cidade in zip(nomes, idades, cidades):
+    print(f"{nome}, {idade} anos, mora em {cidade}")
+
+# Criando dicionário com zip
+pessoas_info = dict(zip(nomes, idades))
+print(f"Idades: {pessoas_info}")
+
+# Iteração paralela em dicionários
+pontuacoes = {"Ana": 95, "Bruno": 87, "Carlos": 92}
+posicoes = {"Ana": 1, "Bruno": 3, "Carlos": 2}
+
+for nome in pontuacoes:
+    print(f"{nome}: {pontuacoes[nome]} pontos, posição {posicoes[nome]}")</code></pre>
             </div>
             
             <div class="alert alert-info">
-                <h6><i class="fas fa-info-circle"></i> Conceitos Importantes:</h6>
+                <h6>🎯 Guia de Escolha: Qual Estrutura Usar?</h6>
                 <ul class="mb-0">
-                    <li><strong>self:</strong> Referência ao objeto atual</li>
-                    <li><strong>__init__:</strong> Construtor da classe</li>
-                    <li><strong>_atributo:</strong> Indica atributo "privado"</li>
+                    <li><strong>Lista:</strong> Quando precisar de ordem, modificação e permitir duplicatas</li>
+                    <li><strong>Tupla:</strong> Para dados imutáveis, coordenadas, retorno de funções</li>
+                    <li><strong>Dicionário:</strong> Para mapeamento chave-valor, busca rápida por identificador</li>
+                    <li><strong>Set:</strong> Para eliminar duplicatas e operações matemáticas de conjuntos</li>
+                </ul>
+            </div>
+            
+            <div class="alert alert-success">
+                <h6>💡 Dicas de Performance:</h6>
+                <ul class="mb-0">
+                    <li>Dicionários têm busca O(1) - muito rápidos para chaves</li>
+                    <li>Sets têm verificação O(1) para membership (in)</li>
+                    <li>Listas têm busca O(n) - evite em listas muito grandes</li>
+                    <li>Use list comprehensions - são mais rápidas que loops tradicionais</li>
+                </ul>
+            </div>
+            
+            <div class="alert alert-warning">
+                <h6>⚠️ Pegadinhas Comuns:</h6>
+                <ul class="mb-0">
+                    <li>Dicionários mantêm ordem de inserção (Python 3.7+)</li>
+                    <li>Sets não têm ordem garantida</li>
+                    <li>Tupla de um elemento precisa de vírgula: (1,)</li>
+                    <li>Chaves de dicionário devem ser imutáveis (int, str, tupla)</li>
+                </ul>
+            </div>
+        </div>''',
+        'quiz': [
+            {
+                'type': 'multiple_choice',
+                'question': 'Como adicionar um elemento ao final de uma lista?',
+                'options': ['lista.add(elemento)', 'lista.append(elemento)', 'lista.insert(elemento)', 'lista.push(elemento)'],
+                'correct_answer': 'lista.append(elemento)'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual é a principal diferença entre listas e tuplas?',
+                'options': ['Listas são maiores', 'Tuplas são imutáveis', 'Listas são mais rápidas', 'Tuplas não têm métodos'],
+                'correct_answer': 'Tuplas são imutáveis'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Como acessar um valor em um dicionário de forma segura?',
+                'options': ['dict[chave]', 'dict.get(chave)', 'dict.value(chave)', 'dict.access(chave)'],
+                'correct_answer': 'dict.get(chave)'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual estrutura elimina automaticamente elementos duplicados?',
+                'options': ['Lista', 'Tupla', 'Dicionário', 'Conjunto (set)'],
+                'correct_answer': 'Conjunto (set)'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual é a saída de: [x**2 for x in range(3)]?',
+                'options': ['[0, 1, 4]', '[1, 4, 9]', '[0, 2, 4]', '[1, 2, 3]'],
+                'correct_answer': '[0, 1, 4]'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Como verificar se uma chave existe em um dicionário?',
+                'options': ['chave in dict', 'dict.has(chave)', 'dict.exists(chave)', 'dict.contains(chave)'],
+                'correct_answer': 'chave in dict'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual método une duas listas em Python?',
+                'options': ['lista.join(outra)', 'lista.concat(outra)', 'lista.extend(outra)', 'lista.merge(outra)'],
+                'correct_answer': 'lista.extend(outra)'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Como criar uma tupla com apenas um elemento?',
+                'options': ['(elemento)', '(elemento,)', '[elemento]', '{elemento}'],
+                'correct_answer': '(elemento,)'
+            }
+        ]
+    },
+    6: {
+        'title': 'Programação Orientada a Objetos',
+        'description': 'Domine classes, objetos, herança e encapsulamento para criar código profissional e reutilizável',
+        'content': '''<div class="module-header">
+            <h3>🏢 Módulo 6 - Programação Orientada a Objetos</h3>
+            <p class="module-intro"><strong>Construa código como um arquiteto profissional!</strong> Domine os pilares da POO: classes, objetos, herança, encapsulamento e polimorfismo. Transforme-se em um desenvolvedor que pensa em objetos!</p>
+        </div>
+        
+        <div class="module-content">
+            <h4>🎯 O que você vai dominar:</h4>
+            <ul class="learning-objectives">
+                <li>Conceitos fundamentais de classes e objetos</li>
+                <li>Atributos de instância e de classe</li>
+                <li>Métodos especiais e mágicos (__init__, __str__, etc.)</li>
+                <li>Herança simples e múltipla</li>
+                <li>Encapsulamento e propriedades</li>
+                <li>Polimorfismo e sobrescrita de métodos</li>
+                <li>Composição vs Herança</li>
+                <li>Design patterns básicos</li>
+            </ul>
+            
+            <h4>📚 Conteúdo Teórico Completo:</h4>
+            
+            <h5>1. Fundamentos de Classes e Objetos</h5>
+            <p>A Programação Orientada a Objetos é um paradigma que organiza código em "objetos" que representam entidades do mundo real, cada uma com características (atributos) e comportamentos (métodos).</p>
+            
+            <div class="alert alert-info">
+                <h6>🧠 Conceitos Essenciais:</h6>
+                <ul class="mb-0">
+                    <li><strong>Classe:</strong> Um molde/template para criar objetos</li>
+                    <li><strong>Objeto:</strong> Uma instância específica de uma classe</li>
+                    <li><strong>Atributo:</strong> Características/dados do objeto</li>
+                    <li><strong>Método:</strong> Ações/comportamentos que o objeto pode realizar</li>
+                </ul>
+            </div>
+            
+            <div class="code-example">
+                <h6>🔸 Criando sua Primeira Classe:</h6>
+                <pre><code># Definindo uma classe Pessoa
+class Pessoa:
+    """Classe que representa uma pessoa com nome, idade e profissão"""
+    
+    # Atributo de classe (compartilhado por todas as instâncias)
+    especie = "Homo sapiens"
+    
+    def __init__(self, nome, idade, profissao="Estudante"):
+        """Construtor da classe - inicializa os atributos de instância"""
+        self.nome = nome
+        self.idade = idade
+        self.profissao = profissao
+        self.energia = 100
+    
+    def apresentar(self):
+        """Método que faz a pessoa se apresentar"""
+        return f"Olá! Eu sou {self.nome}, tenho {self.idade} anos e sou {self.profissao}."
+    
+    def fazer_aniversario(self):
+        """Método que aumenta a idade em 1 ano"""
+        self.idade += 1
+        print(f"🎉 Parabéns, {self.nome}! Agora você tem {self.idade} anos!")
+    
+    def trabalhar(self, horas):
+        """Método que simula trabalho e reduz energia"""
+        if self.energia >= horas * 10:
+            self.energia -= horas * 10
+            print(f"{self.nome} trabalhou {horas} horas. Energia restante: {self.energia}")
+        else:
+            print(f"{self.nome} está muito cansado para trabalhar!")
+    
+    def dormir(self):
+        """Método que restaura a energia"""
+        self.energia = 100
+        print(f"{self.nome} dormiu e está revigorado!")
+
+# Criando objetos (instâncias da classe)
+pessoa1 = Pessoa("Maria Silva", 28, "Engenheira")
+pessoa2 = Pessoa("João Santos", 35, "Professor")
+pessoa3 = Pessoa("Ana Costa", 22)  # Usa valor padrão "Estudante"
+
+# Usando os objetos
+print(pessoa1.apresentar())
+print(f"Espécie: {pessoa1.especie}")  # Atributo de classe
+
+pessoa1.trabalhar(8)
+pessoa1.fazer_aniversario()
+pessoa1.dormir()</code></pre>
+                
+                <h6>🔸 Atributos de Instância vs Classe:</h6>
+                <pre><code>class Contador:
+    """Classe que demonstra atributos de instância e classe"""
+    
+    # Atributo de classe - compartilhado por todas as instâncias
+    total_objetos = 0
+    
+    def __init__(self, valor_inicial=0):
+        # Atributo de instância - único para cada objeto
+        self.valor = valor_inicial
+        
+        # Incrementa contador global
+        Contador.total_objetos += 1
+        self.id_objeto = Contador.total_objetos
+    
+    def incrementar(self, quantidade=1):
+        self.valor += quantidade
+    
+    def info(self):
+        return f"Contador #{self.id_objeto}: valor={self.valor}"
+    
+    @classmethod
+    def quantos_objetos(cls):
+        """Método de classe - opera sobre a classe, não instância"""
+        return f"Total de contadores criados: {cls.total_objetos}"
+
+# Testando atributos de classe
+c1 = Contador(10)
+c2 = Contador(20)
+c3 = Contador()
+
+print(c1.info())  # Contador #1: valor=10
+print(c2.info())  # Contador #2: valor=20
+print(Contador.quantos_objetos())  # Total de contadores criados: 3
+
+c1.incrementar(5)
+print(c1.info())  # Contador #1: valor=15</code></pre>
+            </div>
+            
+            <h5>2. Métodos Especiais (Magic Methods)</h5>
+            <p>Python possui métodos especiais que começam e terminam com duplo underscore (__). Eles definem como objetos se comportam em operações específicas.</p>
+            
+            <div class="code-example">
+                <pre><code>class ContaBancaria:
+    """Classe que demonstra métodos especiais importantes"""
+    
+    def __init__(self, titular, saldo_inicial=0):
+        self.titular = titular
+        self.saldo = saldo_inicial
+        self.historico = []
+    
+    def __str__(self):
+        """Como o objeto aparece em print()"""
+        return f"Conta de {self.titular}: R$ {self.saldo:.2f}"
+    
+    def __repr__(self):
+        """Representação técnica do objeto para desenvolvedores"""
+        return f"ContaBancaria('{self.titular}', {self.saldo})"
+    
+    def __len__(self):
+        """Define comportamento para len(objeto)"""
+        return len(self.historico)
+    
+    def __eq__(self, outra):
+        """Define igualdade entre objetos"""
+        return self.titular == outra.titular and self.saldo == outra.saldo
+    
+    def __lt__(self, outra):
+        """Define comparação menor que (<)"""
+        return self.saldo < outra.saldo
+    
+    def __add__(self, valor):
+        """Define soma com + """
+        if isinstance(valor, (int, float)):
+            return ContaBancaria(self.titular, self.saldo + valor)
+        return NotImplemented
+    
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            self.historico.append(f"Depósito: +R$ {valor:.2f}")
+        else:
+            raise ValueError("Valor de depósito deve ser positivo")
+    
+    def sacar(self, valor):
+        if valor > 0 and valor <= self.saldo:
+            self.saldo -= valor
+            self.historico.append(f"Saque: -R$ {valor:.2f}")
+        else:
+            raise ValueError("Saldo insuficiente ou valor inválido")
+
+# Testando métodos especiais
+conta1 = ContaBancaria("Maria", 1000)
+conta2 = ContaBancaria("João", 1500)
+
+print(conta1)  # Usa __str__: Conta de Maria: R$ 1000.00
+print(repr(conta1))  # Usa __repr__: ContaBancaria('Maria', 1000)
+
+conta1.depositar(500)
+conta1.sacar(200)
+print(f"Histórico tem {len(conta1)} transações")  # Usa __len__
+
+# Comparações
+print(f"Conta1 < Conta2? {conta1 < conta2}")  # Usa __lt__
+print(f"Contas iguais? {conta1 == conta2}")   # Usa __eq__
+
+# Soma
+conta3 = conta1 + 100  # Usa __add__
+print(f"Nova conta: {conta3}")</code></pre>
+            </div>
+            
+            <h5>3. Herança - Reutilizando e Especializando Código</h5>
+            <p>Herança permite criar novas classes baseadas em classes existentes, reutilizando código e adicionando funcionalidades específicas.</p>
+            
+            <div class="code-example">
+                <pre><code># Classe base (superclasse)
+class Veiculo:
+    """Classe base para todos os veículos"""
+    
+    def __init__(self, marca, modelo, ano):
+        self.marca = marca
+        self.modelo = modelo
+        self.ano = ano
+        self.ligado = False
+        self.velocidade = 0
+    
+    def ligar(self):
+        if not self.ligado:
+            self.ligado = True
+            print(f"{self.marca} {self.modelo} foi ligado!")
+        else:
+            print("Veículo já está ligado!")
+    
+    def desligar(self):
+        if self.ligado and self.velocidade == 0:
+            self.ligado = False
+            print(f"{self.marca} {self.modelo} foi desligado!")
+        else:
+            print("Pare o veículo antes de desligar!")
+    
+    def acelerar(self, incremento):
+        if self.ligado:
+            self.velocidade += incremento
+            print(f"Velocidade: {self.velocidade} km/h")
+        else:
+            print("Ligue o veículo primeiro!")
+    
+    def info(self):
+        status = "Ligado" if self.ligado else "Desligado"
+        return f"{self.marca} {self.modelo} ({self.ano}) - {status} - {self.velocidade} km/h"
+
+# Classes filhas (subclasses)
+class Carro(Veiculo):
+    """Classe específica para carros"""
+    
+    def __init__(self, marca, modelo, ano, portas):
+        super().__init__(marca, modelo, ano)  # Chama construtor da classe pai
+        self.portas = portas
+        self.combustivel = 100
+    
+    def acelerar(self, incremento):
+        """Sobrescreve método da classe pai com comportamento específico"""
+        if self.combustivel > 0:
+            super().acelerar(incremento)  # Chama método da classe pai
+            self.combustivel -= incremento * 0.1  # Consome combustível
+            print(f"Combustível: {self.combustivel:.1f}%")
+        else:
+            print("Sem combustível!")
+    
+    def abastecer(self):
+        self.combustivel = 100
+        print("Tanque cheio!")
+    
+    def info(self):
+        base_info = super().info()
+        return f"{base_info} - {self.portas} portas - Combustível: {self.combustivel:.1f}%"
+
+class Bicicleta(Veiculo):
+    """Classe específica para bicicletas"""
+    
+    def __init__(self, marca, modelo, ano, marchas):
+        super().__init__(marca, modelo, ano)
+        self.marchas = marchas
+        self.marcha_atual = 1
+    
+    def ligar(self):
+        """Bicicleta não tem motor - sobrescreve comportamento"""
+        print("Bicicletas não precisam ser ligadas! Apenas pedale!")
+        self.ligado = True
+    
+    def trocar_marcha(self, nova_marcha):
+        if 1 <= nova_marcha <= self.marchas:
+            self.marcha_atual = nova_marcha
+            print(f"Marcha alterada para {nova_marcha}")
+        else:
+            print(f"Marcha inválida! Use 1-{self.marchas}")
+    
+    def info(self):
+        base_info = super().info()
+        return f"{base_info} - {self.marchas} marchas - Marcha atual: {self.marcha_atual}"
+
+# Usando herança
+carro = Carro("Toyota", "Corolla", 2022, 4)
+bike = Bicicleta("Caloi", "Mountain", 2021, 21)
+
+print("=== CARRO ===")
+print(carro.info())
+carro.ligar()
+carro.acelerar(50)
+carro.abastecer()
+
+print("\n=== BICICLETA ===")
+print(bike.info())
+bike.ligar()  # Comportamento diferente!
+bike.trocar_marcha(5)
+bike.acelerar(15)</code></pre>
+            </div>
+            
+            <h5>4. Encapsulamento e Propriedades</h5>
+            <p>Encapsulamento protege dados internos e controla como são acessados e modificados, usando convenções de nomenclatura e propriedades.</p>
+            
+            <div class="code-example">
+                <pre><code>class Produto:
+    """Classe que demonstra encapsulamento com propriedades"""
+    
+    def __init__(self, nome, preco, categoria):
+        self._nome = nome  # Convenção: _ indica "privado"
+        self._preco = 0
+        self._categoria = categoria
+        self.__codigo = self._gerar_codigo()  # __ é "muito privado"
+        self.preco = preco  # Usa o setter para validar
+    
+    def _gerar_codigo(self):
+        """Método privado para gerar código interno"""
+        import random
+        return f"{self._categoria[:3].upper()}{random.randint(1000, 9999)}"
+    
+    @property
+    def nome(self):
+        """Getter para nome"""
+        return self._nome.title()
+    
+    @nome.setter
+    def nome(self, valor):
+        """Setter para nome com validação"""
+        if isinstance(valor, str) and len(valor) >= 2:
+            self._nome = valor
+        else:
+            raise ValueError("Nome deve ser string com pelo menos 2 caracteres")
+    
+    @property
+    def preco(self):
+        """Getter para preço"""
+        return self._preco
+    
+    @preco.setter
+    def preco(self, valor):
+        """Setter para preço com validação"""
+        if isinstance(valor, (int, float)) and valor >= 0:
+            self._preco = float(valor)
+        else:
+            raise ValueError("Preço deve ser número positivo")
+    
+    @property
+    def codigo(self):
+        """Propriedade somente leitura"""
+        return self.__codigo
+    
+    def aplicar_desconto(self, percentual):
+        """Método público para aplicar desconto"""
+        if 0 <= percentual <= 50:  # Máximo 50% desconto
+            desconto = self._preco * (percentual / 100)
+            self._preco -= desconto
+            print(f"Desconto de {percentual}% aplicado! Novo preço: R$ {self._preco:.2f}")
+        else:
+            raise ValueError("Desconto deve estar entre 0% e 50%")
+    
+    def __str__(self):
+        return f"{self.nome} ({self.codigo}) - R$ {self.preco:.2f}"
+
+# Demonstrando encapsulamento
+produto = Produto("notebook gamer", 2500.00, "eletrônicos")
+
+print(produto)  # notebook gamer (ELE1234) - R$ 2500.00
+print(f"Código: {produto.codigo}")  # Acesso somente leitura
+
+# Usando setters com validação
+produto.nome = "Notebook Gamer RGB"
+produto.preco = 2200.00
+
+# Tentativas inválidas causarão erros
+try:
+    produto.preco = -100  # ValueError!
+except ValueError as e:
+    print(f"Erro: {e}")
+
+produto.aplicar_desconto(10)  # Método controlado para mudanças</code></pre>
+            </div>
+            
+            <h5>5. Polimorfismo - Uma Interface, Múltiplos Comportamentos</h5>
+            <p>Polimorfismo permite que objetos de diferentes classes sejam tratados de forma uniforme através de uma interface comum.</p>
+            
+            <div class="code-example">
+                <pre><code>class Animal:
+    """Classe base para demonstrar polimorfismo"""
+    
+    def __init__(self, nome, especie):
+        self.nome = nome
+        self.especie = especie
+    
+    def fazer_som(self):
+        """Método que será sobrescrito pelas subclasses"""
+        return "Som genérico de animal"
+    
+    def mover(self):
+        return f"{self.nome} se move"
+
+class Cachorro(Animal):
+    def __init__(self, nome, raca):
+        super().__init__(nome, "Canino")
+        self.raca = raca
+    
+    def fazer_som(self):
+        return "Au au!"
+    
+    def mover(self):
+        return f"{self.nome} corre e pula"
+
+class Gato(Animal):
+    def __init__(self, nome, cor):
+        super().__init__(nome, "Felino")
+        self.cor = cor
+    
+    def fazer_som(self):
+        return "Miau!"
+    
+    def mover(self):
+        return f"{self.nome} caminha silenciosamente"
+
+class Pato(Animal):
+    def __init__(self, nome):
+        super().__init__(nome, "Ave")
+    
+    def fazer_som(self):
+        return "Quack!"
+    
+    def mover(self):
+        return f"{self.nome} nada e voa"
+
+# Lista com diferentes tipos de animais
+animais = [
+    Cachorro("Rex", "Labrador"),
+    Gato("Mimi", "Branco"),
+    Pato("Donald"),
+    Cachorro("Bolt", "Pastor Alemão")
+]
+
+# Polimorfismo em ação - mesmo código, comportamentos diferentes
+print("=== FAZENDO SONS ===")
+for animal in animais:
+    print(f"{animal.nome}: {animal.fazer_som()}")
+
+print("\n=== MOVIMENTOS ===")
+for animal in animais:
+    print(animal.mover())
+
+# Função que aceita qualquer animal (polimorfismo)
+def apresentar_animal(animal):
+    """Função polimórfica - funciona com qualquer subclasse de Animal"""
+    print(f"Este é {animal.nome}, um {animal.especie}")
+    print(f"Ele faz: {animal.fazer_som()}")
+    print(f"Movimento: {animal.mover()}")
+    print("-" * 30)
+
+# Testando polimorfismo
+for animal in animais:
+    apresentar_animal(animal)</code></pre>
+            </div>
+            
+            <h5>6. Composição vs Herança</h5>
+            <p>Nem sempre herança é a melhor solução. Composição permite construir objetos complexos combinando objetos mais simples.</p>
+            
+            <div class="code-example">
+                <pre><code># Composição - "tem um" relacionamento
+class Motor:
+    def __init__(self, potencia, tipo_combustivel):
+        self.potencia = potencia
+        self.tipo_combustivel = tipo_combustivel
+        self.ligado = False
+    
+    def ligar(self):
+        self.ligado = True
+        return f"Motor {self.potencia}HP ligado!"
+    
+    def desligar(self):
+        self.ligado = False
+        return "Motor desligado!"
+
+class GPS:
+    def __init__(self):
+        self.destino = None
+    
+    def definir_destino(self, local):
+        self.destino = local
+        return f"Destino definido: {local}"
+    
+    def navegar(self):
+        if self.destino:
+            return f"Navegando para {self.destino}..."
+        return "Defina um destino primeiro!"
+
+class CarroCompleto:
+    """Classe que usa composição em vez de herança"""
+    
+    def __init__(self, marca, modelo, potencia_motor):
+        self.marca = marca
+        self.modelo = modelo
+        # Composição - carro "tem um" motor e "tem um" GPS
+        self.motor = Motor(potencia_motor, "Gasolina")
+        self.gps = GPS()
+        self.velocidade = 0
+    
+    def ligar(self):
+        return self.motor.ligar()
+    
+    def acelerar(self, incremento):
+        if self.motor.ligado:
+            self.velocidade += incremento
+            return f"Acelerando... Velocidade: {self.velocidade} km/h"
+        return "Ligue o motor primeiro!"
+    
+    def navegar_para(self, destino):
+        self.gps.definir_destino(destino)
+        return self.gps.navegar()
+    
+    def info_completa(self):
+        motor_status = "Ligado" if self.motor.ligado else "Desligado"
+        gps_info = f"GPS: {self.gps.destino}" if self.gps.destino else "GPS sem destino"
+        return f"{self.marca} {self.modelo} - Motor: {motor_status} - {gps_info}"
+
+# Usando composição
+carro = CarroCompleto("Honda", "Civic", 150)
+print(carro.info_completa())
+print(carro.ligar())
+print(carro.acelerar(30))
+print(carro.navegar_para("Shopping Center"))
+print(carro.info_completa())</code></pre>
+            </div>
+            
+            <div class="alert alert-success">
+                <h6>🎯 Vantagens da POO:</h6>
+                <ul class="mb-0">
+                    <li><strong>Reutilização:</strong> Classes podem ser reutilizadas em diferentes projetos</li>
+                    <li><strong>Manutenibilidade:</strong> Código organizado é mais fácil de manter</li>
+                    <li><strong>Modularidade:</strong> Cada classe tem responsabilidade específica</li>
+                    <li><strong>Extensibilidade:</strong> Fácil adicionar novas funcionalidades</li>
+                </ul>
+            </div>
+            
+            <div class="alert alert-info">
+                <h6>🧭 Quando Usar Herança vs Composição:</h6>
+                <ul class="mb-0">
+                    <li><strong>Herança:</strong> Quando há relacionamento "é um" (Carro é um Veículo)</li>
+                    <li><strong>Composição:</strong> Quando há relacionamento "tem um" (Carro tem um Motor)</li>
+                    <li><strong>Regra geral:</strong> Prefira composição quando possível</li>
                 </ul>
             </div>
         </div>''',
@@ -2109,73 +2997,608 @@ pessoa1.fazer_aniversario()</code></pre>
             },
             {
                 'type': 'multiple_choice',
-                'question': 'O que é herança em POO?',
-                'options': ['Copiar código', 'Uma classe filha herda características da classe pai', 'Deletar classes', 'Renomear métodos'],
-                'correct_answer': 'Uma classe filha herda características da classe pai'
-            },
-            {
-                'type': 'multiple_choice',
                 'question': 'O que significa "self" em Python?',
                 'options': ['Referência ao objeto atual', 'Nome da classe', 'Método especial', 'Variável global'],
                 'correct_answer': 'Referência ao objeto atual'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'Como indicar que um atributo é privado por convenção?',
+                'question': 'O que é herança em POO?',
+                'options': ['Copiar código', 'Uma classe filha herda características da classe pai', 'Deletar classes', 'Renomear métodos'],
+                'correct_answer': 'Uma classe filha herda características da classe pai'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Como indicar que um atributo é "privado" por convenção?',
                 'options': ['Usar maiúscula', 'Começar com _', 'Usar @private', 'Começar com #'],
                 'correct_answer': 'Começar com _'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual método especial define como um objeto aparece em print()?',
+                'options': ['__repr__', '__str__', '__print__', '__show__'],
+                'correct_answer': '__str__'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Como chamar o construtor da classe pai?',
+                'options': ['parent().__init__()', 'super().__init__()', 'base().__init__()', 'father().__init__()'],
+                'correct_answer': 'super().__init__()'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'O que é polimorfismo?',
+                'options': ['Múltiplos construtores', 'Múltiplas heranças', 'Mesma interface, comportamentos diferentes', 'Métodos privados'],
+                'correct_answer': 'Mesma interface, comportamentos diferentes'
             }
         ]
     },
-    6: {
+    7: {
         'title': 'Tratamento de Exceções',
-        'description': 'Aprenda a lidar com erros usando try, except, finally e raise',
+        'description': 'Aprenda a lidar com erros de forma profissional usando try, except, finally e raise',
         'content': '''<div class="module-header">
-            <h3>⚠️ Módulo 6 - Tratamento de Exceções</h3>
-            <p class="module-intro"><strong>Torne seus programas à prova de erros!</strong> Aprenda a antecipar e tratar erros.</p>
+            <h3>⚠️ Módulo 7 - Tratamento de Exceções</h3>
+            <p class="module-intro"><strong>Torne seus programas à prova de erros!</strong> Domine o tratamento profissional de exceções, antecipe problemas e crie aplicações robustas que nunca quebram inesperadamente!</p>
         </div>
         
         <div class="module-content">
-            <h4>🎯 O que você vai aprender:</h4>
+            <h4>🎯 O que você vai dominar:</h4>
             <ul class="learning-objectives">
-                <li>Tipos comuns de exceções</li>
-                <li>Blocos try, except, else, finally</li>
-                <li>Capturando exceções específicas</li>
-                <li>Lançando exceções com raise</li>
-                <li>Criando exceções personalizadas</li>
+                <li>Tipos de exceções e hierarquia completa</li>
+                <li>Blocos try, except, else, finally avançados</li>
+                <li>Captura específica vs genérica de exceções</li>
+                <li>Lançamento controlado com raise</li>
+                <li>Criação de exceções personalizadas</li>
+                <li>Context managers e with statement</li>
+                <li>Debugging e logging de erros</li>
+                <li>Estratégias de recuperação de erros</li>
             </ul>
             
-            <h4>📚 Conteúdo Teórico:</h4>
+            <h4>📚 Conteúdo Teórico Completo:</h4>
             
-            <h5>1. Por que Tratar Exceções?</h5>
-            <p>Exceções são erros que podem ocorrer durante a execução. Tratá-las evita que o programa "quebre".</p>
+            <h5>1. Por que Tratar Exceções é Fundamental?</h5>
+            <p>Exceções são eventos que interrompem o fluxo normal do programa. Em aplicações profissionais, tratar exceções adequadamente é a diferença entre um software confiável e um que "quebra" constantemente.</p>
             
             <div class="alert alert-warning">
-                <strong>Exceções comuns:</strong>
+                <h6>🚨 Exceções Comuns e Suas Causas:</h6>
                 <ul class="mb-0">
                     <li><code>ZeroDivisionError</code> - Divisão por zero</li>
-                    <li><code>ValueError</code> - Valor inadequado</li>
-                    <li><code>TypeError</code> - Tipo incorreto</li>
+                    <li><code>ValueError</code> - Valor inadequado para o tipo</li>
+                    <li><code>TypeError</code> - Operação com tipo incorreto</li>
                     <li><code>FileNotFoundError</code> - Arquivo não encontrado</li>
-                    <li><code>KeyError</code> - Chave inexistente</li>
+                    <li><code>KeyError</code> - Chave inexistente em dicionário</li>
+                    <li><code>IndexError</code> - Índice fora dos limites</li>
+                    <li><code>AttributeError</code> - Atributo inexistente</li>
+                    <li><code>ImportError</code> - Módulo não encontrado</li>
                 </ul>
             </div>
             
             <div class="code-example">
-                <h6>Tratamento básico:</h6>
-                <pre><code>try:
-    numero = int(input("Digite um número: "))
-    resultado = 10 / numero
-    print(f"Resultado: {resultado}")
-except ZeroDivisionError:
-    print("Erro: Não é possível dividir por zero!")
-except ValueError:
-    print("Erro: Digite um número válido!")</code></pre>
+                <h6>🔸 Tratamento Básico vs Avançado:</h6>
+                <pre><code># ❌ Código sem tratamento - PERIGOSO!
+def dividir_perigoso(a, b):
+    return a / b  # Pode gerar ZeroDivisionError!
+
+# ✅ Código com tratamento básico
+def dividir_basico(a, b):
+    try:
+        resultado = a / b
+        return resultado
+    except ZeroDivisionError:
+        print("Erro: Divisão por zero!")
+        return None
+
+# 🎯 Código com tratamento profissional
+def dividir_profissional(a, b):
+    """
+    Divisão segura com tratamento completo de exceções
+    
+    Args:
+        a: Dividendo (número)
+        b: Divisor (número) 
+        
+    Returns:
+        float: Resultado da divisão ou None se inválida
+        
+    Raises:
+        TypeError: Se argumentos não forem números
+        ValueError: Se divisor for zero
+    """
+    # Validação de tipos
+    if not isinstance(a, (int, float)) or not isinstance(b, (int, float)):
+        raise TypeError("Argumentos devem ser números")
+    
+    # Validação de valor
+    if b == 0:
+        raise ValueError("Divisor não pode ser zero")
+    
+    try:
+        resultado = a / b
+        print(f"✅ Divisão realizada: {a} ÷ {b} = {resultado}")
+        return resultado
+    except Exception as e:
+        print(f"❌ Erro inesperado: {e}")
+        return None
+
+# Testando as versões
+print(dividir_profissional(10, 2))   # ✅ 5.0
+print(dividir_profissional(10, 0))   # ❌ ValueError
+print(dividir_profissional("10", 2)) # ❌ TypeError</code></pre>
+            </div>
+            
+            <h5>2. Blocos Try-Except Avançados</h5>
+            <p>Domine todas as possibilidades dos blocos de tratamento para criar código robusto e informativo.</p>
+            
+            <div class="code-example">
+                <pre><code># Estrutura completa do tratamento de exceções
+def processar_arquivo_completo(nome_arquivo):
+    """Demonstra tratamento completo com try-except-else-finally"""
+    
+    arquivo = None
+    dados_processados = 0
+    
+    try:
+        print(f"🔍 Tentando abrir arquivo: {nome_arquivo}")
+        arquivo = open(nome_arquivo, 'r', encoding='utf-8')
+        
+        print("📖 Lendo conteúdo...")
+        conteudo = arquivo.read()
+        
+        print("🔢 Processando dados...")
+        linhas = conteudo.split('\n')
+        dados_processados = len([linha for linha in linhas if linha.strip()])
+        
+        # Simular possível erro de processamento
+        if dados_processados == 0:
+            raise ValueError("Arquivo vazio ou apenas com linhas em branco")
+            
+    except FileNotFoundError:
+        print(f"❌ Erro: Arquivo '{nome_arquivo}' não encontrado!")
+        return None
+        
+    except PermissionError:
+        print(f"❌ Erro: Sem permissão para ler '{nome_arquivo}'!")
+        return None
+        
+    except UnicodeDecodeError:
+        print(f"❌ Erro: Problema de encoding no arquivo '{nome_arquivo}'!")
+        return None
+        
+    except ValueError as e:
+        print(f"❌ Erro de valor: {e}")
+        return None
+        
+    except Exception as e:
+        print(f"❌ Erro inesperado: {type(e).__name__}: {e}")
+        return None
+        
+    else:
+        # Executado APENAS se NÃO houve exceções
+        print(f"✅ Arquivo processado com sucesso!")
+        print(f"📊 Total de linhas válidas: {dados_processados}")
+        
+    finally:
+        # Executado SEMPRE, independente de exceções
+        if arquivo and not arquivo.closed:
+            arquivo.close()
+            print("🔒 Arquivo fechado com segurança")
+        
+        print("🏁 Processamento finalizado")
+    
+    return dados_processados
+
+# Testando diferentes cenários
+print("=== Teste 1: Arquivo existente ===")
+resultado1 = processar_arquivo_completo("dados.txt")
+
+print("\n=== Teste 2: Arquivo inexistente ===")
+resultado2 = processar_arquivo_completo("inexistente.txt")</code></pre>
+                
+                <h6>🔸 Capturando Múltiplas Exceções:</h6>
+                <pre><code>def converter_numero_robusto(entrada):
+    """Converte string para número com múltiplas validações"""
+    
+    try:
+        # Tentativa 1: Converter para inteiro
+        if entrada.isdigit() or (entrada.startswith('-') and entrada[1:].isdigit()):
+            return int(entrada)
+        
+        # Tentativa 2: Converter para float
+        return float(entrada)
+        
+    except (ValueError, TypeError) as e:
+        # Capturando múltiplas exceções em uma linha
+        print(f"❌ Erro de conversão: {e}")
+        return None
+        
+    except AttributeError:
+        # entrada não é string (não tem método isdigit)
+        print("❌ Entrada deve ser uma string")
+        return None
+
+# Função mais complexa com validações aninhadas
+def calcular_media_notas():
+    """Calcula média de notas com tratamento robusto"""
+    
+    notas = []
+    
+    while True:
+        try:
+            entrada = input("Digite uma nota (ou 'fim' para calcular): ")
+            
+            if entrada.lower() == 'fim':
+                break
+                
+            nota = float(entrada)
+            
+            # Validação de range
+            if not 0 <= nota <= 10:
+                raise ValueError(f"Nota deve estar entre 0 e 10, recebido: {nota}")
+            
+            notas.append(nota)
+            print(f"✅ Nota {nota} adicionada")
+            
+        except ValueError as e:
+            if "could not convert" in str(e):
+                print("❌ Digite um número válido!")
+            else:
+                print(f"❌ {e}")
+                
+        except KeyboardInterrupt:
+            print("\n❌ Operação cancelada pelo usuário")
+            return None
+            
+        except EOFError:
+            print("\n❌ Entrada finalizada inesperadamente")
+            break
+    
+    if not notas:
+        print("❌ Nenhuma nota foi inserida")
+        return None
+    
+    try:
+        media = sum(notas) / len(notas)
+        print(f"📊 Média das {len(notas)} notas: {media:.2f}")
+        return media
+        
+    except ZeroDivisionError:  # Teoricamente impossível aqui, mas boa prática
+        print("❌ Erro: Divisão por zero (sem notas)")
+        return None
+
+# Exemplo de uso (comentado para não interromper execução)
+# calcular_media_notas()</code></pre>
+            </div>
+            
+            <h5>3. Lançamento Controlado de Exceções</h5>
+            <p>Use <code>raise</code> para lançar exceções em situações específicas, controlando o fluxo do programa.</p>
+            
+            <div class="code-example">
+                <pre><code>class ValidadorDados:
+    """Classe que demonstra uso profissional de raise"""
+    
+    @staticmethod
+    def validar_email(email):
+        """Valida formato de email"""
+        if not isinstance(email, str):
+            raise TypeError("Email deve ser uma string")
+        
+        if not email:
+            raise ValueError("Email não pode estar vazio")
+        
+        if '@' not in email:
+            raise ValueError("Email deve conter @")
+        
+        if email.count('@') != 1:
+            raise ValueError("Email deve conter exatamente um @")
+        
+        partes = email.split('@')
+        if not partes[0] or not partes[1]:
+            raise ValueError("Email deve ter usuário e domínio")
+        
+        if '.' not in partes[1]:
+            raise ValueError("Domínio deve conter pelo menos um ponto")
+        
+        return True
+    
+    @staticmethod  
+    def validar_idade(idade):
+        """Valida idade com regras específicas"""
+        if not isinstance(idade, int):
+            raise TypeError(f"Idade deve ser inteiro, recebido {type(idade).__name__}")
+        
+        if idade < 0:
+            raise ValueError("Idade não pode ser negativa")
+        
+        if idade > 150:
+            raise ValueError("Idade não pode ser maior que 150 anos")
+        
+        return True
+    
+    @staticmethod
+    def validar_senha(senha):
+        """Valida força da senha"""
+        if not isinstance(senha, str):
+            raise TypeError("Senha deve ser string")
+        
+        if len(senha) < 8:
+            raise ValueError("Senha deve ter pelo menos 8 caracteres")
+        
+        if not any(c.isupper() for c in senha):
+            raise ValueError("Senha deve ter pelo menos uma maiúscula")
+        
+        if not any(c.islower() for c in senha):
+            raise ValueError("Senha deve ter pelo menos uma minúscula")
+        
+        if not any(c.isdigit() for c in senha):
+            raise ValueError("Senha deve ter pelo menos um número")
+        
+        return True
+
+# Sistema de cadastro usando validações
+def cadastrar_usuario(email, idade, senha):
+    """Cadastra usuário com validações completas"""
+    
+    try:
+        print("🔍 Validando dados...")
+        
+        ValidadorDados.validar_email(email)
+        print("✅ Email válido")
+        
+        ValidadorDados.validar_idade(idade)
+        print("✅ Idade válida")
+        
+        ValidadorDados.validar_senha(senha)
+        print("✅ Senha válida")
+        
+        # Simular salvamento no banco
+        print(f"💾 Usuário cadastrado: {email}, {idade} anos")
+        return True
+        
+    except (TypeError, ValueError) as e:
+        print(f"❌ Erro de validação: {e}")
+        return False
+        
+    except Exception as e:
+        print(f"❌ Erro inesperado: {e}")
+        return False
+
+# Testando validações
+print("=== Teste de Cadastro ===")
+sucesso = cadastrar_usuario("user@email.com", 25, "MinhaSenh@123")
+print(f"Cadastro {'bem-sucedido' if sucesso else 'falhou'}")
+
+print("\n=== Teste com Dados Inválidos ===")
+sucesso = cadastrar_usuario("email_invalido", -5, "123")</code></pre>
+            </div>
+            
+            <h5>4. Exceções Personalizadas</h5>
+            <p>Crie suas próprias exceções para situações específicas do seu domínio de aplicação.</p>
+            
+            <div class="code-example">
+                <pre><code># Hierarquia de exceções personalizadas
+class ErroSistemaFinanceiro(Exception):
+    """Exceção base para sistema financeiro"""
+    pass
+
+class ErroContaInexistente(ErroSistemaFinanceiro):
+    """Exceção para conta não encontrada"""
+    pass
+
+class ErroSaldoInsuficiente(ErroSistemaFinanceiro):
+    """Exceção para saldo insuficiente"""
+    
+    def __init__(self, saldo_atual, valor_tentativa):
+        self.saldo_atual = saldo_atual
+        self.valor_tentativa = valor_tentativa
+        super().__init__(f"Saldo insuficiente: R$ {saldo_atual:.2f}, tentativa: R$ {valor_tentativa:.2f}")
+
+class ErroLimiteCredito(ErroSistemaFinanceiro):
+    """Exceção para limite de crédito excedido"""
+    
+    def __init__(self, limite, valor_tentativa):
+        self.limite = limite
+        self.valor_tentativa = valor_tentativa
+        mensagem = f"Limite de crédito excedido. Limite: R$ {limite:.2f}, Tentativa: R$ {valor_tentativa:.2f}"
+        super().__init__(mensagem)
+
+class ContaBancaria:
+    """Sistema bancário com exceções personalizadas"""
+    
+    def __init__(self, numero, titular, saldo_inicial=0, limite_credito=1000):
+        self.numero = numero
+        self.titular = titular
+        self.saldo = saldo_inicial
+        self.limite_credito = limite_credito
+        self.historico = []
+    
+    def depositar(self, valor):
+        """Deposita valor na conta"""
+        if valor <= 0:
+            raise ValueError("Valor de depósito deve ser positivo")
+        
+        self.saldo += valor
+        self.historico.append(f"Depósito: +R$ {valor:.2f}")
+        print(f"✅ Depósito realizado: R$ {valor:.2f}")
+        
+    def sacar(self, valor):
+        """Saca valor da conta com verificações"""
+        if valor <= 0:
+            raise ValueError("Valor de saque deve ser positivo")
+        
+        # Verificar se há saldo suficiente
+        if valor > self.saldo:
+            raise ErroSaldoInsuficiente(self.saldo, valor)
+        
+        self.saldo -= valor
+        self.historico.append(f"Saque: -R$ {valor:.2f}")
+        print(f"✅ Saque realizado: R$ {valor:.2f}")
+    
+    def usar_credito(self, valor):
+        """Usa crédito pré-aprovado"""
+        if valor <= 0:
+            raise ValueError("Valor deve ser positivo")
+        
+        # Verificar limite de crédito
+        if valor > self.limite_credito:
+            raise ErroLimiteCredito(self.limite_credito, valor)
+        
+        # Usar crédito (saldo pode ficar negativo)
+        self.saldo -= valor
+        self.historico.append(f"Crédito usado: -R$ {valor:.2f}")
+        print(f"✅ Crédito utilizado: R$ {valor:.2f}")
+    
+    def extrato(self):
+        """Exibe extrato da conta"""
+        print(f"\n=== EXTRATO - Conta {self.numero} ===")
+        print(f"Titular: {self.titular}")
+        print(f"Saldo atual: R$ {self.saldo:.2f}")
+        print(f"Limite de crédito: R$ {self.limite_credito:.2f}")
+        print("\nHistórico:")
+        for transacao in self.historico:
+            print(f"  {transacao}")
+
+# Sistema bancário usando exceções personalizadas
+def simular_operacoes_bancarias():
+    """Simula operações bancárias com tratamento de exceções"""
+    
+    conta = ContaBancaria("12345", "João Silva", 1000, 500)
+    
+    operacoes = [
+        ("depositar", 200),
+        ("sacar", 300),
+        ("sacar", 1500),      # Vai dar erro de saldo
+        ("usar_credito", 400),
+        ("usar_credito", 200), # Vai dar erro de limite
+    ]
+    
+    for operacao, valor in operacoes:
+        try:
+            print(f"\n🔄 Tentando {operacao} R$ {valor:.2f}")
+            
+            if operacao == "depositar":
+                conta.depositar(valor)
+            elif operacao == "sacar":
+                conta.sacar(valor)
+            elif operacao == "usar_credito":
+                conta.usar_credito(valor)
+                
+        except ErroSaldoInsuficiente as e:
+            print(f"❌ Erro específico: {e}")
+            print(f"💡 Sugestão: Use crédito ou deposite R$ {e.valor_tentativa - e.saldo_atual:.2f}")
+            
+        except ErroLimiteCredito as e:
+            print(f"❌ Erro de limite: {e}")
+            print(f"💡 Disponível no crédito: R$ {e.limite:.2f}")
+            
+        except ErroSistemaFinanceiro as e:
+            print(f"❌ Erro financeiro: {e}")
+            
+        except ValueError as e:
+            print(f"❌ Erro de valor: {e}")
+    
+    conta.extrato()
+
+# Executar simulação
+simular_operacoes_bancarias()</code></pre>
+            </div>
+            
+            <h5>5. Context Managers e With Statement</h5>
+            <p>Use context managers para garantir limpeza de recursos, mesmo quando exceções ocorrem.</p>
+            
+            <div class="code-example">
+                <pre><code># Context manager para arquivos - automático
+def processar_arquivo_seguro(nome_arquivo):
+    """Usando with para garantir fechamento do arquivo"""
+    
+    try:
+        with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
+            print(f"📖 Arquivo {nome_arquivo} aberto")
+            conteudo = arquivo.read()
+            
+            # Arquivo é fechado automaticamente, mesmo se houver exceção
+            if not conteudo.strip():
+                raise ValueError("Arquivo está vazio")
+            
+            return len(conteudo.split('\n'))
+            
+    except FileNotFoundError:
+        print(f"❌ Arquivo {nome_arquivo} não encontrado")
+        return 0
+    except ValueError as e:
+        print(f"❌ Erro de conteúdo: {e}")
+        return 0
+
+# Context manager personalizado
+class GerenciadorConexao:
+    """Simula uma conexão que precisa ser fechada"""
+    
+    def __init__(self, servidor):
+        self.servidor = servidor
+        self.conectado = False
+    
+    def __enter__(self):
+        """Método chamado ao entrar no bloco with"""
+        print(f"🔌 Conectando ao servidor {self.servidor}")
+        self.conectado = True
+        return self
+    
+    def __exit__(self, exc_type, exc_value, traceback):
+        """Método chamado ao sair do bloco with (sempre executado)"""
+        if self.conectado:
+            print(f"🔌 Desconectando do servidor {self.servidor}")
+            self.conectado = False
+        
+        # Se retornar True, suprime a exceção
+        if exc_type:
+            print(f"❌ Exceção capturada: {exc_type.__name__}: {exc_value}")
+            return False  # Não suprimir exceção
+    
+    def enviar_dados(self, dados):
+        """Simula envio de dados"""
+        if not self.conectado:
+            raise RuntimeError("Não conectado ao servidor")
+        
+        if not dados:
+            raise ValueError("Dados não podem estar vazios")
+        
+        print(f"📤 Enviando: {dados}")
+
+# Usando context manager personalizado
+def exemplo_context_manager():
+    """Demonstra uso de context manager personalizado"""
+    
+    try:
+        with GerenciadorConexao("servidor-api.com") as conexao:
+            conexao.enviar_dados("Dados importantes")
+            conexao.enviar_dados("")  # Vai gerar erro
+            
+    except (RuntimeError, ValueError) as e:
+        print(f"❌ Erro durante operação: {e}")
+    
+    print("✅ Context manager garantiu limpeza")
+
+exemplo_context_manager()</code></pre>
             </div>
             
             <div class="alert alert-success">
-                <h6><i class="fas fa-lightbulb"></i> Boa Prática:</h6>
-                <p class="mb-0">Sempre trate exceções específicas antes de capturar Exception genérica. Isso torna o código mais robusto.</p>
+                <h6>🎯 Melhores Práticas para Exceções:</h6>
+                <ul class="mb-0">
+                    <li><strong>Seja específico:</strong> Capture exceções específicas, não Exception genérica</li>
+                    <li><strong>Falhe rápido:</strong> Valide entrada no início das funções</li>
+                    <li><strong>Documente:</strong> Use docstrings para documentar exceções possíveis</li>
+                    <li><strong>Log erros:</strong> Registre exceções para debugging futuro</li>
+                    <li><strong>Recupere-se:</strong> Ofereça alternativas quando possível</li>
+                </ul>
+            </div>
+            
+            <div class="alert alert-warning">
+                <h6>⚠️ Armadilhas Comuns:</h6>
+                <ul class="mb-0">
+                    <li>Nunca use <code>except:</code> sem especificar a exceção</li>
+                    <li>Não ignore exceções silenciosamente (<code>pass</code>)</li>
+                    <li>Cuidado com <code>except Exception</code> - muito genérico</li>
+                    <li>Sempre feche recursos manualmente ou use context managers</li>
+                </ul>
             </div>
         </div>''',
         'quiz': [
@@ -2208,54 +3631,659 @@ except ValueError:
                 'question': 'O que acontece se uma exceção não for tratada?',
                 'options': ['O programa continua', 'O programa para com erro', 'O erro é ignorado', 'Nada acontece'],
                 'correct_answer': 'O programa para com erro'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual exceção ocorre ao tentar dividir por zero?',
+                'options': ['ValueError', 'TypeError', 'ZeroDivisionError', 'ArithmeticError'],
+                'correct_answer': 'ZeroDivisionError'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Como capturar múltiplas exceções em um bloco except?',
+                'options': ['except ValueError, TypeError:', 'except (ValueError, TypeError):', 'except ValueError and TypeError:', 'except ValueError or TypeError:'],
+                'correct_answer': 'except (ValueError, TypeError):'
+            },
+            {
+                'type': 'multiple_choice',
+                'question': 'Qual a principal vantagem de usar "with" para abrir arquivos?',
+                'options': ['É mais rápido', 'Garante fechamento automático', 'Permite múltiplos arquivos', 'Evita erros de sintaxe'],
+                'correct_answer': 'Garante fechamento automático'
             }
         ]
     },
-    7: {
+    8: {
         'title': 'Bibliotecas e APIs',
-        'description': 'Use bibliotecas externas e integre com APIs para expandir funcionalidades',
+        'description': 'Expanda o poder do Python com bibliotecas externas e integração com APIs para criar aplicações modernas',
         'content': '''<div class="module-header">
-            <h3>📚 Módulo 7 - Bibliotecas e APIs</h3>
-            <p class="module-intro"><strong>Expanda o poder do Python!</strong> Descubra como usar bibliotecas externas e APIs.</p>
+            <h3>📚 Módulo 8 - Bibliotecas e APIs</h3>
+            <p class="module-intro"><strong>Desbloqueie o poder infinito do Python!</strong> Descubra como usar milhares de bibliotecas externas e integrar com APIs para criar aplicações incríveis. Do básico ao avançado!</p>
         </div>
         
         <div class="module-content">
-            <h4>🎯 O que você vai aprender:</h4>
+            <h4>🎯 O que você vai dominar:</h4>
             <ul class="learning-objectives">
-                <li>Instalando bibliotecas com pip</li>
-                <li>Fazendo requisições HTTP</li>
-                <li>Consumindo APIs REST</li>
-                <li>Processando dados JSON</li>
-                <li>Bibliotecas populares do Python</li>
+                <li>Gerenciamento avançado de pacotes com pip</li>
+                <li>Requisições HTTP profissionais com requests</li>
+                <li>Consumo e criação de APIs REST</li>
+                <li>Autenticação e tokens de API</li>
+                <li>Processamento avançado de JSON</li>
+                <li>Bibliotecas essenciais do ecossistema Python</li>
+                <li>Web scraping ético e responsável</li>
+                <li>Criação de clientes para APIs populares</li>
             </ul>
             
-            <h4>📚 Conteúdo Teórico:</h4>
+            <h4>📚 Conteúdo Teórico Completo:</h4>
             
-            <h5>1. Gerenciamento de Pacotes</h5>
-            <p>O pip é o gerenciador de pacotes do Python que permite instalar bibliotecas externas.</p>
+            <h5>1. Ecossistema Python e Gerenciamento de Pacotes</h5>
+            <p>O Python possui um dos maiores ecossistemas de bibliotecas do mundo, com mais de 400.000 pacotes no PyPI. Saber gerenciá-los é fundamental!</p>
+            
+            <div class="alert alert-info">
+                <h6>🌟 Principais Repositórios:</h6>
+                <ul class="mb-0">
+                    <li><strong>PyPI:</strong> Python Package Index - repositório oficial</li>
+                    <li><strong>Anaconda:</strong> Foco em ciência de dados</li>
+                    <li><strong>GitHub:</strong> Desenvolvimento colaborativo</li>
+                    <li><strong>pip:</strong> Gerenciador padrão de pacotes</li>
+                </ul>
+            </div>
             
             <div class="code-example">
-                <h6>Comandos pip essenciais:</h6>
-                <pre><code># Instalar uma biblioteca
-pip install requests
-pip install pandas numpy
+                <h6>🔸 Gerenciamento Avançado com pip:</h6>
+                <pre><code># Comandos essenciais do pip
+# Instalar bibliotecas
+pip install requests                    # Versão mais recente
+pip install requests==2.28.1           # Versão específica
+pip install requests>=2.25.0           # Versão mínima
+pip install requests~=2.28.0           # Versão compatível
 
-# Listar bibliotecas instaladas
-pip list
+# Instalar múltiplas bibliotecas
+pip install requests pandas numpy matplotlib
 
-# Mostrar informações de uma biblioteca
-pip show requests
+# Instalar de arquivo requirements.txt
+pip install -r requirements.txt
 
-# Atualizar uma biblioteca
-pip install --upgrade requests
+# Gerar arquivo de dependências
+pip freeze > requirements.txt
+
+# Atualizar bibliotecas
+pip install --upgrade requests         # Atualizar específica
+pip list --outdated                   # Listar desatualizadas
+pip install --upgrade pip             # Atualizar o próprio pip
+
+# Informações sobre pacotes
+pip show requests                      # Detalhes do pacote
+pip list                              # Todos os pacotes instalados
+pip check                             # Verificar dependências
 
 # Desinstalar
-pip uninstall requests</code></pre>
+pip uninstall requests
+pip uninstall -r requirements.txt     # Desinstalar do arquivo
+
+# Buscar pacotes
+pip search machine-learning           # Buscar por termo (depreciado)
+
+# Instalar de repositórios Git
+pip install git+https://github.com/user/repo.git</code></pre>
+                
+                <h6>🔸 Ambiente Virtual (Melhor Prática):</h6>
+                <pre><code># Criar ambiente virtual
+python -m venv meu_projeto_env
+
+# Ativar ambiente virtual
+# Windows:
+meu_projeto_env\Scripts\activate
+# Linux/Mac:
+source meu_projeto_env/bin/activate
+
+# Instalar dependências no ambiente isolado
+pip install requests pandas
+
+# Desativar ambiente
+deactivate
+
+# Exemplo de estrutura de projeto profissional
+meu_projeto/
+├── requirements.txt          # Dependências
+├── requirements-dev.txt      # Dependências de desenvolvimento
+├── src/                      # Código fonte
+├── tests/                    # Testes
+├── docs/                     # Documentação
+└── venv/                     # Ambiente virtual</code></pre>
+            </div>
+            
+            <h5>2. Biblioteca Requests - HTTP para Humanos</h5>
+            <p>A biblioteca requests é o padrão para fazer requisições HTTP em Python. Simples, elegante e poderosa!</p>
+            
+            <div class="code-example">
+                <pre><code>import requests
+import json
+from datetime import datetime
+
+# GET - Buscar dados
+def exemplo_get_basico():
+    """Requisição GET básica"""
+    url = "https://jsonplaceholder.typicode.com/posts/1"
+    
+    try:
+        response = requests.get(url)
+        
+        # Verificar se a requisição foi bem-sucedida
+        response.raise_for_status()  # Lança exceção para códigos 4xx/5xx
+        
+        # Acessar dados JSON
+        data = response.json()
+        print(f"📄 Post ID: {data['id']}")
+        print(f"📝 Título: {data['title']}")
+        print(f"✍️ Autor: Usuário {data['userId']}")
+        
+        return data
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro na requisição: {e}")
+        return None
+
+# GET com parâmetros
+def buscar_posts_por_usuario(user_id):
+    """Busca posts de um usuário específico"""
+    url = "https://jsonplaceholder.typicode.com/posts"
+    
+    # Parâmetros da URL
+    params = {
+        'userId': user_id,
+        '_limit': 5  # Limitar resultados
+    }
+    
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        
+        posts = response.json()
+        print(f"📊 Encontrados {len(posts)} posts do usuário {user_id}")
+        
+        for post in posts:
+            print(f"  📌 [{post['id']}] {post['title'][:50]}...")
+            
+        return posts
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro: {e}")
+        return []
+
+# POST - Criar dados
+def criar_post(titulo, conteudo, user_id):
+    """Cria um novo post"""
+    url = "https://jsonplaceholder.typicode.com/posts"
+    
+    # Dados para enviar
+    data = {
+        'title': titulo,
+        'body': conteudo,
+        'userId': user_id
+    }
+    
+    # Headers para JSON
+    headers = {
+        'Content-Type': 'application/json',
+        'User-Agent': 'MeuApp/1.0'
+    }
+    
+    try:
+        response = requests.post(url, json=data, headers=headers)
+        response.raise_for_status()
+        
+        novo_post = response.json()
+        print(f"✅ Post criado com ID: {novo_post['id']}")
+        return novo_post
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro ao criar post: {e}")
+        return None
+
+# PUT - Atualizar dados
+def atualizar_post(post_id, titulo, conteudo):
+    """Atualiza um post existente"""
+    url = f"https://jsonplaceholder.typicode.com/posts/{post_id}"
+    
+    data = {
+        'id': post_id,
+        'title': titulo,
+        'body': conteudo,
+        'userId': 1
+    }
+    
+    try:
+        response = requests.put(url, json=data)
+        response.raise_for_status()
+        
+        post_atualizado = response.json()
+        print(f"✅ Post {post_id} atualizado com sucesso")
+        return post_atualizado
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro ao atualizar: {e}")
+        return None
+
+# DELETE - Remover dados
+def deletar_post(post_id):
+    """Remove um post"""
+    url = f"https://jsonplaceholder.typicode.com/posts/{post_id}"
+    
+    try:
+        response = requests.delete(url)
+        response.raise_for_status()
+        
+        print(f"✅ Post {post_id} removido com sucesso")
+        return True
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro ao deletar: {e}")
+        return False
+
+# Sessões - Reutilizar conexões
+def exemplo_sessao():
+    """Usando sessões para múltiplas requisições"""
+    
+    with requests.Session() as session:
+        # Configurar headers padrão para toda a sessão
+        session.headers.update({
+            'User-Agent': 'MeuApp/1.0',
+            'Accept': 'application/json'
+        })
+        
+        # Múltiplas requisições reutilizando a conexão
+        urls = [
+            "https://jsonplaceholder.typicode.com/posts/1",
+            "https://jsonplaceholder.typicode.com/posts/2",
+            "https://jsonplaceholder.typicode.com/posts/3"
+        ]
+        
+        results = []
+        for url in urls:
+            try:
+                response = session.get(url, timeout=5)
+                response.raise_for_status()
+                results.append(response.json())
+                print(f"✅ Dados obtidos de {url}")
+            except requests.exceptions.RequestException as e:
+                print(f"❌ Erro em {url}: {e}")
+        
+        return results
+
+# Testando as funções
+print("=== Testando Requests ===")
+exemplo_get_basico()
+buscar_posts_por_usuario(1)
+criar_post("Meu Post Python", "Conteúdo incrível sobre Python!", 1)</code></pre>
+            </div>
+            
+            <h5>3. Trabalhando com APIs Reais</h5>
+            <p>Vamos integrar com APIs populares para criar aplicações úteis e práticas!</p>
+            
+            <div class="code-example">
+                <pre><code>import requests
+import os
+from datetime import datetime
+
+class ViaCEPClient:
+    """Cliente para API ViaCEP - busca informações de CEP"""
+    
+    BASE_URL = "https://viacep.com.br/ws"
+    
+    def buscar_cep(self, cep):
+        """Busca informações de um CEP"""
+        # Limpar CEP (remover caracteres especiais)
+        cep_limpo = ''.join(filter(str.isdigit, cep))
+        
+        if len(cep_limpo) != 8:
+            raise ValueError("CEP deve ter 8 dígitos")
+        
+        url = f"{self.BASE_URL}/{cep_limpo}/json/"
+        
+        try:
+            response = requests.get(url, timeout=10)
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            # Verificar se CEP foi encontrado
+            if 'erro' in data:
+                raise ValueError(f"CEP {cep} não encontrado")
+            
+            return {
+                'cep': data['cep'],
+                'logradouro': data['logradouro'],
+                'bairro': data['bairro'],
+                'cidade': data['localidade'],
+                'uf': data['uf'],
+                'ddd': data['ddd']
+            }
+            
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Erro ao consultar CEP: {e}")
+
+class GitHubClient:
+    """Cliente para API do GitHub"""
+    
+    BASE_URL = "https://api.github.com"
+    
+    def __init__(self, token=None):
+        self.session = requests.Session()
+        
+        # Headers padrão
+        self.session.headers.update({
+            'Accept': 'application/vnd.github.v3+json',
+            'User-Agent': 'PythonApp/1.0'
+        })
+        
+        # Autenticação opcional
+        if token:
+            self.session.headers['Authorization'] = f'token {token}'
+    
+    def buscar_usuario(self, username):
+        """Busca informações de um usuário"""
+        url = f"{self.BASE_URL}/users/{username}"
+        
+        try:
+            response = self.session.get(url)
+            response.raise_for_status()
+            
+            user = response.json()
+            
+            return {
+                'nome': user['name'],
+                'username': user['login'],
+                'bio': user['bio'],
+                'repositorios_publicos': user['public_repos'],
+                'seguidores': user['followers'],
+                'seguindo': user['following'],
+                'criado_em': user['created_at'],
+                'avatar': user['avatar_url']
+            }
+            
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Erro ao buscar usuário: {e}")
+    
+    def listar_repositorios(self, username, limit=10):
+        """Lista repositórios de um usuário"""
+        url = f"{self.BASE_URL}/users/{username}/repos"
+        
+        params = {
+            'sort': 'updated',
+            'direction': 'desc',
+            'per_page': limit
+        }
+        
+        try:
+            response = self.session.get(url, params=params)
+            response.raise_for_status()
+            
+            repos = response.json()
+            
+            repositorios = []
+            for repo in repos:
+                repositorios.append({
+                    'nome': repo['name'],
+                    'descricao': repo['description'],
+                    'linguagem': repo['language'],
+                    'estrelas': repo['stargazers_count'],
+                    'forks': repo['forks_count'],
+                    'url': repo['html_url'],
+                    'atualizado_em': repo['updated_at']
+                })
+            
+            return repositorios
+            
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Erro ao listar repositórios: {e}")
+
+class OpenWeatherClient:
+    """Cliente para API OpenWeatherMap"""
+    
+    BASE_URL = "https://api.openweathermap.org/data/2.5"
+    
+    def __init__(self, api_key):
+        if not api_key:
+            raise ValueError("API key é obrigatória")
+        self.api_key = api_key
+    
+    def clima_atual(self, cidade):
+        """Busca clima atual de uma cidade"""
+        url = f"{self.BASE_URL}/weather"
+        
+        params = {
+            'q': cidade,
+            'appid': self.api_key,
+            'units': 'metric',  # Celsius
+            'lang': 'pt_br'
+        }
+        
+        try:
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+            
+            data = response.json()
+            
+            return {
+                'cidade': data['name'],
+                'pais': data['sys']['country'],
+                'temperatura': data['main']['temp'],
+                'sensacao_termica': data['main']['feels_like'],
+                'humidade': data['main']['humidity'],
+                'pressao': data['main']['pressure'],
+                'descricao': data['weather'][0]['description'],
+                'nuvens': data['clouds']['all'],
+                'vento_velocidade': data['wind']['speed'],
+                'visibilidade': data.get('visibility', 'N/A')
+            }
+            
+        except requests.exceptions.RequestException as e:
+            raise Exception(f"Erro ao buscar clima: {e}")
+
+# Exemplo de uso prático
+def demonstrar_apis():
+    """Demonstra uso de múltiplas APIs"""
+    
+    print("=== Consultando CEP ===")
+    via_cep = ViaCEPClient()
+    try:
+        endereco = via_cep.buscar_cep("01310-100")
+        print(f"📍 {endereco['logradouro']}, {endereco['bairro']}")
+        print(f"🏙️ {endereco['cidade']}/{endereco['uf']} - CEP: {endereco['cep']}")
+    except Exception as e:
+        print(f"❌ Erro: {e}")
+    
+    print("\n=== Consultando GitHub ===")
+    github = GitHubClient()
+    try:
+        usuario = github.buscar_usuario("octocat")
+        print(f"👤 {usuario['nome']} (@{usuario['username']})")
+        print(f"📊 {usuario['repositorios_publicos']} repos públicos")
+        print(f"👥 {usuario['seguidores']} seguidores")
+        
+        repos = github.listar_repositorios("octocat", 3)
+        print(f"\n🗂️ Repositórios recentes:")
+        for repo in repos:
+            print(f"  ⭐ {repo['nome']} ({repo['estrelas']} estrelas) - {repo['linguagem']}")
+            
+    except Exception as e:
+        print(f"❌ Erro: {e}")
+
+demonstrar_apis()</code></pre>
+            </div>
+            
+            <h5>4. Bibliotecas Essenciais do Ecossistema Python</h5>
+            <p>Conheça as bibliotecas mais importantes para diferentes domínios de aplicação.</p>
+            
+            <div class="code-example">
+                <pre><code># Principais categorias de bibliotecas Python
+
+# 📊 CIÊNCIA DE DADOS
+"""
+pandas - Manipulação de dados tabulares
+numpy - Computação numérica
+matplotlib - Gráficos e visualizações
+seaborn - Visualizações estatísticas
+scipy - Algoritmos científicos
+scikit-learn - Machine learning
+"""
+
+# 🌐 WEB DEVELOPMENT
+"""
+flask - Framework web minimalista
+django - Framework web completo
+fastapi - APIs modernas e rápidas
+requests - Cliente HTTP
+beautifulsoup4 - Web scraping
+scrapy - Framework de scraping
+"""
+
+# 🗄️ BANCO DE DADOS
+"""
+sqlalchemy - ORM para SQL
+pymongo - Cliente MongoDB
+redis - Cliente Redis
+psycopg2 - Cliente PostgreSQL
+"""
+
+# 🔧 UTILIDADES GERAIS
+"""
+python-dateutil - Manipulação de datas
+pillow - Processamento de imagens
+openpyxl - Manipulação de Excel
+python-dotenv - Variáveis de ambiente
+click - Interfaces de linha de comando
+"""
+
+# Exemplo prático: Manipulação de dados com pandas
+import pandas as pd
+import requests
+
+def exemplo_pandas_com_api():
+    """Combina API com análise de dados usando pandas"""
+    
+    # Buscar dados de uma API
+    print("📥 Buscando dados da API...")
+    url = "https://jsonplaceholder.typicode.com/users"
+    
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        
+        # Converter JSON para DataFrame
+        users_data = response.json()
+        df = pd.DataFrame(users_data)
+        
+        print(f"📊 Dados carregados: {len(df)} usuários")
+        print(f"📋 Colunas: {list(df.columns)}")
+        
+        # Análises básicas
+        print("\n=== Análise dos Dados ===")
+        print(f"🌐 Websites únicos: {df['website'].nunique()}")
+        print(f"🏢 Empresas únicas: {df['company'].apply(lambda x: x['name']).nunique()}")
+        
+        # Extrair informações aninhadas
+        df['empresa_nome'] = df['company'].apply(lambda x: x['name'])
+        df['cidade'] = df['address'].apply(lambda x: x['city'])
+        
+        # Agrupar por cidade
+        usuarios_por_cidade = df.groupby('cidade').size()
+        print(f"\n🏙️ Usuários por cidade:")
+        for cidade, count in usuarios_por_cidade.items():
+            print(f"  {cidade}: {count} usuários")
+        
+        # Salvar dados processados
+        df[['name', 'email', 'empresa_nome', 'cidade']].to_csv('usuarios.csv', index=False)
+        print(f"\n💾 Dados salvos em 'usuarios.csv'")
+        
+        return df
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro na API: {e}")
+        return None
+    except Exception as e:
+        print(f"❌ Erro no processamento: {e}")
+        return None
+
+# Exemplo: Web scraping ético com BeautifulSoup
+from bs4 import BeautifulSoup
+import time
+
+def exemplo_web_scraping():
+    """Exemplo de web scraping responsável"""
+    
+    # URL de exemplo (sempre verificar robots.txt!)
+    url = "https://quotes.toscrape.com/"
+    
+    try:
+        # Headers para parecer um navegador real
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()
+        
+        # Parsear HTML
+        soup = BeautifulSoup(response.content, 'html.parser')
+        
+        # Encontrar citações
+        quotes = soup.find_all('div', class_='quote')
+        
+        print(f"📜 Encontradas {len(quotes)} citações:")
+        
+        citacoes_data = []
+        for quote in quotes[:5]:  # Primeiras 5
+            texto = quote.find('span', class_='text').text
+            autor = quote.find('small', class_='author').text
+            tags = [tag.text for tag in quote.find_all('a', class_='tag')]
+            
+            citacoes_data.append({
+                'texto': texto,
+                'autor': autor,
+                'tags': ', '.join(tags)
+            })
+            
+            print(f"\n💭 \"{texto}\"")
+            print(f"✍️ — {autor}")
+            print(f"🏷️ Tags: {', '.join(tags)}")
+        
+        # Converter para DataFrame
+        df_quotes = pd.DataFrame(citacoes_data)
+        df_quotes.to_json('citacoes.json', orient='records', indent=2)
+        print(f"\n💾 Citações salvas em 'citacoes.json'")
+        
+        return citacoes_data
+        
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Erro no scraping: {e}")
+        return None
+
+# Executar exemplos (comentado para não causar erro se dependências não estiverem instaladas)
+# exemplo_pandas_com_api()
+# exemplo_web_scraping()</code></pre>
             </div>
             
             <div class="alert alert-success">
-                <h6><i class="fas fa-lightbulb"></i> Dica Profissional:</h6>
-                <p class="mb-0">Sempre verifique a documentação oficial das APIs antes de usá-las. Muitas requerem autenticação via chaves API.</p>
+                <h6>🎯 Melhores Práticas para APIs:</h6>
+                <ul class="mb-0">
+                    <li><strong>Rate Limiting:</strong> Respeite limites de requisições</li>
+                    <li><strong>Timeouts:</strong> Sempre defina timeouts para evitar travamentos</li>
+                    <li><strong>Tratamento de Erros:</strong> Capture e trate exceções adequadamente</li>
+                    <li><strong>Autenticação:</strong> Mantenha tokens seguros e nunca no código</li>
+                    <li><strong>Cache:</strong> Cache respostas quando apropriado</li>
+                </ul>
+            </div>
+            
+            <div class="alert alert-warning">
+                <h6>⚠️ Considerações Éticas:</h6>
+                <ul class="mb-0">
+                    <li>Sempre leia e respeite o robots.txt</li>
+                    <li>Não sobrecarregue servidores com muitas requisições</li>
+                    <li>Use delays entre requisições em web scraping</li>
+                    <li>Respeite termos de uso das APIs</li>
+                    <li>Considere custos de APIs pagas</li>
+                </ul>
             </div>
         </div>''',
         'quiz': [
@@ -2288,77 +4316,24 @@ pip uninstall requests</code></pre>
                 'question': 'Como listar todas as bibliotecas instaladas?',
                 'options': ['pip show', 'pip list', 'pip install', 'pip check'],
                 'correct_answer': 'pip list'
-            }
-        ]
-    },
-    8: {
-        'title': 'Banco de Dados',
-        'description': 'Conecte e manipule bancos de dados usando SQLite e operações CRUD',
-        'content': '''<div class="module-header">
-            <h3>🗄️ Módulo 8 - Banco de Dados</h3>
-            <p class="module-intro"><strong>Persista seus dados!</strong> Aprenda a armazenar e gerenciar dados usando bancos de dados.</p>
-        </div>
-        
-        <div class="module-content">
-            <h4>🎯 O que você vai aprender:</h4>
-            <ul class="learning-objectives">
-                <li>Conceitos de banco de dados</li>
-                <li>SQLite com Python</li>
-                <li>Operações CRUD (Create, Read, Update, Delete)</li>
-                <li>Consultas SQL básicas</li>
-                <li>Boas práticas de segurança</li>
-            </ul>
-            
-            <h4>📚 Conteúdo Teórico:</h4>
-            
-            <h5>1. Introdução a Bancos de Dados</h5>
-            <p>Bancos de dados são sistemas organizados para armazenar, gerenciar e recuperar informações.</p>
-            
-            <div class="alert alert-info">
-                <strong>Conceitos importantes:</strong>
-                <ul class="mb-0">
-                    <li><strong>Tabela:</strong> Estrutura que organiza dados</li>
-                    <li><strong>Linha/Registro:</strong> Um conjunto de dados</li>
-                    <li><strong>Coluna/Campo:</strong> Um tipo de informação</li>
-                    <li><strong>Chave Primária:</strong> Identificador único</li>
-                </ul>
-            </div>
-            
-            <div class="alert alert-warning">
-                <h6><i class="fas fa-shield-alt"></i> Segurança:</h6>
-                <p class="mb-0">Sempre use parâmetros (?) para evitar ataques de SQL Injection. Nunca concatene strings diretamente nas consultas!</p>
-            </div>
-        </div>''',
-        'quiz': [
-            {
-                'type': 'multiple_choice',
-                'question': 'Qual biblioteca é comumente usada para conectar ao SQLite?',
-                'options': ['sqlite3', 'database', 'sqlconnector', 'dbapi'],
-                'correct_answer': 'sqlite3'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'Qual comando SQL é usado para criar uma tabela?',
-                'options': ['MAKE TABLE', 'CREATE TABLE', 'NEW TABLE', 'ADD TABLE'],
-                'correct_answer': 'CREATE TABLE'
+                'question': 'Qual método verifica se uma requisição HTTP foi bem-sucedida?',
+                'options': ['response.check()', 'response.raise_for_status()', 'response.validate()', 'response.verify()'],
+                'correct_answer': 'response.raise_for_status()'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'O que significa CRUD em banco de dados?',
-                'options': ['Create, Read, Update, Delete', 'Connect, Run, Update, Drop', 'Copy, Rename, Upload, Download', 'Create, Remove, Use, Data'],
-                'correct_answer': 'Create, Read, Update, Delete'
+                'question': 'Como converter resposta JSON em dicionário Python?',
+                'options': ['response.to_dict()', 'response.json()', 'json.loads(response)', 'response.parse()'],
+                'correct_answer': 'response.json()'
             },
             {
                 'type': 'multiple_choice',
-                'question': 'Qual método é usado para executar comandos SQL?',
-                'options': ['cursor.run()', 'cursor.execute()', 'cursor.query()', 'cursor.command()'],
-                'correct_answer': 'cursor.execute()'
-            },
-            {
-                'type': 'multiple_choice',
-                'question': 'Para que serve o comando "commit()"?',
-                'options': ['Conectar ao banco', 'Salvar as mudanças', 'Fechar a conexão', 'Criar tabelas'],
-                'correct_answer': 'Salvar as mudanças'
+                'question': 'Qual header é importante para enviar dados JSON?',
+                'options': ['Content-Type: application/json', 'Data-Type: json', 'Format: json', 'Type: application/json'],
+                'correct_answer': 'Content-Type: application/json'
             }
         ]
     },
